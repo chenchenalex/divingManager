@@ -1,19 +1,26 @@
 import React, { Component } from "react";
+
 import "./App.css";
-import Menu from "../menu/menuContainer";
+
+import { menuItems } from "../../data/mockData";
+
+import SideMenu from "../menu/menuContainer";
 import DisplayPanel from "../displayPanel/displayPanelContainer";
+import { BrowserRouter as Router } from "react-router-dom";
 
 class App extends Component {
   state = {
-    a: 1
+    menuItems
   };
 
   render() {
     return (
-      <div className="App">
-        <Menu items="this.state.a" />
-        <DisplayPanel />
-      </div>
+      <Router>
+        <div className="App">
+          <SideMenu items={this.state.menuItems} />
+          <DisplayPanel />
+        </div>
+      </Router>
     );
   }
 }

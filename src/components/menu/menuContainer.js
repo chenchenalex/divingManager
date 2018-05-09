@@ -1,15 +1,16 @@
 import React, { Component } from "react";
-import "./menu.css";
-
+import MainMenu, { MenuItem } from "./menuContainer.style";
+import { Link } from "react-router-dom";
 class Menu extends Component {
   render() {
     return (
-      <ul className="main-menu">
-        <li>{this.props.a}</li>
-        <li>first element</li>
-        <li>first element</li>
-        <li>first element</li>
-      </ul>
+      <MainMenu>
+        {this.props.items.map(({ name, url, id }) => (
+          <Link key={id} to={url}>
+            <MenuItem>{name}</MenuItem>
+          </Link>
+        ))}
+      </MainMenu>
     );
   }
 }
