@@ -1,12 +1,8 @@
 import React from "react";
-import styled from "styled-components";
+import DivingList from "./style";
 
-const List = styled.ul`
-  margin: 0;
-`;
-
-const DivingList = () => (
-  <List className="divingList">diving list DivingList</List>
+const DivingListComponent = () => (
+  <DivingList className="divingList">diving list DivingList</DivingList>
 );
 
-export default DivingList;
+export default DivingListComponent;
