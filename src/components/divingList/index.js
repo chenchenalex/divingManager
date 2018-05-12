@@ -1,3 +1,4 @@
 import divingList from "./divingList.jsx";
+import divingForm from "./divingForm.jsx";
 
-export default divingList;
+export { divingList, divingForm };

@@ -6,3 +6,12 @@ export const menuItems = [
   { id: 5, name: "Underwater gallery", url: "/gallery" },
   { id: 6, name: "Discover diving sites", url: "/discover" }
 ];
+
+export const divingHistory = [
+  {
+    id: 0,
+    name: "kaotao OW/AOW lesson",
+    location: "Thailand",
+    date: "2017-3-15"
+  }
+];

@@ -3,7 +3,7 @@ import { Route } from "react-router-dom";
 import Panel from "./style";
 
 import dashboard from "../dashboard";
-import divingList from "../divingList";
+import { divingList, divingForm } from "../divingList";
 import account from "../account";
 
 const DisplayPanel = () => (
@@ -11,7 +11,8 @@ const DisplayPanel = () => (
     <Route exact path="/" render={() => <h1>Welcome</h1>} />
     <Route path="/Account" component={account} />
     <Route path="/dashboard" component={dashboard} />
-    <Route path="/list" component={divingList} />
+    <Route path="/list" component={divingList} exact />
+    <Route path="/list/add" component={divingForm} exact />
   </Panel>
 );
 

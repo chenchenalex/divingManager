@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import MainMenu, { MenuItem } from "./style";
 import { Link } from "react-router-dom";
+import PropTypes from "prop-types";
 
 class Menu extends Component {
   render() {
@@ -15,5 +16,9 @@ class Menu extends Component {
     );
   }
 }
+
+Menu.propTypes = {
+  items: PropTypes.array.isRequired
+};
 
 export default Menu;

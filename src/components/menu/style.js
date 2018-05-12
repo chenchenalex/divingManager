@@ -8,10 +8,6 @@ const MainMenu = styled.ul`
   border-right: 1px solid;
   padding: 0 20px;
   flex-basis: 20%;
-
-  a:active {
-    text-decoration: none;
-  }
 `;
 
 export const MenuItem = styled.li`

@@ -1,8 +1,26 @@
 import React from "react";
-import DivingList from "./style";
+import DivingTable from "./divingTable";
+import DivingListContainer from "./style";
+import { divingHistory } from "../../data/mockData";
+import AddButton from "./addNew";
 
-const DivingListComponent = () => (
-  <DivingList className="divingList">diving list DivingList</DivingList>
-);
+class divingListComponent extends React.Component {
+  state = [...divingHistory];
 
-export default DivingListComponent;
+  addNewDive = ({ name, location, date }) => {
+    this.setState((state, prop) => {
+      return [...state, { name, location, date }];
+    });
+  };
+
+  render() {
+    return (
+      <DivingListContainer className="diving-list">
+        <AddButton />
+        <DivingTable savedData={this.state} />
+      </DivingListContainer>
+    );
+  }
+}
+
+export default divingListComponent;
