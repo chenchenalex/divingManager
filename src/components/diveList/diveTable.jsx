@@ -5,6 +5,7 @@ import Table, {
   TableHead,
   TableRow
 } from "material-ui/Table";
+import { Link } from "react-router-dom";
 
 const DivingTable = ({ savedData }) => {
   return (
@@ -20,7 +21,9 @@ const DivingTable = ({ savedData }) => {
         {savedData.map(dive => {
           return (
             <TableRow key={dive.id}>
-              <TableCell>{dive.name}</TableCell>
+              <TableCell>
+                <Link to={`/list/edit/${dive.id}`}>{dive.name}</Link>
+              </TableCell>
               <TableCell>{dive.location}</TableCell>
               <TableCell>{dive.date}</TableCell>
             </TableRow>

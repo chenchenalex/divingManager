@@ -1,12 +1,10 @@
 import React from "react";
-import DivingTable from "./divingTable";
+import { connect } from "react-redux";
+import DiveTable from "./diveTable";
 import DivingListContainer from "./style";
-import { divingHistory } from "../../data/mockData";
 import AddButton from "./addNew";
 
 class divingListComponent extends React.Component {
-  state = [...divingHistory];
-
   addNewDive = ({ name, location, date }) => {
     this.setState((state, prop) => {
       return [...state, { name, location, date }];
@@ -17,10 +15,16 @@ class divingListComponent extends React.Component {
     return (
       <DivingListContainer className="diving-list">
         <AddButton />
-        <DivingTable savedData={this.state} />
+        <DiveTable savedData={this.props.divingHistory} />
       </DivingListContainer>
     );
   }
 }
 
-export default divingListComponent;
+function mapStateToProps(state) {
+  return {
+    divingHistory: state.divingHistory
+  };
+}
+
+export default connect(mapStateToProps)(divingListComponent);

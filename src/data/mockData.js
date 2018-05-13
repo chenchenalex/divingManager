@@ -12,6 +12,6 @@ export const divingHistory = [
     id: 0,
     name: "kaotao OW/AOW lesson",
     location: "Thailand",
-    date: "2017-3-15"
+    date: "2017-03-15"
   }
 ];
