@@ -19,7 +19,7 @@ const classes = {
 };
 
 export class DivingForm extends React.Component {
-  state = { ...INITIAL_FORM_DATA };
+  state = { formData: { ...INITIAL_FORM_DATA } };
 
   formConfig = {
     name: {
@@ -39,47 +39,63 @@ export class DivingForm extends React.Component {
     }
   };
 
+  savedForm = {};
+
   componentWillMount() {
     if (this.props.match.params.id) {
+      this.savedForm = this.props.divingHistory.find(
+        dive => dive.id === parseInt(this.props.match.params.id, 10)
+      );
+
       this.setState(state => {
-        return this.props.divingHistory.find(
-          dive => dive.id === parseInt(this.props.match.params.id, 10)
-        );
+        return {
+          formData: this.savedForm
+        };
       });
+
+      this.validateForm();
     }
   }
 
   handleChange = name => event => {
     const newValue = event.target.value;
 
-    this.setState(function(state) {
-      return {
-        [name]: newValue
+    // This is how to deep clone an object
+    this.setState(function(prevState) {
+      const newState = {
+        ...prevState,
+        formData: {
+          ...prevState.formData,
+          [name]: newValue
+        }
       };
+
+      return newState;
     });
   };
 
+  handleBlur = name => event => {
+    this.checkFormFieldValidity(name, this.state.formData[name]);
+
+    this.validateForm();
+  };
+
   resetAllForms = () => {
-    this.setState(function(state) {
-      return INITIAL_FORM_DATA;
+    this.setState(function() {
+      return { formData: { ...INITIAL_FORM_DATA } };
     });
   };
 
   onFormSubmit = () => {
     let actionCreator;
 
-    this.setState({
-      formValid: true
-    });
-
-    // Toggle form input error Text
-    Object.entries(this.state).forEach(this.checkFormFieldValidity);
+    if (!this.state.formValid) return;
 
     // Call actions based on form ID
-    if (typeof this.state.id === "undefined") {
-      actionCreator = addNewDive(this.state);
+    if (typeof this.state.formData.id === "undefined") {
+      actionCreator = addNewDive(this.state.formData);
     } else {
-      actionCreator = editDive(this.state);
+      actionCreator = editDive(this.state.formData);
     }
 
     store.dispatch(actionCreator);
@@ -87,27 +103,48 @@ export class DivingForm extends React.Component {
     this.props.history.push("/list");
   };
 
-  checkFormFieldValidity = (key, val) => {
-    if (val === "" || val === null) {
-      this.errorText[key].invalid = true;
+  checkFormFieldValidity = (fieldKey, val) => {
+    // don't check values that's not configured
+    if (!this.formConfig[fieldKey]) return;
 
-      this.setState({
-        formValid: false
-      });
+    if (this.formConfig[fieldKey].required && (val === "" || val === null)) {
+      this.formConfig[fieldKey].invalid = true;
     } else {
-      this.errorText[key].invalid = false;
+      this.formConfig[fieldKey].invalid = false;
     }
+  };
+
+  validateForm = () => {
+    let formValid = !Object.keys(this.formConfig).some(key => {
+      return this.formConfig[key].invalid;
+    });
+
+    this.setState(prevState => {
+      return {
+        ...prevState,
+        formValid
+      };
+    });
   };
 
   render() {
     return (
       <div className={classes.container}>
+        <DiveFormElements
+          classes={classes}
+          handleChange={this.handleChange}
+          handleBlur={this.handleBlur}
+          formData={this.state.formData}
+          formConfig={this.formConfig}
+        />
+
         <div className="form-actions">
           <Button
             className={classes.button}
             variant="raised"
+            disabled={!this.state.formValid}
             color="primary"
-            onClick={this.onFormSubmit}
+            onClick={this.onFormSubmit.bind(this)}
           >
             Save
           </Button>
@@ -120,14 +157,6 @@ export class DivingForm extends React.Component {
             Reset
           </Button>
         </div>
-
-        <DiveFormElements
-          classes={classes}
-          handleChange={this.handleChange}
-          handleSubmit={this.onFormSubmit}
-          formData={this.state}
-          errorStatus={this.errorText}
-        />
       </div>
     );
   }

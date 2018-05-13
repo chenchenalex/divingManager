@@ -1,4 +1,4 @@
-import diveList from "./diveList.jsx";
+import diveList from "./diveTableContainer";
 import diveForm from "./diveForm.jsx";
 
 export { diveList, diveForm };

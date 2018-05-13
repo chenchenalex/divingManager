@@ -5,12 +5,6 @@ import DivingListContainer from "./style";
 import AddButton from "./addNew";
 
 class divingListComponent extends React.Component {
-  addNewDive = ({ name, location, date }) => {
-    this.setState((state, prop) => {
-      return [...state, { name, location, date }];
-    });
-  };
-
   render() {
     return (
       <DivingListContainer className="diving-list">
