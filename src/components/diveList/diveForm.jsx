@@ -19,8 +19,6 @@ const classes = {
 };
 
 export class DivingForm extends React.Component {
-  state = { formData: { ...INITIAL_FORM_DATA } };
-
   formConfig = {
     name: {
       required: true,
@@ -39,21 +37,40 @@ export class DivingForm extends React.Component {
     }
   };
 
-  savedForm = {};
-
   componentWillMount() {
     if (this.props.match.params.id) {
-      this.savedForm = this.props.divingHistory.find(
-        dive => dive.id === parseInt(this.props.match.params.id, 10)
-      );
+      // Edit existing dive
+      const {
+        divingHistory: { diveById }
+      } = this.props;
+
+      this.savedForm = diveById[this.props.match.params.id];
 
       this.setState(state => {
         return {
-          formData: this.savedForm
+          formData: this.savedForm,
+          editingFormData: this.savedForm
         };
       });
+    } else {
+      // Add new dive
+      this.setState(state => {
+        return {
+          formData: { ...INITIAL_FORM_DATA },
+          editingFormData: { ...INITIAL_FORM_DATA }
+        };
+      });
+    }
+  }
 
+  componentDidMount() {
+    if (!this.props.match.params.id) return;
+
+    if (this.state.editingFormData) {
       this.validateForm();
+    } else {
+      // Dive requested not found
+      this.props.history.push("/404");
     }
   }
 
@@ -64,8 +81,8 @@ export class DivingForm extends React.Component {
     this.setState(function(prevState) {
       const newState = {
         ...prevState,
-        formData: {
-          ...prevState.formData,
+        editingFormData: {
+          ...prevState.editingFormData,
           [name]: newValue
         }
       };
@@ -75,14 +92,18 @@ export class DivingForm extends React.Component {
   };
 
   handleBlur = name => event => {
-    this.checkFormFieldValidity(name, this.state.formData[name]);
+    this.checkFormFieldValidity(name, this.state.editingFormData[name]);
 
     this.validateForm();
   };
 
   resetAllForms = () => {
-    this.setState(function() {
-      return { formData: { ...INITIAL_FORM_DATA } };
+    Object.keys(this.formConfig).forEach(function(fieldKey) {
+      this.formConfig[fieldKey].invalid = false;
+    });
+
+    this.setState(function(prevState) {
+      return { editingFormData: { ...prevState.formData }, formValid: true };
     });
   };
 
@@ -92,10 +113,10 @@ export class DivingForm extends React.Component {
     if (!this.state.formValid) return;
 
     // Call actions based on form ID
-    if (typeof this.state.formData.id === "undefined") {
-      actionCreator = addNewDive(this.state.formData);
+    if (typeof this.state.editingFormData.id === "undefined") {
+      actionCreator = addNewDive(this.state.editingFormData);
     } else {
-      actionCreator = editDive(this.state.formData);
+      actionCreator = editDive(this.state.editingFormData);
     }
 
     store.dispatch(actionCreator);
@@ -115,8 +136,12 @@ export class DivingForm extends React.Component {
   };
 
   validateForm = () => {
-    let formValid = !Object.keys(this.formConfig).some(key => {
-      return this.formConfig[key].invalid;
+    let formValid = Object.keys(this.formConfig).every(key => {
+      const isRequiredAndNotEmpty =
+        this.formConfig[key].required && this.state.editingFormData[key] !== "";
+      const isInvalid = this.formConfig[key].invalid;
+
+      return !isInvalid && isRequiredAndNotEmpty;
     });
 
     this.setState(prevState => {
@@ -134,7 +159,7 @@ export class DivingForm extends React.Component {
           classes={classes}
           handleChange={this.handleChange}
           handleBlur={this.handleBlur}
-          formData={this.state.formData}
+          formData={this.state.editingFormData}
           formConfig={this.formConfig}
         />
 

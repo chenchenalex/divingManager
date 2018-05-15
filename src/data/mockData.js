@@ -7,11 +7,13 @@ export const menuItems = [
   { id: 6, name: "Discover diving sites", url: "/discover" }
 ];
 
-export const divingHistory = [
-  {
-    id: 0,
-    name: "kaotao OW/AOW lesson",
-    location: "Thailand",
-    date: "2017-03-15"
+export const divingHistory = {
+  diveById: {
+    0: {
+      id: 0,
+      name: "kaotao OW/AOW lesson",
+      location: "Thailand",
+      date: "2017-03-15"
+    }
   }
-];
+};

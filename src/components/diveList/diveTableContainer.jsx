@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 import DiveTable from "./diveTable";
 import DivingListContainer from "./style";
 import AddButton from "./addNew";
+import { getDives } from "../../data/utils";
 
 class divingListComponent extends React.Component {
   render() {
@@ -17,7 +18,7 @@ class divingListComponent extends React.Component {
 
 function mapStateToProps(state) {
   return {
-    divingHistory: state.divingHistory
+    divingHistory: getDives(state.divingHistory)
   };
 }
 
