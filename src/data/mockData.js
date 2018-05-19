@@ -9,8 +9,8 @@ export const menuItems = [
 
 export const divingHistory = {
   diveById: {
-    0: {
-      id: 0,
+    jhe1fkkjb: {
+      id: "jhe1fkkjb",
       name: "kaotao OW/AOW lesson",
       location: "Thailand",
       date: "2017-03-15"

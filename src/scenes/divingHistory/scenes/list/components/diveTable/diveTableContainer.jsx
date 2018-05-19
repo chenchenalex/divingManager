@@ -33,7 +33,7 @@ class divingListComponent extends React.Component {
 
   onSelect = event => {
     const isChecked = event.target.checked;
-    const id = parseInt(event.target.value, 10);
+    const id = event.target.value;
 
     if (isChecked) {
       this.setState(state => {
@@ -52,13 +52,19 @@ class divingListComponent extends React.Component {
 
   onDelete = () => {
     store.dispatch(deleteActionCreator(this.state.selected));
+
+    this.setState(state => {
+      return {
+        selected: []
+      };
+    });
   };
 
   render() {
     return (
       <DivingListContainer className="diving-list">
         <AddButton />
-        <DeleteButton onDelete={this.onDelete} />
+        <DeleteButton onDelete={this.onDelete} state={this.state} />
         <DiveTable
           state={this.state}
           tableData={this.props.divingHistory}

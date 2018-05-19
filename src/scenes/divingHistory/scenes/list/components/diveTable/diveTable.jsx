@@ -25,7 +25,10 @@ const DivingTable = ({ state, tableData, onSelect, onSelectAll }) => {
                 state.selected.length > 0 &&
                 state.selected.length < tableData.length
               }
-              checked={state.selected.length === tableData.length}
+              checked={
+                state.selected.length > 0 &&
+                state.selected.length === tableData.length
+              }
             />
           </TableCell>
           <TableCell>Name</TableCell>
@@ -47,7 +50,7 @@ const DivingTable = ({ state, tableData, onSelect, onSelectAll }) => {
               <TableCell>
                 <Checkbox
                   onChange={onSelect}
-                  value={dive.id.toString()}
+                  value={dive.id}
                   checked={isSelected}
                 />
               </TableCell>
