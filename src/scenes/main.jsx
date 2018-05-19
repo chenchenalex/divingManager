@@ -1,7 +1,7 @@
 import React from "react";
 import Container from "./style";
-import SideMenu from "./menu";
-import DisplayPanel from "./displayPanel";
+import SideMenu from "../components/menu";
+import DisplayPanel from "../components/displayPanel";
 
 import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
@@ -17,8 +17,8 @@ function Main({ divingHistory, menuItems }) {
 
 function mapStateToProps(state) {
   return {
-    divingHistory: state.divingHistory,
-    menuItems: state.menuItems
+    divingHistory: state.scenes.divingHistory,
+    menuItems: state.components.menu
   };
 }
 

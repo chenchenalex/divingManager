@@ -1,4 +1,4 @@
-import { ADD_DIVE, EDIT_DIVE } from "../actions/actionTypes";
+import { ADD_DIVE, EDIT_DIVE } from "src/actions/actionTypes";
 
 export default function formReducers(state = {}, action) {
   switch (action.type) {

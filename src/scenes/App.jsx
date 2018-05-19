@@ -3,7 +3,7 @@ import { BrowserRouter as Router } from "react-router-dom";
 import { MuiThemeProvider, createMuiTheme } from "material-ui/styles";
 import { Provider } from "react-redux";
 
-import appStore from "./store";
+import appStore from "../store";
 import Main from "./main";
 
 const theme = createMuiTheme();

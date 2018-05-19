@@ -1,7 +1,7 @@
 import React from "react";
 import TextField from "material-ui/TextField";
 import PropTypes from "prop-types";
-import { DivingForm } from "./style";
+import { DivingForm } from "../../style";
 
 const formElements = ({
   classes,

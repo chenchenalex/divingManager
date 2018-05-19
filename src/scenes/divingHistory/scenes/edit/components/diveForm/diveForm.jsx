@@ -1,14 +1,14 @@
 import React from "react";
 import Button from "material-ui/Button";
 import { connect } from "react-redux";
-import store from "../store";
+import store from "src/store";
 
 import { Link } from "react-router-dom";
 import DiveFormElements from "./diveformElements";
-import { INITIAL_FORM_DATA } from "../../data/contants";
+import { INITIAL_FORM_DATA } from "src/data/contants";
 
 // import action
-import { addNewDive, editDive } from "../../actions/diveFormActions";
+import { addNewDive, editDive } from "../../actions";
 
 const classes = {
   container: "divingform-container",
@@ -189,7 +189,7 @@ export class DivingForm extends React.Component {
 
 function mapStateToProps(state) {
   return {
-    divingHistory: state.divingHistory
+    divingHistory: state.scenes.divingHistory
   };
 }
 

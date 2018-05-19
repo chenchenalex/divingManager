@@ -1,4 +1,4 @@
-import { ADD_DIVE, EDIT_DIVE } from "./actionTypes";
+import { ADD_DIVE, EDIT_DIVE } from "src/actions/actionTypes";
 
 export const addNewDive = formData => {
   return {
