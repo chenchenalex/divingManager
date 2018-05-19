@@ -98,7 +98,7 @@ export class DivingForm extends React.Component {
   };
 
   resetAllForms = () => {
-    Object.keys(this.formConfig).forEach(function(fieldKey) {
+    Object.keys(this.formConfig).forEach(fieldKey => {
       this.formConfig[fieldKey].invalid = false;
     });
 
