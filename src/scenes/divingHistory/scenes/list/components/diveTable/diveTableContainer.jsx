@@ -5,7 +5,7 @@ import { connect } from "react-redux";
 
 // components
 import DiveTable from "./diveTable";
-import DivingListContainer from "../../style";
+import { DivingContainer } from "../../style";
 import AddButton from "../buttons/addNew";
 import DeleteButton from "../buttons/delete";
 
@@ -62,7 +62,7 @@ class divingListComponent extends React.Component {
 
   render() {
     return (
-      <DivingListContainer className="diving-list">
+      <DivingContainer className="diving-list">
         <AddButton />
         <DeleteButton onDelete={this.onDelete} state={this.state} />
         <DiveTable
@@ -71,7 +71,7 @@ class divingListComponent extends React.Component {
           onSelect={this.onSelect}
           onSelectAll={this.onSelectAll}
         />
-      </DivingListContainer>
+      </DivingContainer>
     );
   }
 }

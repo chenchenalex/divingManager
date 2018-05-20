@@ -1,13 +1,9 @@
 import React from "react";
-import Table, {
-  TableBody,
-  TableCell,
-  TableHead,
-  TableRow
-} from "material-ui/Table";
+import { TableBody, TableCell, TableHead, TableRow } from "material-ui/Table";
 import Checkbox from "material-ui/Checkbox";
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
+import { DiveTable } from "../../style";
 
 const DivingTable = ({ state, tableData, onSelect, onSelectAll }) => {
   const checkSelected = ({ id }) => {
@@ -15,7 +11,7 @@ const DivingTable = ({ state, tableData, onSelect, onSelectAll }) => {
   };
 
   return (
-    <Table className="testing">
+    <DiveTable className="testing">
       <TableHead>
         <TableRow>
           <TableCell>
@@ -63,7 +59,7 @@ const DivingTable = ({ state, tableData, onSelect, onSelectAll }) => {
           );
         })}
       </TableBody>
-    </Table>
+    </DiveTable>
   );
 };
 
