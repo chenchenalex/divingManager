@@ -13,11 +13,23 @@ export function diveById(state = {}, action) {
         [newID]: newDiveData
       };
     case EDIT_DIVE:
+      if (
+        typeof action.data === "undefined" ||
+        typeof action.data.id === "undefined"
+      )
+        return state;
+
       return {
         ...state,
         [action.data.id]: action.data
       };
     case DELETE_DIVE:
+      if (
+        typeof action.data === "undefined" ||
+        typeof action.data.id === "undefined"
+      )
+        return state;
+
       return Object.keys(state).reduce(
         function(result, key) {
           if (action.data.includes(key)) {
