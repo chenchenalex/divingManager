@@ -24,10 +24,7 @@ export function diveById(state = {}, action) {
         [action.data.id]: action.data
       };
     case DELETE_DIVE:
-      if (
-        typeof action.data === "undefined" ||
-        typeof action.data.id === "undefined"
-      )
+      if (typeof action.data === "undefined" || !Array.isArray(action.data))
         return state;
 
       return Object.keys(state).reduce(

@@ -1,0 +1,345 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Dive list: Snapshots tests Dive table: should render correctly 1`] = `
+<table
+  className="MuiTable-root-26 testing sc-bwzfXH fGCCLo"
+>
+  <thead
+    className="MuiTableHead-root-27"
+  >
+    <tr
+      className="MuiTableRow-root-28 MuiTableRow-head-31"
+    >
+      <th
+        aria-sort={null}
+        className="MuiTableCell-root-33 MuiTableCell-head-34"
+        scope="col"
+      >
+        <span
+          className="MuiButtonBase-root-16 MuiIconButton-root-50 MuiSwitchBase-root-46 MuiCheckbox-root-41 MuiCheckbox-colorSecondary-45"
+          onBlur={[Function]}
+          onFocus={[Function]}
+          onKeyDown={[Function]}
+          onKeyUp={[Function]}
+          onMouseDown={[Function]}
+          onMouseLeave={[Function]}
+          onMouseUp={[Function]}
+          onTouchEnd={[Function]}
+          onTouchMove={[Function]}
+          onTouchStart={[Function]}
+          role={undefined}
+          tabIndex={null}
+        >
+          <span
+            className="MuiIconButton-label-55"
+          >
+            <svg
+              aria-hidden="true"
+              className="MuiSvgIcon-root-56"
+              color={undefined}
+              focusable="false"
+              viewBox="0 0 24 24"
+            >
+              <path
+                d="M19 5v14H5V5h14m0-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2z"
+              />
+            </svg>
+            <input
+              checked={false}
+              className="MuiSwitchBase-input-49"
+              disabled={undefined}
+              id={undefined}
+              name={undefined}
+              onChange={[Function]}
+              tabIndex={undefined}
+              type="checkbox"
+              value={undefined}
+            />
+          </span>
+          <span
+            className="MuiTouchRipple-root-19"
+          />
+        </span>
+      </th>
+      <th
+        aria-sort={null}
+        className="MuiTableCell-root-33 MuiTableCell-head-34"
+        scope="col"
+      >
+        Name
+      </th>
+      <th
+        aria-sort={null}
+        className="MuiTableCell-root-33 MuiTableCell-head-34"
+        scope="col"
+      >
+        Location
+      </th>
+      <th
+        aria-sort={null}
+        className="MuiTableCell-root-33 MuiTableCell-head-34"
+        scope="col"
+      >
+        Date
+      </th>
+    </tr>
+  </thead>
+  <tbody
+    className="MuiTableBody-root-62"
+  >
+    <tr
+      aria-checked={false}
+      className="MuiTableRow-root-28"
+      role="checkbox"
+      tabIndex={-1}
+    >
+      <td
+        aria-sort={null}
+        className="MuiTableCell-root-33 MuiTableCell-body-35"
+        scope={undefined}
+      >
+        <span
+          className="MuiButtonBase-root-16 MuiIconButton-root-50 MuiSwitchBase-root-46 MuiCheckbox-root-41 MuiCheckbox-colorSecondary-45"
+          onBlur={[Function]}
+          onFocus={[Function]}
+          onKeyDown={[Function]}
+          onKeyUp={[Function]}
+          onMouseDown={[Function]}
+          onMouseLeave={[Function]}
+          onMouseUp={[Function]}
+          onTouchEnd={[Function]}
+          onTouchMove={[Function]}
+          onTouchStart={[Function]}
+          role={undefined}
+          tabIndex={null}
+        >
+          <span
+            className="MuiIconButton-label-55"
+          >
+            <svg
+              aria-hidden="true"
+              className="MuiSvgIcon-root-56"
+              color={undefined}
+              focusable="false"
+              viewBox="0 0 24 24"
+            >
+              <path
+                d="M19 5v14H5V5h14m0-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2z"
+              />
+            </svg>
+            <input
+              checked={false}
+              className="MuiSwitchBase-input-49"
+              disabled={undefined}
+              id={undefined}
+              name={undefined}
+              onChange={[Function]}
+              tabIndex={undefined}
+              type="checkbox"
+              value="abc"
+            />
+          </span>
+          <span
+            className="MuiTouchRipple-root-19"
+          />
+        </span>
+      </td>
+      <td
+        aria-sort={null}
+        className="MuiTableCell-root-33 MuiTableCell-body-35"
+        scope={undefined}
+      >
+        <a
+          href="/list/edit/abc"
+          onClick={[Function]}
+        >
+          old diving spot 1
+        </a>
+      </td>
+      <td
+        aria-sort={null}
+        className="MuiTableCell-root-33 MuiTableCell-body-35"
+        scope={undefined}
+      >
+        china
+      </td>
+      <td
+        aria-sort={null}
+        className="MuiTableCell-root-33 MuiTableCell-body-35"
+        scope={undefined}
+      >
+        20181012
+      </td>
+    </tr>
+    <tr
+      aria-checked={false}
+      className="MuiTableRow-root-28"
+      role="checkbox"
+      tabIndex={-1}
+    >
+      <td
+        aria-sort={null}
+        className="MuiTableCell-root-33 MuiTableCell-body-35"
+        scope={undefined}
+      >
+        <span
+          className="MuiButtonBase-root-16 MuiIconButton-root-50 MuiSwitchBase-root-46 MuiCheckbox-root-41 MuiCheckbox-colorSecondary-45"
+          onBlur={[Function]}
+          onFocus={[Function]}
+          onKeyDown={[Function]}
+          onKeyUp={[Function]}
+          onMouseDown={[Function]}
+          onMouseLeave={[Function]}
+          onMouseUp={[Function]}
+          onTouchEnd={[Function]}
+          onTouchMove={[Function]}
+          onTouchStart={[Function]}
+          role={undefined}
+          tabIndex={null}
+        >
+          <span
+            className="MuiIconButton-label-55"
+          >
+            <svg
+              aria-hidden="true"
+              className="MuiSvgIcon-root-56"
+              color={undefined}
+              focusable="false"
+              viewBox="0 0 24 24"
+            >
+              <path
+                d="M19 5v14H5V5h14m0-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2z"
+              />
+            </svg>
+            <input
+              checked={false}
+              className="MuiSwitchBase-input-49"
+              disabled={undefined}
+              id={undefined}
+              name={undefined}
+              onChange={[Function]}
+              tabIndex={undefined}
+              type="checkbox"
+              value="def"
+            />
+          </span>
+          <span
+            className="MuiTouchRipple-root-19"
+          />
+        </span>
+      </td>
+      <td
+        aria-sort={null}
+        className="MuiTableCell-root-33 MuiTableCell-body-35"
+        scope={undefined}
+      >
+        <a
+          href="/list/edit/def"
+          onClick={[Function]}
+        >
+          old diving spot 2
+        </a>
+      </td>
+      <td
+        aria-sort={null}
+        className="MuiTableCell-root-33 MuiTableCell-body-35"
+        scope={undefined}
+      >
+        US
+      </td>
+      <td
+        aria-sort={null}
+        className="MuiTableCell-root-33 MuiTableCell-body-35"
+        scope={undefined}
+      >
+        20181002
+      </td>
+    </tr>
+  </tbody>
+</table>
+`;
+
+exports[`Dive list: Snapshots tests addNew: should render correctly 1`] = `
+<a
+  href="/list/add"
+  onClick={[Function]}
+>
+  <button
+    aria-label="add"
+    className="MuiButtonBase-root-16 MuiButton-root-1 MuiButton-raised-6 MuiButton-fab-11 MuiButton-raisedPrimary-7"
+    disabled={false}
+    onBlur={[Function]}
+    onFocus={[Function]}
+    onKeyDown={[Function]}
+    onKeyUp={[Function]}
+    onMouseDown={[Function]}
+    onMouseLeave={[Function]}
+    onMouseUp={[Function]}
+    onTouchEnd={[Function]}
+    onTouchMove={[Function]}
+    onTouchStart={[Function]}
+    tabIndex="0"
+    type="button"
+  >
+    <span
+      className="MuiButton-label-2"
+    >
+      <svg
+        aria-hidden="true"
+        className="MuiSvgIcon-root-1"
+        color={undefined}
+        focusable="false"
+        viewBox="0 0 24 24"
+      >
+        <g>
+          <path
+            d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"
+          />
+        </g>
+      </svg>
+    </span>
+    <span
+      className="MuiTouchRipple-root-19"
+    />
+  </button>
+</a>
+`;
+
+exports[`Dive list: Snapshots tests delete button: should render correctly 1`] = `
+<button
+  aria-label="delete"
+  className="MuiButtonBase-root-16 MuiButtonBase-disabled-17 MuiButton-root-1 MuiButton-raised-6 MuiButton-fab-11 MuiButton-disabled-10"
+  disabled={true}
+  onBlur={[Function]}
+  onClick={[MockFunction]}
+  onFocus={[Function]}
+  onKeyDown={[Function]}
+  onKeyUp={[Function]}
+  onMouseDown={[Function]}
+  onMouseLeave={[Function]}
+  onMouseUp={[Function]}
+  onTouchEnd={[Function]}
+  onTouchMove={[Function]}
+  onTouchStart={[Function]}
+  tabIndex="-1"
+  type="button"
+>
+  <span
+    className="MuiButton-label-2"
+  >
+    <svg
+      aria-hidden="true"
+      className="MuiSvgIcon-root-1"
+      color={undefined}
+      focusable="false"
+      viewBox="0 0 24 24"
+    >
+      <g>
+        <path
+          d="M6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7H6v12zM19 4h-3.5l-1-1h-5l-1 1H5v2h14V4z"
+        />
+      </g>
+    </svg>
+  </span>
+</button>
+`;
