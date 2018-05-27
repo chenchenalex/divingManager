@@ -12,7 +12,7 @@ import DeleteButton from "../buttons/delete";
 // utils
 import { getDives } from "src/data/utils";
 
-class divingListComponent extends React.Component {
+export class DivingListComponent extends React.Component {
   state = {
     selected: []
   };
@@ -67,7 +67,7 @@ class divingListComponent extends React.Component {
         <DeleteButton onDelete={this.onDelete} state={this.state} />
         <DiveTable
           state={this.state}
-          tableData={this.props.divingHistory}
+          tableData={this.props.divingHistory || []}
           onSelect={this.onSelect}
           onSelectAll={this.onSelectAll}
         />
@@ -82,4 +82,4 @@ function mapStateToProps(state) {
   };
 }
 
-export default connect(mapStateToProps)(divingListComponent);
+export default connect(mapStateToProps)(DivingListComponent);
