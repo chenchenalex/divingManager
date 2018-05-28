@@ -4,6 +4,7 @@ import Checkbox from "material-ui/Checkbox";
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 import { DiveTable } from "../../style";
+import { tableColumnData } from "src/data/mockData";
 
 const DivingTable = ({ state, tableData, onSelect, onSelectAll }) => {
   const checkSelected = ({ id }) => {
@@ -27,9 +28,9 @@ const DivingTable = ({ state, tableData, onSelect, onSelectAll }) => {
               }
             />
           </TableCell>
-          <TableCell>Name</TableCell>
-          <TableCell>Location</TableCell>
-          <TableCell>Date</TableCell>
+          {tableColumnData.map(column => {
+            return <TableCell key={column.id}>{column.label}</TableCell>;
+          })}
         </TableRow>
       </TableHead>
       <TableBody>
