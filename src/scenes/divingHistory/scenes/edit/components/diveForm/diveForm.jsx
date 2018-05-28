@@ -5,7 +5,7 @@ import store from "src/store";
 
 import { Link } from "react-router-dom";
 import DiveFormElements from "./diveformElements";
-import { INITIAL_FORM_DATA } from "src/data/contants";
+import { INITIAL_FORM_DATA, FORM_CONFIG } from "src/data/constants";
 
 // import action
 import { addNewDive, editDive } from "../../actions";
@@ -19,23 +19,7 @@ const classes = {
 };
 
 export class DivingForm extends React.Component {
-  formConfig = {
-    name: {
-      required: true,
-      invalid: false,
-      helperText: "Please provide name here"
-    },
-    location: {
-      required: true,
-      invalid: false,
-      helperText: "Please select a location"
-    },
-    date: {
-      required: true,
-      invalid: false,
-      helperText: "Date is missing"
-    }
-  };
+  formConfig = { ...FORM_CONFIG };
 
   componentWillMount() {
     if (this.props.match.params.id) {
@@ -137,11 +121,13 @@ export class DivingForm extends React.Component {
 
   validateForm = () => {
     let formValid = Object.keys(this.formConfig).every(key => {
-      const isRequiredAndNotEmpty =
-        this.formConfig[key].required && this.state.editingFormData[key] !== "";
+      const isRequired = this.formConfig[key].required;
+
+      const isEmpty = this.state.editingFormData[key] === "";
+
       const isInvalid = this.formConfig[key].invalid;
 
-      return !isInvalid && isRequiredAndNotEmpty;
+      return (isRequired && !isEmpty && !isInvalid) || !isRequired;
     });
 
     this.setState(prevState => {

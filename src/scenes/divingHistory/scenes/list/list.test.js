@@ -13,10 +13,11 @@ import renderer from "react-test-renderer";
 const divingHistory = getDives({ diveById: mockState });
 
 describe("Dive list: dive table container tests", () => {
+  const container = shallow(
+    <DivingListComponent divingHistory={divingHistory} />
+  );
+
   it("onSelectAll: should select all dives or deselect them all", () => {
-    const container = shallow(
-      <DivingListComponent divingHistory={divingHistory} />
-    );
     const instance = container.instance();
     const event1 = {
       target: {
@@ -40,9 +41,6 @@ describe("Dive list: dive table container tests", () => {
   });
 
   it("onSelect: should select dive by id", () => {
-    const container = shallow(
-      <DivingListComponent divingHistory={divingHistory} />
-    );
     const instance = container.instance();
     const event1 = {
       target: {
@@ -67,9 +65,6 @@ describe("Dive list: dive table container tests", () => {
   });
 
   it("onDelete: should delete dive by id", () => {
-    const container = shallow(
-      <DivingListComponent divingHistory={divingHistory} />
-    );
     const instance = container.instance();
     const event1 = {
       target: {

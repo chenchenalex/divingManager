@@ -17,3 +17,17 @@ export const divingHistory = {
     }
   }
 };
+
+export const tableColumnData = [
+  {
+    id: "name",
+    numeric: false,
+    label: "Name"
+  },
+  { id: "location", numeric: false, label: "Location" },
+  {
+    id: "date",
+    numeric: true,
+    label: "Date (YYYYMMDD)"
+  }
+];

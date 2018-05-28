@@ -14,7 +14,7 @@ const formElements = ({
     <DivingForm>
       <TextField
         fullWidth
-        className={classes.formControl}
+        className={classes && classes.formControl}
         id="name"
         label="Name"
         error={formConfig.name.invalid}
@@ -35,7 +35,7 @@ const formElements = ({
         required={formConfig.location.required}
         error={formConfig.location.invalid}
         value={formData && formData.location}
-        className={classes.formControl}
+        className={classes && classes.formControl}
         label="Location"
         onBlur={handleBlur("location")}
         onChange={handleChange("location")}
@@ -53,6 +53,20 @@ const formElements = ({
         label="Date"
         onBlur={handleBlur("date")}
         onChange={handleChange("date")}
+        margin="normal"
+      />
+
+      <TextField
+        fullWidth
+        id="depth"
+        helperText={formConfig.depth.invalid && formConfig.depth.helperText}
+        required={formConfig.depth.required}
+        type="number"
+        value={formData && formData.depth}
+        error={formConfig.depth.invalid}
+        label="Depth"
+        onBlur={handleBlur("depth")}
+        onChange={handleChange("depth")}
         margin="normal"
       />
     </DivingForm>
