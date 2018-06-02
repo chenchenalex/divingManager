@@ -5,7 +5,7 @@ import store from "src/store";
 
 import { Link } from "react-router-dom";
 import DiveFormElements from "./diveformElements";
-import { INITIAL_FORM_DATA, FORM_CONFIG } from "src/data/constants";
+import { INITIAL_FORM_DATA, FORM_CONFIG } from "src/data/config";
 
 // import action
 import { addNewDive, editDive } from "../../actions";
@@ -19,7 +19,7 @@ const classes = {
 };
 
 export class DivingForm extends React.Component {
-  formConfig = { ...FORM_CONFIG };
+  formConfig = JSON.parse(JSON.stringify(FORM_CONFIG)); // deep copy config
 
   componentWillMount() {
     if (this.props.match.params.id) {

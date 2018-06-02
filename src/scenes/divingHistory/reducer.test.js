@@ -1,6 +1,8 @@
 import { diveById as DivingHistoryReducer } from "./reducer";
 import { ADD_DIVE, EDIT_DIVE, DELETE_DIVE } from "src/actions/actionTypes";
-import { prevState } from "./mock.data";
+import { divingHistory } from "src/data/mockData";
+
+const prevState = divingHistory.diveById;
 
 describe("diving history page reducers", () => {
   it("ADD DIVE: should add a new dive with a new ID", () => {
@@ -13,7 +15,7 @@ describe("diving history page reducers", () => {
       }
     };
 
-    const prevState = {
+    const state = {
       abc: {
         id: "abc",
         name: "old diving spot 1",
@@ -22,7 +24,7 @@ describe("diving history page reducers", () => {
       }
     };
 
-    const result = DivingHistoryReducer(prevState, action);
+    const result = DivingHistoryReducer(state, action);
     const newId = Object.keys(result).find(id => id !== "abc");
 
     expect(newId).toBeDefined();
@@ -39,13 +41,13 @@ describe("diving history page reducers", () => {
         name: "new diving spot",
         location: "philipines",
         date: "20181112",
-        id: "abc"
+        id: "test1"
       }
     };
 
     // valid ID provided, should update state
     const result1 = DivingHistoryReducer(prevState, action1);
-    const expected1 = { ...prevState, abc: action1.data };
+    const expected1 = { ...prevState, test1: action1.data };
 
     expect(result1).toEqual(expected1);
   });
@@ -77,16 +79,16 @@ describe("diving history page reducers", () => {
   it("DELETE DIVE: should delete selected dive based on id", () => {
     const action1 = {
       type: DELETE_DIVE,
-      data: ["def"]
+      data: ["test1"]
     };
 
     const action2 = {
       type: DELETE_DIVE,
-      data: ["abc", "def"]
+      data: ["test1", "test2", "test3", "test4"]
     };
 
     const result = DivingHistoryReducer(prevState, action1);
-    const { def, ...rest } = prevState;
+    const { test1, ...rest } = prevState;
     expect(result).toEqual(rest);
 
     const removeAllResult = DivingHistoryReducer(prevState, action2);

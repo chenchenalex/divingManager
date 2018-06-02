@@ -9,11 +9,29 @@ export const menuItems = [
 
 export const divingHistory = {
   diveById: {
-    jhe1fkkjb: {
-      id: "jhe1fkkjb",
+    test1: {
+      id: "test1",
       name: "kaotao OW/AOW lesson",
       location: "Thailand",
       date: "2017-03-15"
+    },
+    test2: {
+      id: "test2",
+      name: "Philipine diving with Eric",
+      location: "Philipine",
+      date: "2018-03-15"
+    },
+    test3: {
+      id: "test3",
+      name: "Free diving with sharks",
+      location: "Cannes",
+      date: "2019-05-25"
+    },
+    test4: {
+      id: "test4",
+      name: "Blue hold diving, first CAVE DIVE!",
+      location: "Mexico",
+      date: "2020-03-25"
     }
   }
 };
@@ -31,3 +49,10 @@ export const tableColumnData = [
     label: "Date (YYYYMMDD)"
   }
 ];
+
+export const TEST_INITIAL_DATA = {
+  name: "VIRGIN Dive with AOW licence",
+  location: "PHILIPINE",
+  date: "2018-03-15",
+  depth: 28
+};

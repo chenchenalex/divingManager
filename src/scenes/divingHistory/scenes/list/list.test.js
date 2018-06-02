@@ -2,7 +2,7 @@ import { DivingListComponent } from "./components/diveTable/diveTableContainer";
 import AddNew from "./components/buttons/addNew";
 import DeleteBtn from "./components/buttons/delete";
 import DiveTable from "./components/diveTable/diveTable";
-import { prevState as mockState } from "../../mock.data";
+import { divingHistory as mockState } from "src/data/mockData";
 import { getDives } from "src/data/utils";
 import { shallow } from "enzyme";
 
@@ -10,7 +10,7 @@ import React from "react";
 import { MemoryRouter } from "react-router-dom";
 import renderer from "react-test-renderer";
 
-const divingHistory = getDives({ diveById: mockState });
+const divingHistory = getDives(mockState);
 
 describe("Dive list: dive table container tests", () => {
   const container = shallow(
@@ -31,7 +31,7 @@ describe("Dive list: dive table container tests", () => {
       }
     };
 
-    const selectedDives = ["abc", "def"];
+    const selectedDives = ["test1", "test2", "test3", "test4"];
 
     instance.onSelectAll(event1);
     expect(instance.state.selected).toEqual(selectedDives);
@@ -45,31 +45,31 @@ describe("Dive list: dive table container tests", () => {
     const event1 = {
       target: {
         checked: true,
-        value: "abc"
+        value: "test1"
       }
     };
 
     const event2 = {
       target: {
         checked: false,
-        value: "abc"
+        value: "test2"
       }
     };
     // select dive
 
     instance.onSelect(event1);
-    expect(instance.state.selected).toContain("abc");
+    expect(instance.state.selected).toContain("test1");
 
     instance.onSelect(event2);
-    expect(instance.state.selected).not.toContain("abc");
+    expect(instance.state.selected).not.toContain("test2");
   });
 
-  it("onDelete: should delete dive by id", () => {
+  it("onDelete: should clear selected state", () => {
     const instance = container.instance();
     const event1 = {
       target: {
         checked: true,
-        value: "abc"
+        value: "test1"
       }
     };
 
