@@ -1,11 +1,11 @@
 import { combineReducers } from "redux";
 import { ADD_DIVE, EDIT_DIVE, DELETE_DIVE } from "src/actions/actionTypes";
-import { genUID } from "src/data/utils";
+import { v4 } from "uuid";
 
 export function diveById(state = {}, action) {
   switch (action.type) {
     case ADD_DIVE:
-      const newID = genUID();
+      const newID = v4();
       const newDiveData = { ...action.data, id: newID };
 
       return {

@@ -8,6 +8,7 @@ import {
   divingHistory as mockData
 } from "src/data/mockData";
 import * as formActions from "./actions";
+import store from "src/store";
 
 import { DivingForm } from "./components/diveForm/diveForm";
 
@@ -111,6 +112,7 @@ describe("DiveForm: edit existing dive tests", () => {
 
   it("onFormSubmit: should dispatch action contains edited form data", () => {
     const instance = component.instance();
+    const mockStore = jest.spyOn(store, "dispatch");
 
     instance.setState(state => {
       return { editingFormData: {}, formValid: true };
@@ -133,6 +135,34 @@ describe("DiveForm: edit existing dive tests", () => {
     instance.onFormSubmit();
 
     expect(mockEditDive).toBeCalledWith(instance.state.editingFormData);
+
+    expect(mockStore).toHaveBeenCalledTimes(2);
+  });
+
+  it("checkFormFieldValidity: should valid required field not empty", () => {
+    const instance = component.instance();
+
+    instance.checkFormFieldValidity("someKeyNonExistent", 123);
+
+    instance.checkFormFieldValidity("name", "");
+    instance.checkFormFieldValidity("location", "");
+    instance.checkFormFieldValidity("date", "");
+    instance.checkFormFieldValidity("depth", "");
+
+    expect(instance.formConfig.name.invalid).toBe(true);
+    expect(instance.formConfig.location.invalid).toBe(true);
+    expect(instance.formConfig.date.invalid).toBe(true);
+    expect(instance.formConfig.depth.invalid).toBe(false);
+
+    instance.checkFormFieldValidity("name", "someName");
+    instance.checkFormFieldValidity("location", "somewhere");
+    instance.checkFormFieldValidity("date", "20181233");
+    instance.checkFormFieldValidity("depth", "12");
+
+    expect(instance.formConfig.name.invalid).toBe(false);
+    expect(instance.formConfig.location.invalid).toBe(false);
+    expect(instance.formConfig.date.invalid).toBe(false);
+    expect(instance.formConfig.depth.invalid).toBe(false);
   });
 });
 
