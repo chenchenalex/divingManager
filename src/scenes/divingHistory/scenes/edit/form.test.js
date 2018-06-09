@@ -1,7 +1,7 @@
 import React from "react";
 import renderer from "react-test-renderer";
 import { shallow } from "enzyme";
-import DiveFormElements from "./components/diveForm/diveformElements";
+import DiveFormElements from "./components/diveForm/diveFormElements";
 import { INITIAL_FORM_DATA, FORM_CONFIG } from "src/data/config";
 import {
   TEST_INITIAL_DATA,
@@ -15,7 +15,8 @@ import { DivingForm } from "./components/diveForm/diveForm";
 describe("DiveForm: add new dive tests", () => {
   const expectedState = {
     formData: { ...INITIAL_FORM_DATA },
-    editingFormData: { ...INITIAL_FORM_DATA }
+    editingFormData: { ...INITIAL_FORM_DATA },
+    locationSuggestions: []
   };
 
   const match = {
@@ -28,6 +29,75 @@ describe("DiveForm: add new dive tests", () => {
     const instance = component.instance();
 
     expect(instance.state).toEqual(expectedState);
+  });
+
+  it("getSuggestionValue: expect return the name of location", () => {
+    const instance = component.instance();
+    const locationObj = {
+      id: "ph",
+      name: "Philipines"
+    };
+
+    expect(instance.getSuggestionValue(locationObj)).toBe("Philipines");
+  });
+
+  it("getSuggestions: should get matched suggestions based on input", () => {
+    const instance = component.instance();
+    const input1 = "p";
+    const expect1 = [
+      { id: "PA", name: "Panama" },
+      { id: "PE", name: "Peru" },
+      { id: "PG", name: "Papua New Guinea" },
+      { id: "PH", name: "Philippines" },
+      { id: "PK", name: "Pakistan" },
+      { id: "PL", name: "Poland" }
+    ];
+
+    expect(instance.getSuggestions(input1)).toEqual(expect1);
+
+    const input2 = "pA";
+    const expect2 = [
+      { id: "PA", name: "Panama" },
+      { id: "PG", name: "Papua New Guinea" },
+      { id: "PK", name: "Pakistan" },
+      { id: "PS", name: "Palestinian Territory, Occupied" },
+      { id: "PW", name: "Palau" },
+      { id: "PY", name: "Paraguay" }
+    ];
+
+    expect(instance.getSuggestions(input2)).toEqual(expect2);
+  });
+
+  it("onSuggestionsFetchRequested: should update location suggestion state", () => {
+    const instance = component.instance();
+    const getSuggestionsMock = jest
+      .spyOn(instance, "getSuggestions")
+      .mockImplementation(() => {
+        return [
+          { id: "PA", name: "Panama" },
+          { id: "PE", name: "Peru" },
+          { id: "PG", name: "Papua New Guinea" },
+          { id: "PH", name: "Philippines" },
+          { id: "PK", name: "Pakistan" },
+          { id: "PL", name: "Poland" }
+        ];
+      });
+
+    instance.onSuggestionsFetchRequested({ value: "abc" });
+
+    expect(instance.state.locationSuggestions).toEqual(getSuggestionsMock());
+  });
+
+  it("onSuggestionsClearRequested: should clear suggestion array", () => {
+    const instance = component.instance();
+
+    instance.setState({
+      locationSuggestions: [{ id: "PA", name: "Panama" }]
+    });
+
+    instance.onSuggestionsClearRequested();
+
+    expect(instance.state.locationSuggestions).toEqual([]);
   });
 });
 
@@ -45,7 +115,8 @@ describe("DiveForm: edit existing dive tests", () => {
   const expectedState = {
     formData: test1,
     editingFormData: test1,
-    formValid: true
+    formValid: true,
+    locationSuggestions: []
   };
 
   const component = shallow(
@@ -170,6 +241,15 @@ describe("DiveForm snapshot tests", () => {
   it("Dive form elements should render correctly", () => {
     const onChange = jest.fn();
     const onBlur = jest.fn();
+    const locationSuggestions = [];
+    const onSuggestionsClearRequested = jest.fn();
+    const onSuggestionsFetchRequested = jest.fn();
+    const getSuggestionValue = jest.fn();
+    const locationInputProps = {
+      onChange: jest.fn(),
+      value: TEST_INITIAL_DATA.location,
+      placeholder: FORM_CONFIG.location.helperText
+    };
     const formConfig = { ...FORM_CONFIG };
 
     const wrapper = renderer.create(
@@ -178,6 +258,11 @@ describe("DiveForm snapshot tests", () => {
         handleBlur={onBlur}
         formData={TEST_INITIAL_DATA}
         formConfig={formConfig}
+        locationSuggestions={locationSuggestions}
+        onSuggestionsFetchRequested={onSuggestionsFetchRequested}
+        onSuggestionsClearRequested={onSuggestionsClearRequested}
+        getSuggestionValue={getSuggestionValue}
+        inputProps={locationInputProps}
       />
     );
 

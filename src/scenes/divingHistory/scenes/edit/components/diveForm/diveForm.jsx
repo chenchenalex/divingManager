@@ -4,8 +4,9 @@ import { connect } from "react-redux";
 import store from "src/store";
 
 import { Link } from "react-router-dom";
-import DiveFormElements from "./diveformElements";
+import DiveFormElements from "./diveFormElements";
 import { INITIAL_FORM_DATA, FORM_CONFIG } from "src/data/config";
+import { LOCATION_LIST } from "src/data/mockData";
 
 // import action
 import { addNewDive, editDive } from "../../actions";
@@ -33,7 +34,8 @@ export class DivingForm extends React.Component {
       this.setState(state => {
         return {
           formData: this.savedForm,
-          editingFormData: this.savedForm
+          editingFormData: this.savedForm,
+          locationSuggestions: []
         };
       });
     } else {
@@ -41,7 +43,8 @@ export class DivingForm extends React.Component {
       this.setState(state => {
         return {
           formData: { ...INITIAL_FORM_DATA },
-          editingFormData: { ...INITIAL_FORM_DATA }
+          editingFormData: { ...INITIAL_FORM_DATA },
+          locationSuggestions: []
         };
       });
     }
@@ -58,16 +61,16 @@ export class DivingForm extends React.Component {
     }
   }
 
-  handleChange = name => event => {
-    const newValue = event.target.value;
-
+  handleChange = name => (event, { newValue } = {}) => {
     // This is how to deep clone an object
+    const newVal = newValue || event.target.value || "";
+
     this.setState(function(prevState) {
       const newState = {
         ...prevState,
         editingFormData: {
           ...prevState.editingFormData,
-          [name]: newValue
+          [name]: newVal
         }
       };
 
@@ -138,14 +141,60 @@ export class DivingForm extends React.Component {
     });
   };
 
+  getSuggestions = input => {
+    const inputValue = input.trim().toLowerCase();
+    const inputLength = inputValue.length;
+    let count = 0;
+
+    return inputLength === 0
+      ? []
+      : LOCATION_LIST.filter(suggestion => {
+          const keep =
+            count <= 5 &&
+            suggestion.name.toLowerCase().slice(0, inputLength) === inputValue;
+
+          if (keep) count += 1;
+          return keep;
+        });
+  };
+
+  onSuggestionsFetchRequested = ({ value }) => {
+    this.setState({
+      locationSuggestions: this.getSuggestions(value)
+    });
+  };
+
+  onSuggestionsClearRequested = () => {
+    this.setState({
+      locationSuggestions: []
+    });
+  };
+
+  getSuggestionValue = suggestion => {
+    return suggestion.name;
+  };
+
   render() {
+    const { locationSuggestions, editingFormData } = this.state;
+
+    const locationInputProps = {
+      placeholder: FORM_CONFIG.location.helperText,
+      value: this.state.editingFormData.location,
+      onChange: this.handleChange("location")
+    };
+
     return (
       <div className={classes.container}>
         <DiveFormElements
           classes={classes}
+          locationSuggestions={locationSuggestions}
+          onSuggestionsFetchRequested={this.onSuggestionsFetchRequested}
+          onSuggestionsClearRequested={this.onSuggestionsClearRequested}
+          getSuggestionValue={this.getSuggestionValue}
+          inputProps={locationInputProps}
           handleChange={this.handleChange}
           handleBlur={this.handleBlur}
-          formData={this.state.editingFormData}
+          formData={editingFormData}
           formConfig={this.formConfig}
         />
 

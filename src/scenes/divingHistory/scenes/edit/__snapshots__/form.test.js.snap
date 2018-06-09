@@ -40,39 +40,49 @@ exports[`DiveForm snapshot tests Dive form elements should render correctly 1`] 
     </div>
   </div>
   <div
-    className="MuiFormControl-root-1 MuiFormControl-marginNormal-2 MuiFormControl-fullWidth-4"
-    onBlur={[Function]}
-    onFocus={[Function]}
+    className="locationSuggestion-container-1"
   >
-    <label
-      className="MuiFormLabel-root-10 MuiInputLabel-root-5 MuiInputLabel-formControl-6 MuiInputLabel-animated-9 MuiInputLabel-shrink-8"
-      data-shrink={true}
-      htmlFor="location"
-    >
-      Location
-      <span
-        className="MuiFormLabel-asterisk-14"
-      >
-         *
-      </span>
-    </label>
     <div
-      className="MuiInput-root-15 MuiInput-fullWidth-22 MuiInput-formControl-16 MuiInput-underline-19"
+      className="MuiFormControl-root-1 MuiFormControl-fullWidth-4"
+      onBlur={[Function]}
+      onFocus={[Function]}
     >
-      <input
-        aria-invalid={false}
-        aria-required={true}
-        className="MuiInput-input-23 MuiInput-inputType-26 MuiInput-inputTypeSearch-27"
-        disabled={false}
-        id="location"
-        onBlur={[Function]}
-        onChange={[Function]}
-        onFocus={[Function]}
-        required={true}
-        type="search"
-        value="PHILIPINE"
-      />
+      <label
+        className="MuiFormLabel-root-10 MuiInputLabel-root-5 MuiInputLabel-formControl-6 MuiInputLabel-animated-9 MuiInputLabel-shrink-8"
+        data-shrink={true}
+      >
+        Location
+      </label>
+      <div
+        aria-activedescendant={null}
+        aria-autocomplete="list"
+        aria-expanded={false}
+        aria-owns="react-autowhatever-1"
+        className="MuiInput-root-15 MuiInput-fullWidth-22 MuiInput-formControl-16 MuiInput-underline-19"
+        role="combobox"
+        style={Object {}}
+      >
+        <input
+          aria-invalid={false}
+          aria-required={false}
+          autoComplete="off"
+          className="MuiInput-input-23"
+          disabled={false}
+          onBlur={[Function]}
+          onChange={[Function]}
+          onFocus={[Function]}
+          onKeyDown={[Function]}
+          placeholder="Please select a location"
+          type="text"
+          value="Philipine"
+        />
+      </div>
     </div>
+    <div
+      className="MuiPaper-root-5 MuiPaper-elevation2-9"
+      id="react-autowhatever-1"
+      style={Object {}}
+    />
   </div>
   <div
     className="MuiFormControl-root-1 MuiFormControl-marginNormal-2 MuiFormControl-fullWidth-4"
