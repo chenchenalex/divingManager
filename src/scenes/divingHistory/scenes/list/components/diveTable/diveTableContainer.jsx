@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Fragment } from "react";
 import store from "src/store";
 import { deleteActionCreator } from "../../actions";
 import { connect } from "react-redux";
@@ -8,6 +8,7 @@ import DiveTable from "./diveTable";
 import { DivingContainer } from "../../style";
 import AddButton from "../buttons/addNew";
 import DeleteButton from "../buttons/delete";
+import bgImg from "src/assets/images/dive_bg1.jpg";
 
 // utils
 import { getDives } from "src/data/utils";
@@ -61,17 +62,24 @@ export class DivingListComponent extends React.Component {
   };
 
   render() {
+    const imgStyle = {
+      width: "100%"
+    };
+
     return (
-      <DivingContainer className="diving-list">
-        <AddButton />
-        <DeleteButton onDelete={this.onDelete} state={this.state} />
-        <DiveTable
-          state={this.state}
-          tableData={this.props.divingHistory || []}
-          onSelect={this.onSelect}
-          onSelectAll={this.onSelectAll}
-        />
-      </DivingContainer>
+      <Fragment>
+        <img src={bgImg} style={imgStyle} alt="" />
+        <DivingContainer className="diving-list">
+          <AddButton />
+          <DeleteButton onDelete={this.onDelete} state={this.state} />
+          <DiveTable
+            state={this.state}
+            tableData={this.props.divingHistory || []}
+            onSelect={this.onSelect}
+            onSelectAll={this.onSelectAll}
+          />
+        </DivingContainer>
+      </Fragment>
     );
   }
 }

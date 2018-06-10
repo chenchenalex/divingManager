@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 const PanelContainer = styled.div`
-  padding: 16px;
+  overflow: scroll;
   flex-basis: 80%;
 `;
 

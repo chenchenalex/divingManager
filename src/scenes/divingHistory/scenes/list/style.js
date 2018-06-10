@@ -2,7 +2,7 @@ import styled from "styled-components";
 import Table from "material-ui/Table";
 
 const DivingContainer = styled.div`
-  margin: 0;
+  margin: 16px;
 `;
 
 const DiveTable = styled(Table)`
