@@ -7,6 +7,7 @@ import { Link } from "react-router-dom";
 import DiveFormElements from "./diveFormElements";
 import { INITIAL_FORM_DATA, FORM_CONFIG } from "src/data/config";
 import { LOCATION_LIST } from "src/data/mockData";
+import { FormActions } from "../../style";
 
 // import action
 import { addNewDive, editDive } from "../../actions";
@@ -35,7 +36,8 @@ export class DivingForm extends React.Component {
         return {
           formData: this.savedForm,
           editingFormData: this.savedForm,
-          locationSuggestions: []
+          locationSuggestions: [],
+          isTouched: false
         };
       });
     } else {
@@ -44,7 +46,8 @@ export class DivingForm extends React.Component {
         return {
           formData: { ...INITIAL_FORM_DATA },
           editingFormData: { ...INITIAL_FORM_DATA },
-          locationSuggestions: []
+          locationSuggestions: [],
+          isTouched: false
         };
       });
     }
@@ -71,7 +74,8 @@ export class DivingForm extends React.Component {
         editingFormData: {
           ...prevState.editingFormData,
           [name]: newVal
-        }
+        },
+        isTouched: true
       };
 
       return newState;
@@ -90,7 +94,11 @@ export class DivingForm extends React.Component {
     });
 
     this.setState(function(prevState) {
-      return { editingFormData: { ...prevState.formData }, formValid: true };
+      return {
+        editingFormData: { ...prevState.formData },
+        formValid: true,
+        isTouched: false
+      };
     });
   };
 
@@ -175,7 +183,7 @@ export class DivingForm extends React.Component {
   };
 
   render() {
-    const { locationSuggestions, editingFormData } = this.state;
+    const { locationSuggestions, editingFormData, isTouched } = this.state;
 
     const locationInputProps = {
       placeholder: FORM_CONFIG.location.helperText,
@@ -198,7 +206,7 @@ export class DivingForm extends React.Component {
           formConfig={this.formConfig}
         />
 
-        <div className="form-actions">
+        <FormActions>
           <Button
             className={classes.button}
             variant="raised"
@@ -209,14 +217,16 @@ export class DivingForm extends React.Component {
             Save
           </Button>
           <Link to="/list">
-            <Button variant="raised" color="secondary">
-              Back
-            </Button>
+            <Button variant="raised">Back</Button>
           </Link>
-          <Button variant="raised" onClick={this.resetAllForms}>
+          <Button
+            variant="raised"
+            disabled={!isTouched}
+            onClick={this.resetAllForms}
+          >
             Reset
           </Button>
-        </div>
+        </FormActions>
       </div>
     );
   }

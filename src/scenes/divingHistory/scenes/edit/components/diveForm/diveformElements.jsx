@@ -74,6 +74,7 @@ const formElements = ({
 formElements.propTypes = {
   classes: PropTypes.object,
   handleChange: PropTypes.func.isRequired,
+  handleBlur: PropTypes.func.isRequired,
   formData: PropTypes.object,
   formConfig: PropTypes.object.isRequired,
   locationSuggestions: PropTypes.array.isRequired,

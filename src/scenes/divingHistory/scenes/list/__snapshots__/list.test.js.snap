@@ -73,7 +73,7 @@ exports[`Dive list: Snapshots tests Dive table: should render correctly 1`] = `
         className="MuiTableCell-root-33 MuiTableCell-head-34"
         scope="col"
       >
-        Date (YYYYMMDD)
+        Date
       </th>
     </tr>
   </thead>

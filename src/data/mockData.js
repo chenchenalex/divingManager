@@ -46,7 +46,7 @@ export const tableColumnData = [
   {
     id: "date",
     numeric: true,
-    label: "Date (YYYYMMDD)"
+    label: "Date"
   }
 ];
 

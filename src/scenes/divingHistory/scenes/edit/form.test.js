@@ -16,7 +16,8 @@ describe("DiveForm: add new dive tests", () => {
   const expectedState = {
     formData: { ...INITIAL_FORM_DATA },
     editingFormData: { ...INITIAL_FORM_DATA },
-    locationSuggestions: []
+    locationSuggestions: [],
+    isTouched: false
   };
 
   const match = {
@@ -116,7 +117,8 @@ describe("DiveForm: edit existing dive tests", () => {
     formData: test1,
     editingFormData: test1,
     formValid: true,
-    locationSuggestions: []
+    locationSuggestions: [],
+    isTouched: false
   };
 
   const component = shallow(
@@ -139,6 +141,7 @@ describe("DiveForm: edit existing dive tests", () => {
       }
     };
     handleNameChange(event);
+    expect(instance.state.isTouched).toBe(true);
     expect(instance.state.editingFormData.name).toBe("atlantic");
 
     const handleDateChange = instance.handleChange("date");
@@ -149,6 +152,7 @@ describe("DiveForm: edit existing dive tests", () => {
     };
 
     handleDateChange(event1);
+    expect(instance.state.isTouched).toBe(true);
     expect(instance.state.editingFormData.date).toBe("20190101");
   });
 
@@ -179,6 +183,7 @@ describe("DiveForm: edit existing dive tests", () => {
     expect(instance.formConfig.depth.invalid).toBe(false);
     expect(instance.state.editingFormData).toEqual(instance.state.formData);
     expect(instance.state.formValid).toBe(true);
+    expect(instance.state.isTouched).toBe(false);
   });
 
   it("onFormSubmit: should dispatch action contains edited form data", () => {

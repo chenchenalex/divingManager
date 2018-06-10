@@ -5,3 +5,7 @@ export const DivingForm = styled.form`
   padding: 0 16px 16px;
   width: 50%;
 `;
+
+export const FormActions = styled.div`
+  margin: 0 16px;
+`;
