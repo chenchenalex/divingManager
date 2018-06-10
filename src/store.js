@@ -7,7 +7,9 @@ let savedDivingHistory;
 const hasLocalStorage = typeof window.localStorage !== "undefined";
 
 if (hasLocalStorage) {
-  savedDivingHistory = getDataFromStorage().divingHistory;
+  savedDivingHistory = getDataFromStorage()
+    ? getDataFromStorage().divingHistory
+    : null;
 }
 
 const defaultState = {

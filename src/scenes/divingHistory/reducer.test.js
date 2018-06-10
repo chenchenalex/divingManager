@@ -10,7 +10,7 @@ describe("diving history page reducers", () => {
       type: ADD_DIVE,
       data: {
         name: "new diving spot",
-        location: "philipines",
+        country: "philipines",
         date: "20181112"
       }
     };
@@ -19,7 +19,7 @@ describe("diving history page reducers", () => {
       abc: {
         id: "abc",
         name: "old diving spot 1",
-        location: "china",
+        country: "china",
         date: "20181012"
       }
     };
@@ -39,7 +39,7 @@ describe("diving history page reducers", () => {
       type: EDIT_DIVE,
       data: {
         name: "new diving spot",
-        location: "philipines",
+        country: "philipines",
         date: "20181112",
         id: "test1"
       }

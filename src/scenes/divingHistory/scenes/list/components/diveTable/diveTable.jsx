@@ -54,7 +54,7 @@ const DivingTable = ({ state, tableData, onSelect, onSelectAll }) => {
               <TableCell>
                 <Link to={`/list/edit/${dive.id}`}>{dive.name}</Link>
               </TableCell>
-              <TableCell>{dive.location}</TableCell>
+              <TableCell>{dive.country}</TableCell>
               <TableCell>{dive.date}</TableCell>
             </TableRow>
           );

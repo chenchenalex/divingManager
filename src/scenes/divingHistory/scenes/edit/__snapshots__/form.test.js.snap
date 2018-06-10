@@ -2,7 +2,7 @@
 
 exports[`DiveForm snapshot tests Dive form elements should render correctly 1`] = `
 <form
-  className="sc-bdVaJa eyQCFM"
+  className="sc-bdVaJa jwdTXm"
 >
   <div
     className="MuiFormControl-root-1 MuiFormControl-marginNormal-2 MuiFormControl-fullWidth-4"
@@ -43,7 +43,7 @@ exports[`DiveForm snapshot tests Dive form elements should render correctly 1`] 
     className="locationSuggestion-container-1"
   >
     <div
-      className="MuiFormControl-root-1 MuiFormControl-fullWidth-4"
+      className="MuiFormControl-root-1 MuiFormControl-marginNormal-2 MuiFormControl-fullWidth-4"
       onBlur={[Function]}
       onFocus={[Function]}
     >
@@ -51,7 +51,7 @@ exports[`DiveForm snapshot tests Dive form elements should render correctly 1`] 
         className="MuiFormLabel-root-10 MuiInputLabel-root-5 MuiInputLabel-formControl-6 MuiInputLabel-animated-9 MuiInputLabel-shrink-8"
         data-shrink={true}
       >
-        Location
+        Country
       </label>
       <div
         aria-activedescendant={null}
@@ -72,7 +72,7 @@ exports[`DiveForm snapshot tests Dive form elements should render correctly 1`] 
           onChange={[Function]}
           onFocus={[Function]}
           onKeyDown={[Function]}
-          placeholder="Please select a location"
+          placeholder="Please select a country"
           type="text"
           value="Philipine"
         />
@@ -130,6 +130,41 @@ exports[`DiveForm snapshot tests Dive form elements should render correctly 1`] 
       htmlFor="depth"
     >
       Depth
+      <span
+        className="MuiFormLabel-asterisk-14"
+      >
+         *
+      </span>
+    </label>
+    <div
+      className="MuiInput-root-15 MuiInput-fullWidth-22 MuiInput-formControl-16 MuiInput-underline-19"
+    >
+      <input
+        aria-invalid={false}
+        aria-required={true}
+        className="MuiInput-input-23 MuiInput-inputType-26"
+        disabled={false}
+        id="depth"
+        onBlur={[Function]}
+        onChange={[Function]}
+        onFocus={[Function]}
+        required={true}
+        type="number"
+        value={28}
+      />
+    </div>
+  </div>
+  <div
+    className="MuiFormControl-root-1 MuiFormControl-marginNormal-2 MuiFormControl-fullWidth-4"
+    onBlur={[Function]}
+    onFocus={[Function]}
+  >
+    <label
+      className="MuiFormLabel-root-10 MuiInputLabel-root-5 MuiInputLabel-formControl-6 MuiInputLabel-animated-9"
+      data-shrink={false}
+      htmlFor="oxygen"
+    >
+      Oxygen left
     </label>
     <div
       className="MuiInput-root-15 MuiInput-fullWidth-22 MuiInput-formControl-16 MuiInput-underline-19"
@@ -139,12 +174,40 @@ exports[`DiveForm snapshot tests Dive form elements should render correctly 1`] 
         aria-required={false}
         className="MuiInput-input-23 MuiInput-inputType-26"
         disabled={false}
-        id="depth"
+        id="oxygen"
         onBlur={[Function]}
         onChange={[Function]}
         onFocus={[Function]}
         type="number"
-        value={28}
+      />
+    </div>
+  </div>
+  <div
+    className="MuiFormControl-root-1 MuiFormControl-marginNormal-2 MuiFormControl-fullWidth-4"
+    onBlur={[Function]}
+    onFocus={[Function]}
+  >
+    <label
+      className="MuiFormLabel-root-10 MuiInputLabel-root-5 MuiInputLabel-formControl-6 MuiInputLabel-animated-9"
+      data-shrink={false}
+      htmlFor="feedback"
+    >
+      How do you feel?
+    </label>
+    <div
+      className="MuiInput-root-15 MuiInput-fullWidth-22 MuiInput-formControl-16 MuiInput-multiline-21 MuiInput-underline-19"
+    >
+      <textarea
+        aria-invalid={false}
+        aria-required={false}
+        className="MuiInput-input-23 MuiInput-inputMultiline-25"
+        disabled={false}
+        id="feedback"
+        onBlur={[Function]}
+        onChange={[Function]}
+        onFocus={[Function]}
+        rows="6"
+        type="text"
       />
     </div>
   </div>

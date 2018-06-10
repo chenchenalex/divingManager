@@ -82,7 +82,7 @@ export class DivingForm extends React.Component {
     });
   };
 
-  handleBlur = name => event => {
+  handleBlur = name => () => {
     this.checkFormFieldValidity(name, this.state.editingFormData[name]);
 
     this.validateForm();
@@ -186,9 +186,9 @@ export class DivingForm extends React.Component {
     const { locationSuggestions, editingFormData, isTouched } = this.state;
 
     const locationInputProps = {
-      placeholder: FORM_CONFIG.location.helperText,
-      value: this.state.editingFormData.location,
-      onChange: this.handleChange("location")
+      placeholder: FORM_CONFIG.country.helperText,
+      value: this.state.editingFormData.country,
+      onChange: this.handleChange("country")
     };
 
     return (

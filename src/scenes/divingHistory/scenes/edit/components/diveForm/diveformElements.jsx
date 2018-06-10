@@ -48,7 +48,7 @@ const formElements = ({
         type="date"
         error={formConfig.date.invalid}
         value={formData && formData.date}
-        label="Date"
+        label={formConfig.date.label}
         onBlur={handleBlur("date")}
         onChange={handleChange("date")}
         margin="normal"
@@ -62,9 +62,40 @@ const formElements = ({
         type="number"
         value={formData && formData.depth}
         error={formConfig.depth.invalid}
-        label="Depth"
+        label={formConfig.depth.label}
         onBlur={handleBlur("depth")}
         onChange={handleChange("depth")}
+        margin="normal"
+      />
+
+      <TextField
+        fullWidth
+        id="oxygen"
+        helperText={formConfig.oxygen.invalid && formConfig.oxygen.helperText}
+        required={formConfig.oxygen.required}
+        type="number"
+        value={formData && formData.oxygen}
+        error={formConfig.oxygen.invalid}
+        label={formConfig.oxygen.label}
+        onBlur={handleBlur("oxygen")}
+        onChange={handleChange("oxygen")}
+        margin="normal"
+      />
+
+      <TextField
+        fullWidth
+        id="feedback"
+        helperText={
+          formConfig.feedback.invalid && formConfig.feedback.helperText
+        }
+        required={formConfig.feedback.required}
+        multiline={formConfig.feedback.multiline}
+        rows={formConfig.feedback.rowsMax}
+        value={formData && formData.feedback}
+        error={formConfig.feedback.invalid}
+        label={formConfig.feedback.label}
+        onBlur={handleBlur("feedback")}
+        onChange={handleChange("feedback")}
         margin="normal"
       />
     </DivingForm>

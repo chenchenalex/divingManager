@@ -32,14 +32,14 @@ describe("DiveForm: add new dive tests", () => {
     expect(instance.state).toEqual(expectedState);
   });
 
-  it("getSuggestionValue: expect return the name of location", () => {
+  it("getSuggestionValue: expect return the name of country", () => {
     const instance = component.instance();
-    const locationObj = {
+    const countryObj = {
       id: "ph",
       name: "Philipines"
     };
 
-    expect(instance.getSuggestionValue(locationObj)).toBe("Philipines");
+    expect(instance.getSuggestionValue(countryObj)).toBe("Philipines");
   });
 
   it("getSuggestions: should get matched suggestions based on input", () => {
@@ -221,24 +221,32 @@ describe("DiveForm: edit existing dive tests", () => {
     instance.checkFormFieldValidity("someKeyNonExistent", 123);
 
     instance.checkFormFieldValidity("name", "");
-    instance.checkFormFieldValidity("location", "");
+    instance.checkFormFieldValidity("country", "");
     instance.checkFormFieldValidity("date", "");
     instance.checkFormFieldValidity("depth", "");
+    instance.checkFormFieldValidity("oxygen", "");
+    instance.checkFormFieldValidity("feedback", "");
 
     expect(instance.formConfig.name.invalid).toBe(true);
-    expect(instance.formConfig.location.invalid).toBe(true);
+    expect(instance.formConfig.country.invalid).toBe(true);
     expect(instance.formConfig.date.invalid).toBe(true);
-    expect(instance.formConfig.depth.invalid).toBe(false);
+    expect(instance.formConfig.depth.invalid).toBe(true);
+    expect(instance.formConfig.oxygen.invalid).toBe(false);
+    expect(instance.formConfig.feedback.invalid).toBe(false);
 
     instance.checkFormFieldValidity("name", "someName");
-    instance.checkFormFieldValidity("location", "somewhere");
+    instance.checkFormFieldValidity("country", "somewhere");
     instance.checkFormFieldValidity("date", "20181233");
     instance.checkFormFieldValidity("depth", "12");
+    instance.checkFormFieldValidity("oxygen", "50");
+    instance.checkFormFieldValidity("feedback", "no thanks");
 
     expect(instance.formConfig.name.invalid).toBe(false);
-    expect(instance.formConfig.location.invalid).toBe(false);
+    expect(instance.formConfig.country.invalid).toBe(false);
     expect(instance.formConfig.date.invalid).toBe(false);
     expect(instance.formConfig.depth.invalid).toBe(false);
+    expect(instance.formConfig.oxygen.invalid).toBe(false);
+    expect(instance.formConfig.feedback.invalid).toBe(false);
   });
 });
 
@@ -252,8 +260,8 @@ describe("DiveForm snapshot tests", () => {
     const getSuggestionValue = jest.fn();
     const locationInputProps = {
       onChange: jest.fn(),
-      value: TEST_INITIAL_DATA.location,
-      placeholder: FORM_CONFIG.location.helperText
+      value: TEST_INITIAL_DATA.country,
+      placeholder: FORM_CONFIG.country.helperText
     };
     const formConfig = { ...FORM_CONFIG };
 

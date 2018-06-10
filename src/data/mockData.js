@@ -12,25 +12,37 @@ export const divingHistory = {
     test1: {
       id: "test1",
       name: "kaotao OW/AOW lesson",
-      location: "Thailand",
+      country: "Thailand",
+      depth: 0,
+      oxygen: "30",
+      feedback: "nothing",
       date: "2017-03-15"
     },
     test2: {
       id: "test2",
       name: "Philipine diving with Eric",
-      location: "Philipine",
+      country: "Philipine",
+      depth: 30,
+      oxygen: "30",
+      feedback: "nothing",
       date: "2018-03-15"
     },
     test3: {
       id: "test3",
       name: "Free diving with sharks",
-      location: "Cannes",
+      country: "Cannes",
+      depth: 12,
+      oxygen: "30",
+      feedback: "nothing",
       date: "2019-05-25"
     },
     test4: {
       id: "test4",
       name: "Blue hold diving, first CAVE DIVE!",
-      location: "Mexico",
+      country: "Mexico",
+      depth: 40,
+      oxygen: "30",
+      feedback: "nothing",
       date: "2020-03-25"
     }
   }
@@ -42,7 +54,7 @@ export const tableColumnData = [
     numeric: false,
     label: "Name"
   },
-  { id: "location", numeric: false, label: "Location" },
+  { id: "country", numeric: false, label: "Country" },
   {
     id: "date",
     numeric: true,
@@ -52,7 +64,7 @@ export const tableColumnData = [
 
 export const TEST_INITIAL_DATA = {
   name: "VIRGIN Dive with AOW licence",
-  location: "Philipine",
+  country: "Philipine",
   date: "2018-03-15",
   depth: 28
 };

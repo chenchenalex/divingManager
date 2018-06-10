@@ -69,7 +69,8 @@ function renderInput(inputProps) {
   return (
     <TextField
       fullWidth
-      label="Location"
+      label="Country"
+      margin="normal"
       InputProps={{
         inputRef: ref,
         ...other
