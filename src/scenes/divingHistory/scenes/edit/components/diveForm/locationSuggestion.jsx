@@ -64,12 +64,24 @@ function renderSuggestionsContainer(options) {
 }
 
 function renderInput(inputProps) {
-  const { ref, ...other } = inputProps;
+  const {
+    ref,
+    required,
+    onBlur,
+    helperText,
+    invalid,
+    label,
+    ...other
+  } = inputProps;
 
   return (
     <TextField
       fullWidth
-      label="Country"
+      required={required}
+      onBlur={onBlur}
+      error={invalid}
+      helperText={invalid && helperText}
+      label={label}
       margin="normal"
       InputProps={{
         inputRef: ref,

@@ -23,19 +23,19 @@ export const FORM_CONFIG = {
     required: true,
     invalid: false,
     label: "Date",
-    helperText: "Date is missing"
+    helperText: "Date is invalid or missing"
   },
   depth: {
     required: true,
     invalid: false,
     label: "Depth",
-    helperText: "Depth is missing"
+    helperText: "Depth is invalid or missing"
   },
   oxygen: {
     required: false,
     invalid: false,
     label: "Oxygen left",
-    helperText: "Oxygen amount is not provided"
+    helperText: "Oxygen amount invalid or missing"
   },
   feedback: {
     multiline: true,

@@ -47,12 +47,6 @@ exports[`DiveForm snapshot tests Dive form elements should render correctly 1`] 
       onBlur={[Function]}
       onFocus={[Function]}
     >
-      <label
-        className="MuiFormLabel-root-10 MuiInputLabel-root-5 MuiInputLabel-formControl-6 MuiInputLabel-animated-9 MuiInputLabel-shrink-8"
-        data-shrink={true}
-      >
-        Country
-      </label>
       <div
         aria-activedescendant={null}
         aria-autocomplete="list"

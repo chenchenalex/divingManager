@@ -83,7 +83,8 @@ export class DivingForm extends React.Component {
   };
 
   handleBlur = name => () => {
-    this.checkFormFieldValidity(name, this.state.editingFormData[name]);
+    const val = this.state.editingFormData[name];
+    this.formConfig[name].invalid = this.checkFormFieldInValidity(name, val);
 
     this.validateForm();
   };
@@ -119,32 +120,39 @@ export class DivingForm extends React.Component {
     this.props.history.push("/list");
   };
 
-  checkFormFieldValidity = (fieldKey, val) => {
+  checkFormFieldInValidity = (fieldKey, val) => {
     // don't check values that's not configured
-    if (!this.formConfig[fieldKey]) return;
+    if (!this.formConfig[fieldKey]) return true;
 
+    // Check empty values
     if (this.formConfig[fieldKey].required && (val === "" || val === null)) {
-      this.formConfig[fieldKey].invalid = true;
-    } else {
-      this.formConfig[fieldKey].invalid = false;
+      return true;
+    }
+
+    // Check specific rules
+    switch (fieldKey) {
+      case "depth":
+        return parseFloat(val) < 0;
+      default:
+        return false;
     }
   };
 
   validateForm = () => {
-    let formValid = Object.keys(this.formConfig).every(key => {
+    let formInvalid = Object.keys(this.formConfig).some(key => {
       const isRequired = this.formConfig[key].required;
 
       const isEmpty = this.state.editingFormData[key] === "";
 
       const isInvalid = this.formConfig[key].invalid;
 
-      return (isRequired && !isEmpty && !isInvalid) || !isRequired;
+      return isRequired && (isEmpty || isInvalid);
     });
 
     this.setState(prevState => {
       return {
         ...prevState,
-        formValid
+        formValid: !formInvalid
       };
     });
   };
@@ -182,14 +190,26 @@ export class DivingForm extends React.Component {
     return suggestion.name;
   };
 
+  getInputPropsFromConfig = ({ label, required, invalid, helperText }) => {
+    return {
+      placeholder: helperText,
+      value: this.state.editingFormData.country,
+      onChange: this.handleChange("country"),
+      onBlur: this.handleBlur("country"),
+      type: "search",
+      invalid,
+      helperText,
+      label,
+      required
+    };
+  };
+
   render() {
     const { locationSuggestions, editingFormData, isTouched } = this.state;
 
-    const locationInputProps = {
-      placeholder: FORM_CONFIG.country.helperText,
-      value: this.state.editingFormData.country,
-      onChange: this.handleChange("country")
-    };
+    const locationInputProps = this.getInputPropsFromConfig(
+      this.formConfig.country
+    );
 
     return (
       <div className={classes.container}>

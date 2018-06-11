@@ -215,38 +215,77 @@ describe("DiveForm: edit existing dive tests", () => {
     expect(mockStore).toHaveBeenCalledTimes(2);
   });
 
-  it("checkFormFieldValidity: should valid required field not empty", () => {
+  it("checkFormFieldInValidity: should check required field validity", () => {
     const instance = component.instance();
 
-    instance.checkFormFieldValidity("someKeyNonExistent", 123);
+    expect(instance.checkFormFieldInValidity("someKeyNonExistent", 123)).toBe(
+      true
+    );
 
-    instance.checkFormFieldValidity("name", "");
-    instance.checkFormFieldValidity("country", "");
-    instance.checkFormFieldValidity("date", "");
-    instance.checkFormFieldValidity("depth", "");
-    instance.checkFormFieldValidity("oxygen", "");
-    instance.checkFormFieldValidity("feedback", "");
+    // 1. Required Empty form should not be valid
+    expect(instance.checkFormFieldInValidity("name", "")).toBe(true);
+    expect(instance.checkFormFieldInValidity("country", "")).toBe(true);
+    expect(instance.checkFormFieldInValidity("date", "")).toBe(true);
+    expect(instance.checkFormFieldInValidity("depth", "")).toBe(true);
+    expect(instance.checkFormFieldInValidity("oxygen", "")).toBe(false);
+    expect(instance.checkFormFieldInValidity("feedback", "")).toBe(false);
 
-    expect(instance.formConfig.name.invalid).toBe(true);
-    expect(instance.formConfig.country.invalid).toBe(true);
-    expect(instance.formConfig.date.invalid).toBe(true);
-    expect(instance.formConfig.depth.invalid).toBe(true);
-    expect(instance.formConfig.oxygen.invalid).toBe(false);
-    expect(instance.formConfig.feedback.invalid).toBe(false);
+    // 2. check valid form values
+    instance.resetAllForms();
+    expect(instance.checkFormFieldInValidity("name", "someName")).toBe(false); // required
+    expect(instance.checkFormFieldInValidity("country", "somewhere")).toBe(
+      false
+    ); // required
+    expect(instance.checkFormFieldInValidity("depth", "12")).toBe(false); // required
+    expect(instance.checkFormFieldInValidity("oxygen", "50")).toBe(false); // optional
 
-    instance.checkFormFieldValidity("name", "someName");
-    instance.checkFormFieldValidity("country", "somewhere");
-    instance.checkFormFieldValidity("date", "20181233");
-    instance.checkFormFieldValidity("depth", "12");
-    instance.checkFormFieldValidity("oxygen", "50");
-    instance.checkFormFieldValidity("feedback", "no thanks");
+    // 3. check invalid values
+    instance.resetAllForms();
+    expect(instance.checkFormFieldInValidity("depth", "-12")).toBe(true);
+  });
 
-    expect(instance.formConfig.name.invalid).toBe(false);
-    expect(instance.formConfig.country.invalid).toBe(false);
-    expect(instance.formConfig.date.invalid).toBe(false);
-    expect(instance.formConfig.depth.invalid).toBe(false);
-    expect(instance.formConfig.oxygen.invalid).toBe(false);
-    expect(instance.formConfig.feedback.invalid).toBe(false);
+  it("getInputPropsFromConfig: should retrieve data from config obj", () => {
+    const instance = component.instance();
+
+    const countryObj = FORM_CONFIG.country;
+    const inputProps = instance.getInputPropsFromConfig(countryObj);
+
+    expect(inputProps.required).toBe(countryObj.required);
+    expect(inputProps.label).toBe(countryObj.label);
+    expect(inputProps.helperText).toBe(countryObj.helperText);
+    expect(inputProps.invalid).toBe(countryObj.invalid);
+  });
+
+  it("validateForm: should iterate form inputs and set validity for form", () => {
+    const instance = component.instance();
+
+    instance.setState(() => ({
+      formValid: true
+    }));
+    //1. Required input field is invalid, form is invalid
+    instance.formConfig.name.invalid = true;
+    instance.validateForm();
+
+    expect(instance.state.formValid).toBe(false);
+
+    //2. Optional input field is invalid, form still valid
+    instance.setState(() => ({
+      formValid: false
+    }));
+
+    instance.formConfig.name.invalid = false;
+    instance.formConfig.feedback.invalid = true;
+    instance.validateForm();
+    expect(instance.state.formValid).toBe(true);
+
+    //3. Required input and optional field are valid, form is valid
+    instance.setState(() => ({
+      formValid: false
+    }));
+    instance.formConfig.name.invalid = false;
+    instance.formConfig.feedback.invalid = false;
+    instance.validateForm();
+    expect(instance.state.formValid).toBe(true);
   });
 });
 
