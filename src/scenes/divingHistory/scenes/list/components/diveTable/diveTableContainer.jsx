@@ -9,6 +9,7 @@ import { DivingContainer } from "../../style";
 import AddButton from "../buttons/addNew";
 import DeleteButton from "../buttons/delete";
 import bgImg from "src/assets/images/dive_bg1.jpg";
+import ImageBanner from "src/components/imageBanner";
 
 // utils
 import { getDives } from "src/data/utils";
@@ -62,13 +63,13 @@ export class DivingListComponent extends React.Component {
   };
 
   render() {
-    const imgStyle = {
-      width: "100%"
-    };
-
     return (
       <Fragment>
-        <img src={bgImg} style={imgStyle} alt="" />
+        <ImageBanner
+          imgSrc={bgImg}
+          imgAlt="diver hero image"
+          title="DIVE HISTORY"
+        />
         <DivingContainer className="diving-list">
           <AddButton />
           <DeleteButton onDelete={this.onDelete} state={this.state} />
