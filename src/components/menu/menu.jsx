@@ -5,12 +5,17 @@ import PropTypes from "prop-types";
 
 class Menu extends React.PureComponent {
   render() {
+    let pageUrl = "";
+    if (typeof window.location !== "undefined") {
+      pageUrl = window.location.pathname.split("/")[1];
+    }
+
     return (
       <MainMenu>
         {this.props.items &&
           this.props.items.map(({ name, url, id }) => (
             <Link key={id} to={url}>
-              <MenuItem>{name}</MenuItem>
+              <MenuItem isActive={pageUrl === url.slice(1)}>{name}</MenuItem>
             </Link>
           ))}
       </MainMenu>

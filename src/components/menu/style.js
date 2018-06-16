@@ -11,7 +11,7 @@ const MainMenu = styled.ul`
 `;
 
 export const MenuItem = styled.li`
-  color: white;
+  color: ${props => (props.isActive ? "yellow" : "white")};
   margin: 10px 0;
 
   &:hover {

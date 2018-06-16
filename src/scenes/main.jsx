@@ -6,13 +6,15 @@ import DisplayPanel from "../components/displayPanel";
 import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
 
-function Main({ divingHistory, menuItems }) {
-  return (
-    <Container className="App">
-      <SideMenu items={menuItems} />
-      <DisplayPanel />
-    </Container>
-  );
+class Main extends React.Component {
+  render() {
+    return (
+      <Container className="App">
+        <SideMenu items={this.props.menuItems} />
+        <DisplayPanel />
+      </Container>
+    );
+  }
 }
 
 function mapStateToProps(state) {
