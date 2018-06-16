@@ -1,9 +1,24 @@
 import { combineReducers } from "redux";
-import { ADD_DIVE, EDIT_DIVE, DELETE_DIVE } from "src/actions/actionTypes";
+import {
+  ADD_DIVE,
+  EDIT_DIVE,
+  DELETE_DIVE,
+  USER_FETCH_DATA_SUCCESS
+} from "src/actions/actionTypes";
 import { v4 } from "uuid";
 
 export function diveById(state = {}, action) {
   switch (action.type) {
+    case USER_FETCH_DATA_SUCCESS:
+      if (action.data !== null) {
+        return {
+          ...state,
+          ...action.data.diveById
+        };
+      } else {
+        return state;
+      }
+
     case ADD_DIVE:
       const newID = v4();
       const newDiveData = { ...action.data, id: newID };
@@ -12,6 +27,7 @@ export function diveById(state = {}, action) {
         ...state,
         [newID]: newDiveData
       };
+
     case EDIT_DIVE:
       if (
         typeof action.data === "undefined" ||

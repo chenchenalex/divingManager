@@ -1,6 +1,6 @@
 import React, { Fragment } from "react";
 import store from "src/store";
-import { deleteActionCreator } from "../../actions";
+import { deleteActionCreator, userFetchDataAsync } from "../../actions";
 import { connect } from "react-redux";
 
 // components
@@ -14,10 +14,15 @@ import ImageBanner from "src/components/imageBanner";
 // utils
 import { getDives } from "src/data/utils";
 
+const { dispatch } = store;
 export class DivingListComponent extends React.Component {
   state = {
     selected: []
   };
+
+  componentDidMount() {
+    dispatch(userFetchDataAsync("alex"));
+  }
 
   onSelectAll = event => {
     const isChecked = event.target.checked;
@@ -53,7 +58,7 @@ export class DivingListComponent extends React.Component {
   };
 
   onDelete = () => {
-    store.dispatch(deleteActionCreator(this.state.selected));
+    dispatch(deleteActionCreator(this.state.selected));
 
     this.setState(state => {
       return {

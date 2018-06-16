@@ -1,32 +1,38 @@
-import { createStore } from "redux";
+import { createStore, applyMiddleware } from "redux";
+import createSagaMiddleware from "redux-saga";
+import rootSaga from "./services/sagas";
 import reducers from "./reducer";
-import { menuItems, divingHistory } from "./data/mockData";
-import { getDataFromStorage, setDataToStorage } from "./services/localStorage";
+import { menuItems } from "./data/mockData";
+import { writeData } from "./services/firebase";
 
-let savedDivingHistory;
-const hasLocalStorage = typeof window.localStorage !== "undefined";
-
-if (hasLocalStorage) {
-  savedDivingHistory = getDataFromStorage()
-    ? getDataFromStorage().divingHistory
-    : null;
-}
+const sagaMiddleware = createSagaMiddleware();
 
 const defaultState = {
   components: {
     menu: menuItems
   },
   scenes: {
-    divingHistory: savedDivingHistory || divingHistory
+    divingHistory: {
+      diveById: {}
+    }
   }
 };
 
-const store = createStore(reducers, defaultState);
+const store = createStore(
+  reducers,
+  defaultState,
+  applyMiddleware(sagaMiddleware)
+);
+
+sagaMiddleware.run(rootSaga);
 
 store.subscribe(() => {
-  if (hasLocalStorage) {
-    setDataToStorage({
-      divingHistory: store.getState().scenes.divingHistory
+  const storeState = store.getState();
+
+  if (storeState !== defaultState) {
+    writeData({
+      userId: "alex",
+      data: store.getState()
     });
   }
 });
