@@ -97,10 +97,9 @@ export class DivingForm extends React.Component {
     this.setState(function(prevState) {
       return {
         editingFormData: { ...prevState.formData },
-        formValid: true,
         isTouched: false
       };
-    });
+    }, this.validateForm);
   };
 
   onFormSubmit = () => {

@@ -18,6 +18,8 @@ const defaultState = {
   }
 };
 
+let prevState = defaultState;
+
 const store = createStore(
   reducers,
   defaultState,
@@ -29,11 +31,13 @@ sagaMiddleware.run(rootSaga);
 store.subscribe(() => {
   const storeState = store.getState();
 
-  if (storeState !== defaultState) {
+  if (storeState !== prevState) {
     writeData({
       userId: "alex",
       data: store.getState()
     });
+
+    prevState = store.getState();
   }
 });
 

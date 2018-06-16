@@ -10,14 +10,10 @@ import { v4 } from "uuid";
 export function diveById(state = {}, action) {
   switch (action.type) {
     case USER_FETCH_DATA_SUCCESS:
-      if (action.data !== null) {
-        return {
-          ...state,
-          ...action.data.diveById
-        };
-      } else {
-        return state;
-      }
+      return {
+        ...state,
+        ...action.data.diveById
+      };
 
     case ADD_DIVE:
       const newID = v4();
