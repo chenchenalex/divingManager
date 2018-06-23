@@ -133,3 +133,11 @@ body,
 #root {
   height: 100%;
 }
+
+:root {
+  /* Colour variables */
+  --grey: #2f2f2f;
+
+  /* Size variables */
+  --base-unit: 8px;
+}

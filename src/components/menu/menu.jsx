@@ -4,18 +4,23 @@ import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
 
 class Menu extends React.PureComponent {
-  render() {
-    let pageUrl = "";
-    if (typeof window.location !== "undefined") {
-      pageUrl = window.location.pathname.split("/")[1];
-    }
+  state = {
+    pathname: "/"
+  };
 
+  componentDidUpdate() {
+    this.setState({
+      pathname: this.props.location.pathname
+    });
+  }
+
+  render() {
     return (
       <MainMenu>
         {this.props.items &&
           this.props.items.map(({ name, url, id }) => (
             <Link key={id} to={url}>
-              <MenuItem isActive={pageUrl === url.slice(1)}>{name}</MenuItem>
+              <MenuItem isActive={this.state.pathname === url}>{name}</MenuItem>
             </Link>
           ))}
       </MainMenu>
@@ -24,7 +29,8 @@ class Menu extends React.PureComponent {
 }
 
 Menu.propTypes = {
-  items: PropTypes.array.isRequired
+  items: PropTypes.array.isRequired,
+  location: PropTypes.object
 };
 
 export default Menu;

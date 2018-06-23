@@ -1,5 +1,5 @@
 import { userFetchDataSaga } from "./sagas";
-import { put, call } from "redux-saga/effects";
+import { call } from "redux-saga/effects";
 import { getData } from "src/services/firebase";
 import { userFetchDataAsync } from "src/scenes/divingHistory/scenes/list/actions";
 

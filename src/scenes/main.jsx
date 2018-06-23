@@ -10,7 +10,7 @@ class Main extends React.Component {
   render() {
     return (
       <Container className="App">
-        <SideMenu items={this.props.menuItems} />
+        <SideMenu items={this.props.menuItems} location={this.props.location} />
         <DisplayPanel />
       </Container>
     );
