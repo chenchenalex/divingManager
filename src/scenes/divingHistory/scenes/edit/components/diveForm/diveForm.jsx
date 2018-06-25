@@ -2,12 +2,14 @@ import React from "react";
 import Button from "material-ui/Button";
 import { connect } from "react-redux";
 import store from "src/store";
+import Loader from "src/components/loader";
 
 import { Link } from "react-router-dom";
 import DiveFormElements from "./diveFormElements";
 import { INITIAL_FORM_DATA, FORM_CONFIG } from "src/data/config";
 import { LOCATION_LIST } from "src/data/mockData";
 import { FormActions } from "../../style";
+import { userFetchDataAsync } from "../../../../actions";
 
 // import action
 import { addNewDive, editDive } from "../../actions";
@@ -20,17 +22,61 @@ const classes = {
   button: "form-button"
 };
 
+const { dispatch } = store;
+
 export class DivingForm extends React.Component {
   formConfig = JSON.parse(JSON.stringify(FORM_CONFIG)); // deep copy config
 
-  componentWillMount() {
-    if (this.props.match.params.id) {
+  componentDidMount() {
+    if (!this.props.match.params.id) return;
+
+    if (this.state.editingFormData) {
+      this.validateForm();
+    } else {
+      // Dive requested not found, request database
+      dispatch(userFetchDataAsync("alex"));
+      // this.props.history.push("/404");
+    }
+
+    console.log("component did mount");
+  }
+
+  static getDerivedStateFromProps(props) {
+    if (Object.keys(props.divingHistory.diveById).length > 0) {
+      // Edit existing Dive
+      if (props.match.params.id) {
+        const {
+          divingHistory: { diveById }
+        } = props;
+
+        const savedForm = diveById[props.match.params.id];
+
+        return {
+          formData: savedForm,
+          editingFormData: savedForm,
+          locationSuggestions: [],
+          isTouched: false
+        };
+      } else {
+        return {
+          formData: { ...INITIAL_FORM_DATA },
+          editingFormData: { ...INITIAL_FORM_DATA },
+          locationSuggestions: [],
+          isTouched: false
+        };
+      }
+    }
+    return {};
+  }
+
+  initializeState = props => {
+    if (props.match.params.id) {
       // Edit existing dive
       const {
         divingHistory: { diveById }
-      } = this.props;
+      } = props;
 
-      this.savedForm = diveById[this.props.match.params.id];
+      this.savedForm = diveById[props.match.params.id];
 
       this.setState(state => {
         return {
@@ -51,18 +97,7 @@ export class DivingForm extends React.Component {
         };
       });
     }
-  }
-
-  componentDidMount() {
-    if (!this.props.match.params.id) return;
-
-    if (this.state.editingFormData) {
-      this.validateForm();
-    } else {
-      // Dive requested not found
-      this.props.history.push("/404");
-    }
-  }
+  };
 
   handleChange = name => (event, { newValue } = {}) => {
     // This is how to deep clone an object
@@ -192,7 +227,7 @@ export class DivingForm extends React.Component {
   getInputPropsFromConfig = ({ label, required, invalid, helperText }) => {
     return {
       placeholder: helperText,
-      value: this.state.editingFormData.country,
+      value: this.state.editingFormData && this.state.editingFormData.country,
       onChange: this.handleChange("country"),
       onBlur: this.handleBlur("country"),
       type: "search",
@@ -210,7 +245,7 @@ export class DivingForm extends React.Component {
       this.formConfig.country
     );
 
-    return (
+    return this.state.editingFormData ? (
       <div className={classes.container}>
         <DiveFormElements
           classes={classes}
@@ -247,6 +282,8 @@ export class DivingForm extends React.Component {
           </Button>
         </FormActions>
       </div>
+    ) : (
+      <Loader />
     );
   }
 }

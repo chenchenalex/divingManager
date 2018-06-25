@@ -1,6 +1,7 @@
 import React, { Fragment } from "react";
 import store from "src/store";
-import { deleteActionCreator, userFetchDataAsync } from "../../actions";
+import { deleteActionCreator } from "../../actions";
+import { userFetchDataAsync } from "../../../../actions";
 import { connect } from "react-redux";
 
 // components
