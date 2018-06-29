@@ -24,10 +24,14 @@ describe("DiveForm: add new dive tests", () => {
     params: {}
   };
 
-  const component = shallow(<DivingForm match={match} />);
+  const component = shallow(
+    <DivingForm match={match} divingHistory={INITIAL_FORM_DATA} />
+  );
 
-  it("onLoad: add new dive should see blank page with initial data", () => {
+  it("onLoad: add new dive should see blank page with initial data", async () => {
     const instance = component.instance();
+
+    await instance.componentDidMount();
 
     expect(instance.state).toEqual(expectedState);
   });
@@ -71,22 +75,23 @@ describe("DiveForm: add new dive tests", () => {
 
   it("onSuggestionsFetchRequested: should update location suggestion state", () => {
     const instance = component.instance();
-    const getSuggestionsMock = jest
-      .spyOn(instance, "getSuggestions")
-      .mockImplementation(() => {
-        return [
-          { id: "PA", name: "Panama" },
-          { id: "PE", name: "Peru" },
-          { id: "PG", name: "Papua New Guinea" },
-          { id: "PH", name: "Philippines" },
-          { id: "PK", name: "Pakistan" },
-          { id: "PL", name: "Poland" }
-        ];
-      });
+    const sampleData = [
+      { id: "PA", name: "Panama" },
+      { id: "PE", name: "Peru" },
+      { id: "PG", name: "Papua New Guinea" },
+      { id: "PH", name: "Philippines" },
+      { id: "PK", name: "Pakistan" },
+      { id: "PL", name: "Poland" }
+    ];
+
+    jest.spyOn(instance, "getSuggestions").mockImplementation(() => {
+      console.log("mock implementation");
+      return sampleData;
+    });
 
     instance.onSuggestionsFetchRequested({ value: "abc" });
 
-    expect(instance.state.locationSuggestions).toEqual(getSuggestionsMock());
+    expect(instance.state.locationSuggestions).toEqual(sampleData);
   });
 
   it("onSuggestionsClearRequested: should clear suggestion array", () => {
@@ -125,8 +130,10 @@ describe("DiveForm: edit existing dive tests", () => {
     <DivingForm match={match} divingHistory={mockData} history={[]} />
   );
 
-  it("onLoad: edit existing dive should populate data correctly", () => {
+  it("onLoad: edit existing dive should populate data correctly", async () => {
     const instance = component.instance();
+
+    await instance.componentDidMount();
 
     expect(instance.state).toEqual(expectedState);
   });

@@ -27,77 +27,72 @@ const { dispatch } = store;
 export class DivingForm extends React.Component {
   formConfig = JSON.parse(JSON.stringify(FORM_CONFIG)); // deep copy config
 
-  componentDidMount() {
-    if (!this.props.match.params.id) return;
+  constructor(props) {
+    super(props);
 
-    if (this.state.editingFormData) {
-      this.validateForm();
-    } else {
-      // Dive requested not found, request database
-      dispatch(userFetchDataAsync("alex"));
-      // this.props.history.push("/404");
-    }
-
-    console.log("component did mount");
-  }
-
-  static getDerivedStateFromProps(props) {
-    if (Object.keys(props.divingHistory.diveById).length > 0) {
-      // Edit existing Dive
-      if (props.match.params.id) {
-        const {
-          divingHistory: { diveById }
-        } = props;
-
-        const savedForm = diveById[props.match.params.id];
-
-        return {
-          formData: savedForm,
-          editingFormData: savedForm,
-          locationSuggestions: [],
-          isTouched: false
-        };
-      } else {
-        return {
-          formData: { ...INITIAL_FORM_DATA },
-          editingFormData: { ...INITIAL_FORM_DATA },
-          locationSuggestions: [],
-          isTouched: false
-        };
-      }
-    }
-    return {};
-  }
-
-  initializeState = props => {
     if (props.match.params.id) {
-      // Edit existing dive
       const {
         divingHistory: { diveById }
       } = props;
 
-      this.savedForm = diveById[props.match.params.id];
+      const savedForm = diveById[props.match.params.id];
 
-      this.setState(state => {
-        return {
-          formData: this.savedForm,
-          editingFormData: this.savedForm,
+      if (savedForm === null || typeof savedForm === "undefined") {
+        this.state = {};
+      } else {
+        this.state = {
           locationSuggestions: [],
-          isTouched: false
+          isTouched: false,
+          formData: { ...savedForm },
+          editingFormData: { ...savedForm }
         };
-      });
+      }
     } else {
-      // Add new dive
+      this.state = {
+        locationSuggestions: [],
+        isTouched: false,
+        formData: { ...INITIAL_FORM_DATA },
+        editingFormData: { ...INITIAL_FORM_DATA }
+      };
+    }
+  }
+
+  componentDidMount() {
+    if (!this.props.match.params.id) return;
+
+    if (this.state.formData) {
       this.setState(state => {
         return {
-          formData: { ...INITIAL_FORM_DATA },
-          editingFormData: { ...INITIAL_FORM_DATA },
-          locationSuggestions: [],
-          isTouched: false
+          ...state,
+          editingFormData: this.state.formData
         };
       });
+
+      this.validateForm();
+    } else {
+      // Dive requested not found, request database
+      dispatch(userFetchDataAsync("alex"));
     }
-  };
+  }
+
+  componentDidUpdate(prevProps) {
+    if (this.props.divingHistory !== prevProps.divingHistory) {
+      const diveId = this.props.match.params.id;
+      const fetchedFormData = this.props.divingHistory.diveById[diveId];
+
+      /* IF user manually refresh the page */
+      if (typeof fetchedFormData !== "undefined") {
+        this.setState({
+          locationSuggestions: [],
+          isTouched: false,
+          formData: { ...fetchedFormData },
+          editingFormData: { ...fetchedFormData }
+        });
+      } else {
+        this.props.history.push("/404");
+      }
+    }
+  }
 
   handleChange = name => (event, { newValue } = {}) => {
     // This is how to deep clone an object
