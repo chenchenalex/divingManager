@@ -78,6 +78,32 @@ describe("Dive list: dive table container tests", () => {
 
     expect(instance.state.selected).toEqual([]);
   });
+
+  it("handleChangePage: should change page number", () => {
+    const instance = container.instance();
+
+    expect(instance.state.page).toBe(0);
+
+    const event = jest.fn();
+    instance.handleChangePage(event, 3);
+
+    expect(instance.state.page).toBe(3);
+  });
+
+  it("handleChangeRowsPerPage: should change number of rows per page", () => {
+    const instance = container.instance();
+
+    expect(instance.state.rowsPerPage).toBe(5);
+
+    const event = {
+      target: {
+        value: 10
+      }
+    };
+    instance.handleChangeRowsPerPage(event);
+
+    expect(instance.state.rowsPerPage).toBe(10);
+  });
 });
 
 describe("Dive list: Snapshots tests", () => {

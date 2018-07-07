@@ -10,7 +10,6 @@ const MainMenu = styled.ul`
   width: 20%;
   height: 100%;
   overflow: scroll;
-  border-right: 1px solid;
   padding: 20px 0;
   flex-basis: 20%;
 

@@ -2,7 +2,7 @@
 
 exports[`Dive list: Snapshots tests Dive table: should render correctly 1`] = `
 <table
-  className="MuiTable-root-26 testing sc-bwzfXH fGCCLo"
+  className="MuiTable-root-26 sc-bwzfXH fGCCLo"
 >
   <thead
     className="MuiTableHead-root-27"

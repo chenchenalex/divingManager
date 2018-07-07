@@ -11,6 +11,7 @@ import AddButton from "../buttons/addNew";
 import DeleteButton from "../buttons/delete";
 import bgImg from "src/assets/images/dive_bg1.jpg";
 import ImageBanner from "src/components/imageBanner";
+import TablePagination from "@material-ui/core/TablePagination";
 
 // utils
 import { getDives } from "src/data/utils";
@@ -18,7 +19,9 @@ import { getDives } from "src/data/utils";
 const { dispatch } = store;
 export class DivingListComponent extends React.Component {
   state = {
-    selected: []
+    selected: [],
+    page: 0,
+    rowsPerPage: 5
   };
 
   componentDidMount() {
@@ -68,7 +71,28 @@ export class DivingListComponent extends React.Component {
     });
   };
 
+  handleChangePage = (event, page) => {
+    this.setState({ page });
+  };
+
+  handleChangeRowsPerPage = event => {
+    this.setState({ rowsPerPage: event.target.value });
+  };
+
   render() {
+    const { rowsPerPage, page } = this.state;
+    const tableDataByPage = this.props.divingHistory.slice(
+      page * rowsPerPage,
+      page * rowsPerPage + rowsPerPage
+    );
+
+    const emptyRows =
+      rowsPerPage -
+      Math.min(
+        rowsPerPage,
+        this.props.divingHistory.length - page * rowsPerPage
+      );
+
     return (
       <Fragment>
         <ImageBanner
@@ -81,11 +105,29 @@ export class DivingListComponent extends React.Component {
           <DeleteButton onDelete={this.onDelete} state={this.state} />
           <DiveTable
             state={this.state}
-            tableData={this.props.divingHistory || []}
+            tableData={tableDataByPage}
             onSelect={this.onSelect}
+            emptyRows={emptyRows}
             onSelectAll={this.onSelectAll}
           />
         </DivingContainer>
+
+        {tableDataByPage.length > 0 && (
+          <TablePagination
+            component="div"
+            count={this.props.divingHistory.length}
+            rowsPerPage={rowsPerPage}
+            page={page}
+            onChangePage={this.handleChangePage}
+            backIconButtonProps={{
+              "aria-label": "Previous Page"
+            }}
+            nextIconButtonProps={{
+              "aria-label": "Next Page"
+            }}
+            onChangeRowsPerPage={this.handleChangeRowsPerPage}
+          />
+        )}
       </Fragment>
     );
   }
