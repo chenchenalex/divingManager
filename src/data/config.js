@@ -46,3 +46,19 @@ export const FORM_CONFIG = {
     helperText: "No feedback?"
   }
 };
+
+export const LOGIN_FORM_CONFIG = {
+  username: {
+    required: true,
+    invalid: false,
+    label: "Email",
+    helperText: "Please provide email address"
+  },
+
+  password: {
+    required: true,
+    invalid: false,
+    label: "Password",
+    helperText: "Please provide password"
+  }
+};

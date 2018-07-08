@@ -137,7 +137,20 @@ body,
 :root {
   /* Colour variables */
   --grey: #2f2f2f;
+  --white: #ffffff;
+  --yellow: #fbc02d;
+  --teal: #009688;
+  --red: #f44336;
+  --red-400: #ef5350;
+  --blue: #2196f3;
 
   /* Size variables */
   --base-unit: 8px;
+
+  /* Font size */
+  --font-size-xl: 40px;
+  --font-size-l: 32px;
+  --font-size-md: 24px;
+  --font-size-sm: 16px;
+  --font-size-xs: 12px;
 }
