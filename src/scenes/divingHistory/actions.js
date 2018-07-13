@@ -8,7 +8,7 @@ export const userFetchDataAsync = userId => {
     type: USER_FETCH_DATA_ASYNC,
     data: {
       userId,
-      section: "scenes/divingHistory"
+      section: "/"
     }
   };
 };

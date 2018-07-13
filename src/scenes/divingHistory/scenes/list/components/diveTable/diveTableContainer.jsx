@@ -25,7 +25,10 @@ export class DivingListComponent extends React.Component {
   };
 
   componentDidMount() {
-    dispatch(userFetchDataAsync("alex"));
+    if (!this.props.connectionStatus.isSynchronized) {
+      // To prevent multiple fetching on Mounting
+      dispatch(userFetchDataAsync("alex"));
+    }
   }
 
   onSelectAll = event => {
@@ -135,7 +138,8 @@ export class DivingListComponent extends React.Component {
 
 function mapStateToProps(state) {
   return {
-    divingHistory: getDives(state.scenes.divingHistory)
+    divingHistory: getDives(state.scenes.divingHistory),
+    connectionStatus: state.connectionStatus
   };
 }
 

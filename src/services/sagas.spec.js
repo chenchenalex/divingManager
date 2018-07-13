@@ -9,8 +9,6 @@ describe("sagas unit tests", () => {
 
     const gen = userFetchDataSaga(action);
 
-    expect(gen.next().value).toEqual(
-      call(getData, "alex", "scenes/divingHistory")
-    );
+    expect(gen.next().value).toEqual(call(getData, "alex", "/"));
   });
 });

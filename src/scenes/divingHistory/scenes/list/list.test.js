@@ -13,8 +13,17 @@ import renderer from "react-test-renderer";
 const divingHistory = getDives(mockState);
 
 describe("Dive list: dive table container tests", () => {
+  const connectionStatus = {
+    isSynchronized: false,
+    lastUpdatedServer: undefined,
+    lastUpdatedLocal: undefined
+  };
+
   const container = shallow(
-    <DivingListComponent divingHistory={divingHistory} />
+    <DivingListComponent
+      divingHistory={divingHistory}
+      connectionStatus={connectionStatus}
+    />
   );
 
   it("onSelectAll: should select all dives or deselect them all", () => {

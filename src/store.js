@@ -15,6 +15,14 @@ const defaultState = {
     divingHistory: {
       diveById: {}
     }
+  },
+  loginState: {
+    isAuthenticated: false
+  },
+  connectionStatus: {
+    isSynchronized: false,
+    lastUpdatedServer: undefined,
+    lastUpdatedLocal: undefined
   }
 };
 
@@ -30,11 +38,24 @@ sagaMiddleware.run(rootSaga);
 
 store.subscribe(() => {
   const storeState = store.getState();
+  const {
+    isSynchronized,
+    lastUpdatedServer,
+    lastUpdatedLocal
+  } = storeState.connectionStatus;
 
-  if (storeState !== prevState) {
+  if (
+    storeState !== prevState &&
+    isSynchronized &&
+    lastUpdatedLocal > lastUpdatedServer
+  ) {
+    const { scenes } = store.getState();
     writeData({
       userId: "alex",
-      data: store.getState()
+      data: {
+        scenes: scenes,
+        lastUpdatedServer: lastUpdatedLocal
+      }
     });
 
     prevState = store.getState();
@@ -42,3 +63,5 @@ store.subscribe(() => {
 });
 
 export default store;
+
+export const { dispatch } = store;
