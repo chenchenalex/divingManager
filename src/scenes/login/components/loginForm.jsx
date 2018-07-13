@@ -9,7 +9,7 @@ export const LoginForm = ({
   onChange,
   formConfig
 }) => (
-  <form action="">
+  <form onSubmit={onSubmit}>
     <TextField
       name="username"
       fullWidth
@@ -39,7 +39,7 @@ export const LoginForm = ({
         </Link>
       </p>
 
-      <Button variant="raised" color="secondary" onClick={onSubmit}>
+      <Button variant="raised" color="secondary" type="submit">
         Login
       </Button>
     </div>

@@ -8,6 +8,11 @@ import firebase from "firebase/app";
 import "firebase/auth";
 import { LOGIN_FORM_CONFIG } from "src/data/config";
 import { Notification } from "src/components/notification";
+import { loginSuccess } from "./actions";
+import { dispatch } from "src/store";
+import { connect } from "react-redux";
+import { Redirect } from "react-router-dom";
+import { ACCOUNT } from "src/data/routes";
 
 const theme = createMuiTheme({
   palette: {
@@ -16,7 +21,7 @@ const theme = createMuiTheme({
   }
 });
 
-class Account extends React.Component {
+export class Account extends React.Component {
   state = {
     username: "",
     password: "",
@@ -25,7 +30,9 @@ class Account extends React.Component {
 
   formConfig = JSON.parse(JSON.stringify(LOGIN_FORM_CONFIG));
 
-  onFormSubmit = () => {
+  onFormSubmit = e => {
+    e.preventDefault();
+
     const { username, password } = this.state;
 
     this.setState({
@@ -37,11 +44,11 @@ class Account extends React.Component {
       .auth()
       .signInWithEmailAndPassword(username, password)
       .then(res => {
-        console.log(res);
-
         this.setState({
           loading: false
         });
+
+        dispatch(loginSuccess());
       })
       .catch(({ message }) => {
         this.setState({
@@ -60,7 +67,9 @@ class Account extends React.Component {
   };
 
   render() {
-    return (
+    return this.props.loginState.isAuthenticated ? (
+      <Redirect to={{ pathname: ACCOUNT }} />
+    ) : (
       <AccountContainer>
         <div className="content">
           <div className="notifcation-area">
@@ -88,4 +97,10 @@ class Account extends React.Component {
   }
 }
 
-export default Account;
+function mapStateToProps(state) {
+  return {
+    loginState: state.loginState
+  };
+}
+
+export default connect(mapStateToProps)(Account);

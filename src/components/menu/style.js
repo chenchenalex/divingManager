@@ -6,7 +6,7 @@ const MainMenu = styled.ul`
   display: block;
   position: fixed;
   margin: 0;
-  background: black;
+  background: var(--charcoal);
   width: 20%;
   height: 100%;
   overflow: scroll;
@@ -22,6 +22,8 @@ export const MenuItem = styled.li`
   color: white;
   background-color: ${props =>
     props.isActive ? "var(--grey)" : "transparent"};
+  border-top: ${props => (props.isActive ? "1px solid white" : 0)};
+  border-bottom: ${props => (props.isActive ? "1px solid white" : 0)};
   margin: var(--base-unit) 0;
   padding: calc(var(--base-unit) * 3) 0;
   padding-left: calc(var(--base-unit) * 2);
