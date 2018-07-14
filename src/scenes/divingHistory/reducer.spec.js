@@ -8,7 +8,7 @@ describe("diving history page reducers", () => {
   it("ADD DIVE: should add a new dive with a new ID", () => {
     const action = {
       type: ADD_DIVE,
-      data: {
+      payload: {
         name: "new diving spot",
         country: "philipines",
         date: "20181112"
@@ -29,7 +29,7 @@ describe("diving history page reducers", () => {
 
     expect(newId).toBeDefined();
 
-    const expectedNewDive = { ...action.data, id: newId };
+    const expectedNewDive = { ...action.payload, id: newId };
 
     expect(result[newId]).toEqual(expectedNewDive);
   });
@@ -37,7 +37,7 @@ describe("diving history page reducers", () => {
   it("EDIT DIVE: should update an existing dive based on given ID", () => {
     const action1 = {
       type: EDIT_DIVE,
-      data: {
+      payload: {
         name: "new diving spot",
         country: "philipines",
         date: "20181112",
@@ -47,7 +47,7 @@ describe("diving history page reducers", () => {
 
     // valid ID provided, should update state
     const result1 = DivingHistoryReducer(prevState, action1);
-    const expected1 = { ...prevState, test1: action1.data };
+    const expected1 = { ...prevState, test1: action1.payload };
 
     expect(result1).toEqual(expected1);
   });
@@ -55,20 +55,20 @@ describe("diving history page reducers", () => {
   it("EDIT DIVE: should return original state if no ID provided", () => {
     const action2 = {
       type: EDIT_DIVE,
-      data: {}
+      payload: {}
     };
 
-    // If No Id provided or invalid data, no change to state
+    // If No Id provided or invalid payload, no change to state
     const expected2 = prevState;
     const result2 = DivingHistoryReducer(prevState, action2);
 
     expect(result2).toEqual(expected2);
   });
 
-  it("DELETE DIVE: should return original state if no data given", () => {
+  it("DELETE DIVE: should return original state if no payload given", () => {
     const action = {
       type: DELETE_DIVE,
-      data: []
+      payload: []
     };
 
     const result = DivingHistoryReducer(prevState, action);
@@ -79,12 +79,12 @@ describe("diving history page reducers", () => {
   it("DELETE DIVE: should delete selected dive based on id", () => {
     const action1 = {
       type: DELETE_DIVE,
-      data: ["test1"]
+      payload: ["test1"]
     };
 
     const action2 = {
       type: DELETE_DIVE,
-      data: ["test1", "test2", "test3", "test4"]
+      payload: ["test1", "test2", "test3", "test4"]
     };
 
     const result = DivingHistoryReducer(prevState, action1);

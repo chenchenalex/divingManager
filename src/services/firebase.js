@@ -36,3 +36,7 @@ export const getData = (userId, pathToData = "") => {
     }
   });
 };
+
+export const userLoginObserver = callback => {
+  firebase.auth().onAuthStateChanged(callback);
+};

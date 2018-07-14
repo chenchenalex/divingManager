@@ -8,7 +8,7 @@ import firebase from "firebase/app";
 import "firebase/auth";
 import { LOGIN_FORM_CONFIG } from "src/data/config";
 import { Notification } from "src/components/notification";
-import { loginSuccess } from "./actions";
+import { loginSuccess } from "src/actions";
 import { dispatch } from "src/store";
 import { connect } from "react-redux";
 import { Redirect } from "react-router-dom";
@@ -21,7 +21,7 @@ const theme = createMuiTheme({
   }
 });
 
-export class Account extends React.Component {
+export class LoginPage extends React.Component {
   state = {
     username: "",
     password: "",
@@ -29,6 +29,10 @@ export class Account extends React.Component {
   };
 
   formConfig = JSON.parse(JSON.stringify(LOGIN_FORM_CONFIG));
+
+  componentDidMount() {
+    console.log(firebase.auth().currentUser);
+  }
 
   onFormSubmit = e => {
     e.preventDefault();
@@ -40,6 +44,7 @@ export class Account extends React.Component {
       loading: true
     });
 
+    /* TODO: move this to firebase.js */
     firebase
       .auth()
       .signInWithEmailAndPassword(username, password)
@@ -103,4 +108,4 @@ function mapStateToProps(state) {
   };
 }
 
-export default connect(mapStateToProps)(Account);
+export default connect(mapStateToProps)(LoginPage);

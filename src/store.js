@@ -16,7 +16,7 @@ const defaultState = {
       diveById: {}
     }
   },
-  loginState: {
+  userInfo: {
     isAuthenticated: false
   },
   connectionStatus: {

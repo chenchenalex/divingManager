@@ -6,7 +6,7 @@ export const userFetchDataAsync = userId => {
 
   return {
     type: USER_FETCH_DATA_ASYNC,
-    data: {
+    payload: {
       userId,
       section: "/"
     }

@@ -3,10 +3,11 @@ import {
   USER_FETCH_DATA_FAILURE,
   ADD_DIVE,
   EDIT_DIVE,
-  DELETE_DIVE
+  DELETE_DIVE,
+  USER_LOGIN_SUCCESS
 } from "../actions/actionTypes";
 
-const connectionReducer = (state = {}, action) => {
+export const connectionReducer = (state = {}, action) => {
   /* Update timestamp on any changes locally */
   if (
     action.type === ADD_DIVE ||
@@ -21,10 +22,9 @@ const connectionReducer = (state = {}, action) => {
 
   switch (action.type) {
     case USER_FETCH_DATA_SUCCESS:
-      console.log("get data!");
       return {
         isSynchronized: true,
-        lastUpdatedServer: action.data.lastUpdated
+        lastUpdatedServer: action.payload.lastUpdatedServer
       };
     case USER_FETCH_DATA_FAILURE:
       return {
@@ -36,4 +36,21 @@ const connectionReducer = (state = {}, action) => {
   }
 };
 
-export default connectionReducer;
+export function loginReducer(state = {}, action) {
+  switch (action.type) {
+    case USER_LOGIN_SUCCESS:
+      const { email, name, photoUrl, emailVerified, uid } = action.payload;
+
+      return {
+        ...state,
+        isAuthenticated: true,
+        name,
+        email,
+        photoUrl,
+        emailVerified,
+        uid
+      };
+    default:
+      return state;
+  }
+}

@@ -11,7 +11,7 @@ export function diveById(state = {}, action) {
   switch (action.type) {
     case USER_FETCH_DATA_SUCCESS:
       if (action.data !== null) {
-        const diveByIdData = action.data.scenes.divingHistory.diveById;
+        const diveByIdData = action.payload.scenes.divingHistory.diveById;
 
         return {
           ...state,
@@ -23,7 +23,7 @@ export function diveById(state = {}, action) {
 
     case ADD_DIVE:
       const newID = v4();
-      const newDiveData = { ...action.data, id: newID };
+      const newDiveData = { ...action.payload, id: newID };
 
       return {
         ...state,
@@ -32,22 +32,25 @@ export function diveById(state = {}, action) {
 
     case EDIT_DIVE:
       if (
-        typeof action.data === "undefined" ||
-        typeof action.data.id === "undefined"
+        typeof action.payload === "undefined" ||
+        typeof action.payload.id === "undefined"
       )
         return state;
 
       return {
         ...state,
-        [action.data.id]: action.data
+        [action.payload.id]: action.payload
       };
     case DELETE_DIVE:
-      if (typeof action.data === "undefined" || !Array.isArray(action.data))
+      if (
+        typeof action.payload === "undefined" ||
+        !Array.isArray(action.payload)
+      )
         return state;
 
       return Object.keys(state).reduce(
         function(result, key) {
-          if (action.data.includes(key)) {
+          if (action.payload.includes(key)) {
             delete result[key];
           }
           return result;

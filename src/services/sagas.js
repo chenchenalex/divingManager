@@ -12,10 +12,14 @@ export function* watchUserFetchDataAsync() {
 
 export function* userFetchDataSaga(action) {
   try {
-    const data = yield call(getData, action.data.userId, action.data.section);
-    yield put({ type: USER_FETCH_DATA_SUCCESS, data });
+    const payload = yield call(
+      getData,
+      action.payload.userId,
+      action.payload.section
+    );
+    yield put({ type: USER_FETCH_DATA_SUCCESS, payload });
   } catch (e) {
-    yield put({ type: USER_FETCH_DATA_FAILURE, data: e });
+    yield put({ type: USER_FETCH_DATA_FAILURE, payload: e });
   }
 }
 
