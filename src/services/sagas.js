@@ -1,9 +1,12 @@
 import { call, put, takeEvery, all } from "redux-saga/effects";
-import { getData } from "src/services/firebase";
+import { getData, logout } from "src/services/firebase";
 import {
   USER_FETCH_DATA_ASYNC,
   USER_FETCH_DATA_SUCCESS,
-  USER_FETCH_DATA_FAILURE
+  USER_FETCH_DATA_FAILURE,
+  USER_LOGOUT,
+  USER_LOGOUT_SUCCESS,
+  USER_LOGOUT_FAILURE
 } from "src/actions/actionTypes";
 
 export function* watchUserFetchDataAsync() {
@@ -17,12 +20,27 @@ export function* userFetchDataSaga(action) {
       action.payload.userId,
       action.payload.section
     );
+    console.log(payload);
     yield put({ type: USER_FETCH_DATA_SUCCESS, payload });
   } catch (e) {
     yield put({ type: USER_FETCH_DATA_FAILURE, payload: e });
   }
 }
 
+export function* watchUserLogoutAsync() {
+  yield takeEvery(USER_LOGOUT, userLogoutSaga);
+}
+
+export function* userLogoutSaga() {
+  try {
+    yield call(logout);
+    yield put({ type: USER_LOGOUT_SUCCESS, payload: {} });
+  } catch (e) {
+    // logout failure
+    yield put({ type: USER_LOGOUT_FAILURE, payload: e });
+  }
+}
+
 export default function* rootSaga() {
-  yield all([watchUserFetchDataAsync()]);
+  yield all([watchUserFetchDataAsync(), watchUserLogoutAsync()]);
 }

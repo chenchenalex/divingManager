@@ -26,7 +26,7 @@ class Main extends React.Component {
     return (
       <Container className="App">
         <SideMenu items={this.props.menuItems} location={this.props.location} />
-        <DisplayPanel />
+        <DisplayPanel userInfo={this.props.userInfo} />
       </Container>
     );
   }
@@ -35,7 +35,8 @@ class Main extends React.Component {
 function mapStateToProps(state) {
   return {
     divingHistory: state.scenes.divingHistory,
-    menuItems: state.components.menu
+    menuItems: state.components.menu,
+    userInfo: state.userInfo
   };
 }
 

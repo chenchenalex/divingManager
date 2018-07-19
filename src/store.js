@@ -49,9 +49,12 @@ store.subscribe(() => {
     isSynchronized &&
     lastUpdatedLocal > lastUpdatedServer
   ) {
-    const { scenes } = store.getState();
+    const {
+      scenes,
+      userInfo: { uid }
+    } = store.getState();
     writeData({
-      userId: "alex",
+      userId: uid,
       data: {
         scenes: scenes,
         lastUpdatedServer: lastUpdatedLocal

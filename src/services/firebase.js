@@ -37,6 +37,14 @@ export const getData = (userId, pathToData = "") => {
   });
 };
 
+export const logout = () => {
+  return firebase.auth().signOut();
+};
+
 export const userLoginObserver = callback => {
   firebase.auth().onAuthStateChanged(callback);
+};
+
+export const userLogin = ({ username, password }) => {
+  return firebase.auth().signInWithEmailAndPassword(username, password);
 };

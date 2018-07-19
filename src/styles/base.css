@@ -137,6 +137,7 @@ body,
 :root {
   /* Colour variables */
   --grey: #2f2f2f;
+  --grey-400: #bdbdbd;
   --white: #ffffff;
   --yellow: #fbc02d;
   --teal: #009688;

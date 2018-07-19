@@ -10,7 +10,7 @@ import { v4 } from "uuid";
 export function diveById(state = {}, action) {
   switch (action.type) {
     case USER_FETCH_DATA_SUCCESS:
-      if (action.data !== null) {
+      if (action.payload !== null) {
         const diveByIdData = action.payload.scenes.divingHistory.diveById;
 
         return {

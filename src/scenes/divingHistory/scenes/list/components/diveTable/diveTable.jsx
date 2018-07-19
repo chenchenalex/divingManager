@@ -8,13 +8,15 @@ import { tableColumnData } from "src/data/mockData";
 
 const loaderStyle = {
   fontSize: "24px",
-  textAlign: "center"
+  textAlign: "center",
+  color: "var(--grey-400)"
 };
 
 const DivingTable = ({
   state,
   tableData,
   onSelect,
+  isLoadComplete,
   onSelectAll,
   emptyRows
 }) => {
@@ -22,6 +24,7 @@ const DivingTable = ({
     return state.selected.includes(id);
   };
 
+  const placeHolderText = isLoadComplete ? "Empty" : "Fetching data...";
   return (
     <DiveTable>
       <TableHead>
@@ -81,7 +84,7 @@ const DivingTable = ({
         <TableBody>
           <TableRow style={{ height: 57 * 5 }}>
             <TableCell colSpan={6} style={loaderStyle}>
-              Loading ...
+              {placeHolderText}
             </TableCell>
           </TableRow>
         </TableBody>

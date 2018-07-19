@@ -13,7 +13,7 @@ import { dispatch } from "src/store";
 import { connect } from "react-redux";
 import { Redirect } from "react-router-dom";
 import { ACCOUNT } from "src/data/routes";
-
+import { userLogin } from "src/services/firebase";
 const theme = createMuiTheme({
   palette: {
     primary: teal,
@@ -44,10 +44,7 @@ export class LoginPage extends React.Component {
       loading: true
     });
 
-    /* TODO: move this to firebase.js */
-    firebase
-      .auth()
-      .signInWithEmailAndPassword(username, password)
+    userLogin({ username, password })
       .then(res => {
         this.setState({
           loading: false
@@ -72,7 +69,7 @@ export class LoginPage extends React.Component {
   };
 
   render() {
-    return this.props.loginState.isAuthenticated ? (
+    return this.props.userInfo.isAuthenticated ? (
       <Redirect to={{ pathname: ACCOUNT }} />
     ) : (
       <AccountContainer>
@@ -104,7 +101,7 @@ export class LoginPage extends React.Component {
 
 function mapStateToProps(state) {
   return {
-    loginState: state.loginState
+    userInfo: state.userInfo
   };
 }
 

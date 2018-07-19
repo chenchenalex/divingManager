@@ -85,7 +85,6 @@ describe("DiveForm: add new dive tests", () => {
     ];
 
     jest.spyOn(instance, "getSuggestions").mockImplementation(() => {
-      console.log("mock implementation");
       return sampleData;
     });
 

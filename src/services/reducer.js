@@ -4,7 +4,8 @@ import {
   ADD_DIVE,
   EDIT_DIVE,
   DELETE_DIVE,
-  USER_LOGIN_SUCCESS
+  USER_LOGIN_SUCCESS,
+  USER_LOGOUT_SUCCESS
 } from "../actions/actionTypes";
 
 export const connectionReducer = (state = {}, action) => {
@@ -22,10 +23,18 @@ export const connectionReducer = (state = {}, action) => {
 
   switch (action.type) {
     case USER_FETCH_DATA_SUCCESS:
-      return {
-        isSynchronized: true,
-        lastUpdatedServer: action.payload.lastUpdatedServer
-      };
+      if (action.payload !== null) {
+        return {
+          isSynchronized: true,
+          lastUpdatedServer: action.payload.lastUpdatedServer
+        };
+      } else {
+        return {
+          isSynchronized: true,
+          lastUpdatedServer: Date.now()
+        };
+      }
+
     case USER_FETCH_DATA_FAILURE:
       return {
         isSynchronized: false,
@@ -49,6 +58,16 @@ export function loginReducer(state = {}, action) {
         photoUrl,
         emailVerified,
         uid
+      };
+    case USER_LOGOUT_SUCCESS:
+      return {
+        ...state,
+        isAuthenticated: false,
+        name: null,
+        email: null,
+        photoUrl: null,
+        emailVerified: null,
+        uid: null
       };
     default:
       return state;

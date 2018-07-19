@@ -18,10 +18,14 @@ describe("Dive list: dive table container tests", () => {
     lastUpdatedServer: undefined,
     lastUpdatedLocal: undefined
   };
+  const userInfo = {
+    isAuthenticated: false
+  };
 
   const container = shallow(
     <DivingListComponent
       divingHistory={divingHistory}
+      userInfo={userInfo}
       connectionStatus={connectionStatus}
     />
   );

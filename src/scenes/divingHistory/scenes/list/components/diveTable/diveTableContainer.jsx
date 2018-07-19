@@ -25,9 +25,13 @@ export class DivingListComponent extends React.Component {
   };
 
   componentDidMount() {
-    if (!this.props.connectionStatus.isSynchronized) {
+    if (
+      !this.props.connectionStatus.isSynchronized &&
+      this.props.userInfo.isAuthenticated
+    ) {
       // To prevent multiple fetching on Mounting
-      dispatch(userFetchDataAsync("alex"));
+      const { userInfo } = this.props;
+      dispatch(userFetchDataAsync(userInfo.uid));
     }
   }
 
@@ -84,6 +88,8 @@ export class DivingListComponent extends React.Component {
 
   render() {
     const { rowsPerPage, page } = this.state;
+    const { connectionStatus } = this.props;
+
     const tableDataByPage = this.props.divingHistory.slice(
       page * rowsPerPage,
       page * rowsPerPage + rowsPerPage
@@ -109,6 +115,7 @@ export class DivingListComponent extends React.Component {
           <DiveTable
             state={this.state}
             tableData={tableDataByPage}
+            isLoadComplete={connectionStatus.isSynchronized}
             onSelect={this.onSelect}
             emptyRows={emptyRows}
             onSelectAll={this.onSelectAll}
@@ -139,6 +146,7 @@ export class DivingListComponent extends React.Component {
 function mapStateToProps(state) {
   return {
     divingHistory: getDives(state.scenes.divingHistory),
+    userInfo: state.userInfo,
     connectionStatus: state.connectionStatus
   };
 }
