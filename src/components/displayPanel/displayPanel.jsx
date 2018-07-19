@@ -28,29 +28,33 @@ function PrivateRoute({ component: Component, authenticated, ...rest }) {
         authenticated === true ? (
           <Component {...props} />
         ) : (
-          <Redirect to={{ pathname: LOGIN, state: { from: props.location } }} />
+          <Redirect to={{ pathname: LOGIN, from: props.location }} />
         )
       }
     />
   );
 }
 
-const DisplayPanel = ({ userInfo }) => {
-  if (userInfo.isAuthenticated) {
+const DisplayPanel = ({ isOnline, isAuthenticated }) => {
+  if (isOnline) {
     return (
       <Panel>
         <Switch>
           <Route path={HOMEPAGE} exact render={() => <h1>Welcome</h1>} />
-          <Route path={ACCOUNT} component={Account} />
+          <PrivateRoute
+            path={ACCOUNT}
+            authenticated={isAuthenticated}
+            component={Account}
+          />
           <Route path={DASHBOARD} component={dashboard} />
-          <Route path={DIVELIST} component={viewDives} exact />
           <Route path={ADDDIVE} component={editDive} />
           <Route path={LOGIN} component={Login} />
           <Route path={`${EDITDIVE}/:id`} component={editDive} />
           <PrivateRoute
-            path="/test"
-            authenticated={false}
-            component={dashboard}
+            path={DIVELIST}
+            authenticated={isAuthenticated}
+            component={viewDives}
+            exact
           />
           <Route component={pageNotFound} />
         </Switch>

@@ -7,7 +7,7 @@ import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
 import { userLoginObserver } from "../services/firebase";
 import { dispatch } from "../store";
-import { loginSuccess } from "../actions";
+import { loginSuccess, loginFailure } from "../actions";
 
 class Main extends React.Component {
   componentDidMount() {
@@ -15,7 +15,7 @@ class Main extends React.Component {
       if (user) {
         dispatch(loginSuccess(user));
       } else {
-        console.log("user not logged in!");
+        dispatch(loginFailure());
       }
     };
 
@@ -26,7 +26,10 @@ class Main extends React.Component {
     return (
       <Container className="App">
         <SideMenu items={this.props.menuItems} location={this.props.location} />
-        <DisplayPanel userInfo={this.props.userInfo} />
+        <DisplayPanel
+          isOnline={this.props.isOnline}
+          isAuthenticated={this.props.isAuthenticated}
+        />
       </Container>
     );
   }
@@ -36,7 +39,8 @@ function mapStateToProps(state) {
   return {
     divingHistory: state.scenes.divingHistory,
     menuItems: state.components.menu,
-    userInfo: state.userInfo
+    isAuthenticated: state.userInfo.isAuthenticated,
+    isOnline: state.connectionStatus.isOnline
   };
 }
 

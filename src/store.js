@@ -20,6 +20,7 @@ const defaultState = {
     isAuthenticated: false
   },
   connectionStatus: {
+    isOnline: false,
     isSynchronized: false,
     lastUpdatedServer: undefined,
     lastUpdatedLocal: undefined

@@ -7,6 +7,13 @@ export const loginSuccess = userInfo => {
   };
 };
 
+export const loginFailure = () => {
+  return {
+    type: actionTypes.USER_LOGIN_FAILURE,
+    payload: {}
+  };
+};
+
 export const userLogOut = () => {
   return {
     type: actionTypes.USER_LOGOUT,

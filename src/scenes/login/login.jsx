@@ -4,7 +4,6 @@ import { LoginForm } from "./components/loginForm";
 import { MuiThemeProvider, createMuiTheme } from "@material-ui/core/styles";
 import teal from "@material-ui/core/colors/teal";
 import red from "@material-ui/core/colors/red";
-import firebase from "firebase/app";
 import "firebase/auth";
 import { LOGIN_FORM_CONFIG } from "src/data/config";
 import { Notification } from "src/components/notification";
@@ -29,10 +28,6 @@ export class LoginPage extends React.Component {
   };
 
   formConfig = JSON.parse(JSON.stringify(LOGIN_FORM_CONFIG));
-
-  componentDidMount() {
-    console.log(firebase.auth().currentUser);
-  }
 
   onFormSubmit = e => {
     e.preventDefault();
@@ -69,8 +64,15 @@ export class LoginPage extends React.Component {
   };
 
   render() {
+    let redirectUrl;
+    if (typeof this.props.location.from !== "undefined") {
+      redirectUrl = this.props.location.from.pathname;
+    } else {
+      redirectUrl = ACCOUNT;
+    }
+
     return this.props.userInfo.isAuthenticated ? (
-      <Redirect to={{ pathname: ACCOUNT }} />
+      <Redirect to={{ pathname: redirectUrl }} />
     ) : (
       <AccountContainer>
         <div className="content">
