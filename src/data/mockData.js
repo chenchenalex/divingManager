@@ -1,10 +1,40 @@
 export const menuItems = [
-  { id: 1, name: "Home", url: "/", loginRequired: false },
-  { id: 2, name: "Account", url: "/account", loginRequired: true },
-  { id: 3, name: "Dashboard", url: "/dashboard", loginRequired: true },
-  { id: 4, name: "View Divings", url: "/list", loginRequired: true },
-  { id: 5, name: "Gallery", url: "/gallery", loginRequired: false },
-  { id: 6, name: "Discover", url: "/discover", loginRequired: false }
+  { id: 1, name: "Home", url: "/", loginRequired: false, iconClass: "FaHome" },
+  {
+    id: 2,
+    name: "Account",
+    url: "/account",
+    loginRequired: true,
+    iconClass: "FaUser"
+  },
+  {
+    id: 3,
+    name: "Dashboard",
+    url: "/dashboard",
+    loginRequired: true,
+    iconClass: "FaDashboard"
+  },
+  {
+    id: 4,
+    name: "View Divings",
+    url: "/list",
+    loginRequired: true,
+    iconClass: "FaTable"
+  },
+  {
+    id: 5,
+    name: "Gallery",
+    url: "/gallery",
+    loginRequired: false,
+    iconClass: "FaImage"
+  },
+  {
+    id: 6,
+    name: "Discover",
+    url: "/discover",
+    loginRequired: false,
+    iconClass: "FaCcDiscover"
+  }
 ];
 
 export const divingHistory = {

@@ -19,19 +19,25 @@ class Menu extends React.PureComponent {
     return (
       <MainMenu>
         {this.props.items &&
-          this.props.items.map(({ name, url, id, loginRequired }) => {
-            const isDisabled = !this.props.isAuthenticated && loginRequired;
+          this.props.items.map(
+            ({ name, url, id, loginRequired, iconClass }) => {
+              const isDisabled = !this.props.isAuthenticated && loginRequired;
+              /* TODO: find a better approach to import icons */
+              const Icon = require("react-icons/lib/fa")[iconClass];
 
-            return (
-              <MenuItem key={id} isActive={this.state.pathname === url}>
-                {isDisabled ? (
-                  <Link to={LOGIN}> {name}</Link>
-                ) : (
-                  <Link to={url}>{name}</Link>
-                )}
-              </MenuItem>
-            );
-          })}
+              return (
+                <MenuItem key={id} isActive={this.state.pathname === url}>
+                  {Icon ? <Icon color="white" size={20} /> : ""}
+
+                  {isDisabled ? (
+                    <Link to={LOGIN}> {name}</Link>
+                  ) : (
+                    <Link to={url}>{name}</Link>
+                  )}
+                </MenuItem>
+              );
+            }
+          )}
       </MainMenu>
     );
   }

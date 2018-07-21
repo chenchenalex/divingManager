@@ -25,11 +25,13 @@ export const MenuItem = styled.li`
   border-bottom: ${props => (props.isActive ? "1px solid white" : 0)};
   margin: var(--base-unit) 0;
   padding: calc(var(--base-unit) * 3) 0;
-  padding-left: calc(var(--base-unit) * 2);
+  padding-left: calc(var(--base-unit) * 3);
   transition: opacity 0.2s ease;
 
   a {
     color: white;
+    vertical-align: middle;
+    margin-left: var(--base-unit);
   }
 
   &:hover {

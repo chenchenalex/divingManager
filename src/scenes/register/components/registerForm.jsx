@@ -2,9 +2,9 @@ import React from "react";
 import TextField from "material-ui/TextField";
 import Button from "material-ui/Button";
 
-export default ({ formConfig }) => {
+const StyledRegisterForm = ({ formConfig, onSubmit }) => {
   return (
-    <form>
+    <form onSubmit={onSubmit}>
       <TextField
         name="firstName"
         fullWidth
@@ -28,6 +28,7 @@ export default ({ formConfig }) => {
       />
       <TextField
         name="password"
+        type="password"
         fullWidth
         label={formConfig.password.label}
         required={formConfig.password.required}
@@ -35,6 +36,7 @@ export default ({ formConfig }) => {
       />
       <TextField
         name="passwordConfirm"
+        type="password"
         fullWidth
         label={formConfig.passwordConfirm.label}
         required={formConfig.passwordConfirm.required}
@@ -54,3 +56,5 @@ export default ({ formConfig }) => {
     </form>
   );
 };
+
+export default StyledRegisterForm;
