@@ -1,5 +1,5 @@
 import React from "react";
-import { AccountContainer } from "./style";
+import { LoginContainer } from "./style";
 import { LoginForm } from "./components/loginForm";
 import { MuiThemeProvider, createMuiTheme } from "@material-ui/core/styles";
 import teal from "@material-ui/core/colors/teal";
@@ -75,7 +75,7 @@ export class LoginPage extends React.Component {
     return this.props.userInfo.isAuthenticated ? (
       <Redirect to={{ pathname: redirectUrl }} />
     ) : (
-      <AccountContainer>
+      <LoginContainer>
         <div className="content">
           <div className="notifcation-area">
             {this.state.errorMessage !== "" && (
@@ -99,7 +99,7 @@ export class LoginPage extends React.Component {
 
           <div className="mask" />
         </div>
-      </AccountContainer>
+      </LoginContainer>
     );
   }
 }

@@ -6,3 +6,4 @@ export const ADDDIVE = "/list/add";
 export const EDITDIVE = "/list/edit";
 export const SIGH_UP = "/signup";
 export const LOGIN = "/login";
+export const REGISTER = "/register";

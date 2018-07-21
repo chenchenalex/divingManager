@@ -62,3 +62,36 @@ export const LOGIN_FORM_CONFIG = {
     helperText: "Please provide password"
   }
 };
+
+export const REGISTER_FORM_CONFIG = {
+  firstName: {
+    required: true,
+    invalid: false,
+    label: "First Name",
+    helperText: "Please provide your first name"
+  },
+  lastName: {
+    required: false,
+    invalid: false,
+    label: "Last Name",
+    helperText: "Please provide your last name"
+  },
+  email: {
+    required: true,
+    invalid: false,
+    label: "Email",
+    helperText: "Please provide email address"
+  },
+  password: {
+    required: true,
+    invalid: false,
+    label: "Password",
+    helperText: "Please provide password"
+  },
+  passwordConfirm: {
+    required: true,
+    invalid: false,
+    label: "Confirm password",
+    helperText: "Please confirm your password"
+  }
+};

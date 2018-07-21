@@ -156,3 +156,8 @@ body,
   --font-size-sm: 16px;
   --font-size-xs: 12px;
 }
+
+h1 {
+  margin: calc(var(--base-unit) * 5) 0;
+  font-size: var(--font-size-xl);
+}

@@ -1,6 +1,6 @@
 import React from "react";
 import MainMenu, { MenuItem } from "./style";
-import { Link, Redirect } from "react-router-dom";
+import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
 import { LOGIN } from "src/data/routes";
 

@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import bgImage from "src/assets/images/dust_scratches.png";
 
-export const LoginContainer = styled.div`
+const RegisterContainer = styled.div`
   background: url(${bgImage});
   min-height: 100%;
   position: relative;
@@ -27,25 +27,6 @@ export const LoginContainer = styled.div`
     background-color: black;
     opacity: 0.5;
   }
-
-  .notifcation-area {
-    min-height: calc(var(--base-unit) * 14);
-  }
-
-  label,
-  input {
-    color: var(--teal);
-  }
-
-  .form-actions__register {
-    margin: calc(var(--base-unit) * 2) 0;
-    font-size: var(--font-size-sm);
-
-    a {
-      color: var(--teal);
-      &:hover {
-        text-decoration: underline;
-      }
-    }
-  }
 `;
+
+export default RegisterContainer;

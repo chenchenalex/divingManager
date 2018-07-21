@@ -7,6 +7,7 @@ import dashboard from "src/scenes/dashboard";
 import { viewDives, editDive } from "src/scenes/divingHistory";
 import Account from "src/scenes/account";
 import Login from "src/scenes/login";
+import Register from "src/scenes/register";
 import pageNotFound from "src/scenes/404";
 import * as ROUTES from "../../data/routes";
 
@@ -17,6 +18,7 @@ const {
   ADDDIVE,
   EDITDIVE,
   LOGIN,
+  REGISTER,
   ACCOUNT
 } = ROUTES;
 
@@ -50,6 +52,7 @@ const DisplayPanel = ({ isOnline, isAuthenticated }) => {
           <Route path={ADDDIVE} component={editDive} />
           <Route path={LOGIN} component={Login} />
           <Route path={`${EDITDIVE}/:id`} component={editDive} />
+          <Route path={REGISTER} component={Register} />
           <PrivateRoute
             path={DIVELIST}
             authenticated={isAuthenticated}
