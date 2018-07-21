@@ -25,7 +25,11 @@ class Main extends React.Component {
   render() {
     return (
       <Container className="App">
-        <SideMenu items={this.props.menuItems} location={this.props.location} />
+        <SideMenu
+          items={this.props.menuItems}
+          location={this.props.location}
+          isAuthenticated={this.props.isAuthenticated}
+        />
         <DisplayPanel
           isOnline={this.props.isOnline}
           isAuthenticated={this.props.isAuthenticated}

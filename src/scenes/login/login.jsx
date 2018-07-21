@@ -13,6 +13,7 @@ import { connect } from "react-redux";
 import { Redirect } from "react-router-dom";
 import { ACCOUNT } from "src/data/routes";
 import { userLogin } from "src/services/firebase";
+
 const theme = createMuiTheme({
   palette: {
     primary: teal,
@@ -92,10 +93,12 @@ export class LoginPage extends React.Component {
               onSubmit={this.onFormSubmit}
               onChange={this.onChange}
               data={this.state}
+              isloading={this.state.loading}
             />
           </MuiThemeProvider>
+
+          <div className="mask" />
         </div>
-        <div className="mask" />
       </AccountContainer>
     );
   }

@@ -19,7 +19,6 @@ const MainMenu = styled.ul`
 `;
 
 export const MenuItem = styled.li`
-  color: white;
   background-color: ${props =>
     props.isActive ? "var(--grey)" : "transparent"};
   border-top: ${props => (props.isActive ? "1px solid white" : 0)};
@@ -28,6 +27,10 @@ export const MenuItem = styled.li`
   padding: calc(var(--base-unit) * 3) 0;
   padding-left: calc(var(--base-unit) * 2);
   transition: opacity 0.2s ease;
+
+  a {
+    color: white;
+  }
 
   &:hover {
     opacity: 0.7;

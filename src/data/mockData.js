@@ -1,10 +1,10 @@
 export const menuItems = [
-  { id: 1, name: "Home", url: "/" },
-  { id: 2, name: "Account", url: "/account" },
-  { id: 3, name: "Dashboard", url: "/dashboard" },
-  { id: 4, name: "View Divings", url: "/list" },
-  { id: 5, name: "Gallery", url: "/gallery" },
-  { id: 6, name: "Discover", url: "/discover" }
+  { id: 1, name: "Home", url: "/", loginRequired: false },
+  { id: 2, name: "Account", url: "/account", loginRequired: true },
+  { id: 3, name: "Dashboard", url: "/dashboard", loginRequired: true },
+  { id: 4, name: "View Divings", url: "/list", loginRequired: true },
+  { id: 5, name: "Gallery", url: "/gallery", loginRequired: false },
+  { id: 6, name: "Discover", url: "/discover", loginRequired: false }
 ];
 
 export const divingHistory = {

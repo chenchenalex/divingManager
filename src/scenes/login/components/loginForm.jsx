@@ -2,12 +2,14 @@ import TextField from "material-ui/TextField";
 import Button from "material-ui/Button";
 import { Link } from "react-router-dom";
 import React from "react";
+import CircularProgress from "@material-ui/core/CircularProgress";
 
 export const LoginForm = ({
   data: { username, password },
   onSubmit,
   onChange,
-  formConfig
+  formConfig,
+  isloading
 }) => (
   <form onSubmit={onSubmit}>
     <TextField
@@ -39,9 +41,13 @@ export const LoginForm = ({
         </Link>
       </p>
 
-      <Button variant="raised" color="secondary" type="submit">
-        Login
-      </Button>
+      {isloading ? (
+        <CircularProgress />
+      ) : (
+        <Button variant="raised" color="secondary" type="submit">
+          Login
+        </Button>
+      )}
     </div>
   </form>
 );

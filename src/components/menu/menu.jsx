@@ -1,7 +1,8 @@
 import React from "react";
 import MainMenu, { MenuItem } from "./style";
-import { Link } from "react-router-dom";
+import { Link, Redirect } from "react-router-dom";
 import PropTypes from "prop-types";
+import { LOGIN } from "src/data/routes";
 
 class Menu extends React.PureComponent {
   state = {
@@ -18,11 +19,19 @@ class Menu extends React.PureComponent {
     return (
       <MainMenu>
         {this.props.items &&
-          this.props.items.map(({ name, url, id }) => (
-            <Link key={id} to={url}>
-              <MenuItem isActive={this.state.pathname === url}>{name}</MenuItem>
-            </Link>
-          ))}
+          this.props.items.map(({ name, url, id, loginRequired }) => {
+            const isDisabled = !this.props.isAuthenticated && loginRequired;
+
+            return (
+              <MenuItem key={id} isActive={this.state.pathname === url}>
+                {isDisabled ? (
+                  <Link to={LOGIN}> {name}</Link>
+                ) : (
+                  <Link to={url}>{name}</Link>
+                )}
+              </MenuItem>
+            );
+          })}
       </MainMenu>
     );
   }
