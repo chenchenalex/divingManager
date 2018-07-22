@@ -1,0 +1,139 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`login page unit tests Snapshot: Login page 1`] = `
+<div
+  className="sc-bdVaJa kAbPvT"
+>
+  <div
+    className="content"
+  >
+    <div
+      className="notifcation-area"
+    />
+    <h1>
+      LOGIN
+    </h1>
+    <form
+      onSubmit={[Function]}
+    >
+      <div
+        className="MuiFormControl-root-1 MuiFormControl-marginNormal-2 MuiFormControl-fullWidth-4"
+        onBlur={[Function]}
+        onFocus={[Function]}
+      >
+        <label
+          className="MuiFormLabel-root-10 MuiInputLabel-root-5 MuiInputLabel-formControl-6 MuiInputLabel-animated-9"
+          data-shrink={false}
+        >
+          Email
+          <span
+            className="MuiFormLabel-asterisk-14"
+          >
+             *
+          </span>
+        </label>
+        <div
+          className="MuiInput-root-15 MuiInput-fullWidth-22 MuiInput-formControl-16 MuiInput-underline-19"
+        >
+          <input
+            aria-invalid={false}
+            aria-required={true}
+            className="MuiInput-input-23 MuiInput-inputType-26"
+            disabled={false}
+            name="username"
+            onBlur={[Function]}
+            onChange={[Function]}
+            onFocus={[Function]}
+            required={true}
+            type="email"
+            value=""
+          />
+        </div>
+      </div>
+      <div
+        className="MuiFormControl-root-1 MuiFormControl-marginNormal-2 MuiFormControl-fullWidth-4"
+        onBlur={[Function]}
+        onFocus={[Function]}
+      >
+        <label
+          className="MuiFormLabel-root-10 MuiInputLabel-root-5 MuiInputLabel-formControl-6 MuiInputLabel-animated-9"
+          data-shrink={false}
+        >
+          Password
+          <span
+            className="MuiFormLabel-asterisk-14"
+          >
+             *
+          </span>
+        </label>
+        <div
+          className="MuiInput-root-15 MuiInput-fullWidth-22 MuiInput-formControl-16 MuiInput-underline-19"
+        >
+          <input
+            aria-invalid={false}
+            aria-required={true}
+            className="MuiInput-input-23 MuiInput-inputType-26"
+            disabled={false}
+            name="password"
+            onBlur={[Function]}
+            onChange={[Function]}
+            onFocus={[Function]}
+            required={true}
+            type="password"
+            value=""
+          />
+        </div>
+      </div>
+      <div
+        className="form-actions"
+      >
+        <p
+          className="form-actions__register"
+        >
+          New User?  
+          <a
+            href="/register"
+            onClick={[Function]}
+          >
+            <strong>
+              Sign up
+            </strong>
+          </a>
+        </p>
+        <div
+          className="m-top__md"
+        >
+          <button
+            className="MuiButtonBase-root-43 MuiButton-root-28 MuiButton-raised-33 MuiButton-raisedSecondary-35"
+            disabled={false}
+            onBlur={[Function]}
+            onFocus={[Function]}
+            onKeyDown={[Function]}
+            onKeyUp={[Function]}
+            onMouseDown={[Function]}
+            onMouseLeave={[Function]}
+            onMouseUp={[Function]}
+            onTouchEnd={[Function]}
+            onTouchMove={[Function]}
+            onTouchStart={[Function]}
+            tabIndex="0"
+            type="submit"
+          >
+            <span
+              className="MuiButton-label-29"
+            >
+              Login
+            </span>
+            <span
+              className="MuiTouchRipple-root-46"
+            />
+          </button>
+        </div>
+      </div>
+    </form>
+    <div
+      className="mask"
+    />
+  </div>
+</div>
+`;

@@ -40,7 +40,7 @@ export class LoginPage extends React.Component {
       loading: true
     });
 
-    userLogin({ username, password })
+    return userLogin({ username, password })
       .then(res => {
         this.setState({
           loading: false

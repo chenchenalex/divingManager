@@ -84,7 +84,7 @@ export function loginReducer(state = {}, action) {
         name: null,
         email: null,
         photoUrl: null,
-        emailVerified: null,
+        emailVerified: false,
         uid: null
       };
     default:
