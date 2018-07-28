@@ -71,7 +71,7 @@ export class DivingForm extends React.Component {
       this.validateForm();
     } else {
       // Dive requested not found, request database
-      dispatch(userFetchDataAsync("alex"));
+      dispatch(userFetchDataAsync(this.props.userInfo.uid));
     }
   }
 
@@ -95,7 +95,6 @@ export class DivingForm extends React.Component {
   }
 
   handleChange = name => (event, { newValue } = {}) => {
-    // This is how to deep clone an object
     const newVal = newValue || event.target.value || "";
 
     this.setState(function(prevState) {
@@ -285,7 +284,8 @@ export class DivingForm extends React.Component {
 
 function mapStateToProps(state) {
   return {
-    divingHistory: state.scenes.divingHistory
+    divingHistory: state.scenes.divingHistory,
+    userInfo: state.userInfo
   };
 }
 

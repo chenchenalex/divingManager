@@ -46,7 +46,7 @@ export class LoginPage extends React.Component {
           loading: false
         });
 
-        dispatch(loginSuccess());
+        dispatch(loginSuccess(res));
       })
       .catch(({ message }) => {
         this.setState({

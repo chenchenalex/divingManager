@@ -52,7 +52,7 @@ export const LOGIN_FORM_CONFIG = {
     required: true,
     invalid: false,
     label: "Email",
-    helperText: "Please provide email address"
+    helperText: "Please provide valid email address"
   },
 
   password: {
@@ -91,7 +91,8 @@ export const REGISTER_FORM_CONFIG = {
   passwordConfirm: {
     required: true,
     invalid: false,
+    unTouched: true,
     label: "Confirm password",
-    helperText: "Please confirm your password"
+    helperText: "Passwords don't match"
   }
 };
