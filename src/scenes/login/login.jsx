@@ -7,8 +7,6 @@ import red from "@material-ui/core/colors/red";
 import "firebase/auth";
 import { LOGIN_FORM_CONFIG } from "src/data/config";
 import { Notification } from "src/components/notification";
-import { loginSuccess } from "src/actions";
-import { dispatch } from "src/store";
 import { connect } from "react-redux";
 import { Redirect } from "react-router-dom";
 import { ACCOUNT } from "src/data/routes";
@@ -41,12 +39,10 @@ export class LoginPage extends React.Component {
     });
 
     return userLogin({ username, password })
-      .then(res => {
+      .then(() => {
         this.setState({
           loading: false
         });
-
-        dispatch(loginSuccess(res));
       })
       .catch(({ message }) => {
         this.setState({
