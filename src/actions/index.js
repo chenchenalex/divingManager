@@ -7,6 +7,13 @@ export const loginSuccess = userInfo => {
   };
 };
 
+export const updateProfileSuccess = userInfo => {
+  return {
+    type: actionTypes.UPDATE_PROFILE_SUCCESS,
+    payload: userInfo
+  };
+};
+
 export const loginFailure = () => {
   return {
     type: actionTypes.USER_LOGIN_FAILURE,

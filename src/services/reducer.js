@@ -6,7 +6,8 @@ import {
   DELETE_DIVE,
   USER_LOGIN_SUCCESS,
   USER_LOGIN_FAILURE,
-  USER_LOGOUT_SUCCESS
+  USER_LOGOUT_SUCCESS,
+  UPDATE_PROFILE_SUCCESS
 } from "../actions/actionTypes";
 
 export const connectionReducer = (state = {}, action) => {
@@ -57,6 +58,11 @@ export const connectionReducer = (state = {}, action) => {
         ...state,
         isOnline: true
       };
+    case USER_LOGOUT_SUCCESS:
+      return {
+        ...state,
+        isSynchronized: false
+      };
     default:
       return state;
   }
@@ -65,12 +71,18 @@ export const connectionReducer = (state = {}, action) => {
 export function loginReducer(state = {}, action) {
   switch (action.type) {
     case USER_LOGIN_SUCCESS:
-      const { email, name, photoUrl, emailVerified, uid } = action.payload;
+      const {
+        email,
+        displayName,
+        photoUrl,
+        emailVerified,
+        uid
+      } = action.payload;
 
       return {
         ...state,
         isAuthenticated: true,
-        name,
+        displayName,
         email,
         photoUrl,
         emailVerified,
@@ -81,11 +93,16 @@ export function loginReducer(state = {}, action) {
       return {
         ...state,
         isAuthenticated: false,
-        name: null,
+        displayName: null,
         email: null,
         photoUrl: null,
         emailVerified: false,
         uid: null
+      };
+    case UPDATE_PROFILE_SUCCESS:
+      return {
+        ...state,
+        ...action.payload
       };
     default:
       return state;

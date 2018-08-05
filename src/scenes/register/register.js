@@ -2,6 +2,14 @@ import React from "react";
 import RegisterContainer from "./style";
 import RegisterForm from "./components/registerFormElements";
 import { REGISTER_FORM_CONFIG } from "src/data/config";
+import {
+  userRegister,
+  updateUserProfie,
+  sendEmailVerification
+} from "src/services/firebase";
+import { dispatch } from "src/store";
+import { updateProfileSuccess } from "src/actions";
+import { ACCOUNT } from "src/data/routes";
 
 class Register extends React.Component {
   formConfig = JSON.parse(JSON.stringify(REGISTER_FORM_CONFIG));
@@ -12,11 +20,45 @@ class Register extends React.Component {
     email: "",
     password: "",
     passwordConfirm: "",
-    formInvalid: true
+    formInvalid: true,
+    formInvalidMessage: "",
+    isLoading: false
   };
+
+  constructor() {
+    super();
+    this.onSubmit = this.onSubmit.bind(this);
+  }
 
   onSubmit = e => {
     e.preventDefault();
+    this.setState({
+      isLoading: true
+    });
+
+    userRegister(this.state)
+      .then(() => updateUserProfie(this.state))
+      .then(() => {
+        const { firstName, lastName } = this.state;
+
+        dispatch(
+          updateProfileSuccess({ displayName: `${firstName} ${lastName}` })
+        );
+
+        this.setState({
+          isLoading: false
+        });
+
+        this.props.history.push(ACCOUNT);
+      })
+      .then(() => sendEmailVerification())
+      .catch(e => {
+        this.setState({
+          formInvalid: true,
+          formInvalidMessage: e.message,
+          isLoading: false
+        });
+      });
   };
 
   onChange = e => {
@@ -81,6 +123,10 @@ class Register extends React.Component {
             self.formConfig[name].invalid = false;
           }
       }
+
+      this.setState({
+        formInvalidMessage: ""
+      });
 
       this.validateForm();
     };

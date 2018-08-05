@@ -1,7 +1,8 @@
 import React from "react";
 import TextField from "material-ui/TextField";
-import Button from "material-ui/Button";
+import DMButton from "src/components/buttons";
 import PropTypes from "prop-types";
+import { Notification } from "src/components/notification";
 
 const StyledRegisterForm = ({
   formConfig,
@@ -75,16 +76,19 @@ const StyledRegisterForm = ({
         margin="normal"
       />
 
+      {state.formInvalidMessage !== "" && (
+        <Notification variant="error">{state.formInvalidMessage}</Notification>
+      )}
+
       <div className="m-top__md">
-        <Button
+        <DMButton
+          btnType="secondary"
+          isLoading={state.isLoading}
           disabled={state.formInvalid}
-          variant="raised"
-          color="secondary"
           type="submit"
-          className="m-top-md"
         >
-          Submit
-        </Button>
+          submit
+        </DMButton>
       </div>
     </form>
   );

@@ -3,7 +3,8 @@ import {
   ADD_DIVE,
   EDIT_DIVE,
   DELETE_DIVE,
-  USER_FETCH_DATA_SUCCESS
+  USER_FETCH_DATA_SUCCESS,
+  USER_LOGOUT_SUCCESS
 } from "src/actions/actionTypes";
 import { v4 } from "uuid";
 
@@ -57,6 +58,9 @@ export function diveById(state = {}, action) {
         },
         { ...state }
       );
+
+    case USER_LOGOUT_SUCCESS:
+      return {};
     default:
       return state;
   }

@@ -20,7 +20,7 @@ export function* userFetchDataSaga(action) {
       action.payload.userId,
       action.payload.section
     );
-    console.log(payload);
+
     yield put({ type: USER_FETCH_DATA_SUCCESS, payload });
   } catch (e) {
     yield put({ type: USER_FETCH_DATA_FAILURE, payload: e });

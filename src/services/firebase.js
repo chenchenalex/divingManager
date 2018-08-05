@@ -48,3 +48,22 @@ export const userLoginObserver = callback => {
 export const userLogin = ({ username, password }) => {
   return firebase.auth().signInWithEmailAndPassword(username, password);
 };
+
+export const userRegister = ({ email, password }) => {
+  return firebase.auth().createUserWithEmailAndPassword(email, password);
+};
+
+export const updateUserProfie = ({ firstName, lastName }) => {
+  /* Temporarily only two user info, will add more in account page */
+  const user = firebase.auth().currentUser;
+
+  return user.updateProfile({
+    displayName: `${firstName} ${lastName}`
+  });
+};
+
+export const sendEmailVerification = () => {
+  const user = firebase.auth().currentUser;
+
+  return user.sendEmailVerification();
+};

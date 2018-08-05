@@ -24,7 +24,7 @@ describe("login page unit tests", () => {
     <LoginPage userInfo={userInfo} location={location} />
   );
 
-  it("onSubmit(): should submit username and password", () => {
+  it("onSubmit(): should submit username and password", async () => {
     const instance = component.instance();
 
     instance.state = {
@@ -36,9 +36,7 @@ describe("login page unit tests", () => {
       return Promise.resolve();
     });
 
-    instance.onFormSubmit({ preventDefault: jest.fn() }).then(() => {
-      expect(loginSuccess).toHaveBeenCalled();
-    });
+    await instance.onFormSubmit({ preventDefault: jest.fn() });
 
     expect(userLogin).toHaveBeenCalledWith({
       username: "alex",

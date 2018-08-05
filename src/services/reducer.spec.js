@@ -15,7 +15,7 @@ describe("loginReducer test", () => {
     const action = {
       type: USER_LOGIN_SUCCESS,
       payload: {
-        name: "alex",
+        displayName: "alex",
         email: "test@test.com",
         uid: "123123123",
         photoUrl: "https://google.com",
@@ -26,7 +26,7 @@ describe("loginReducer test", () => {
     const result = loginReducer(state, action);
 
     expect(result).toEqual({
-      name: "alex",
+      displayName: "alex",
       email: "test@test.com",
       uid: "123123123",
       photoUrl: "https://google.com",
@@ -38,7 +38,7 @@ describe("loginReducer test", () => {
   it("should update state when user log out", () => {
     const state = {
       isAuthenticated: true,
-      name: "alex",
+      displayName: "alex",
       email: "test@test.com",
       uid: "123123123",
       photoUrl: "https://google.com",
@@ -54,7 +54,7 @@ describe("loginReducer test", () => {
 
     expect(result).toEqual({
       isAuthenticated: false,
-      name: null,
+      displayName: null,
       email: null,
       uid: null,
       photoUrl: null,
