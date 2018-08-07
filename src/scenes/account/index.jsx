@@ -42,9 +42,11 @@ export class Account extends React.Component {
             <tr>
               <td>Email verified: </td>
               <td>&nbsp;{this.props.userInfo.emailVerified.toString()}</td>
-              <td>
-                <Button onClick={this.onConfirmEmail}>Verify</Button>
-              </td>
+              {!this.props.userInfo.emailVerified && (
+                <td>
+                  <Button onClick={this.onConfirmEmail}>Verify</Button>
+                </td>
+              )}
             </tr>
           </tbody>
         </table>

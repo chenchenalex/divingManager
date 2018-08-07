@@ -71,7 +71,7 @@ export class DivingListComponent extends React.Component {
   onDelete = () => {
     dispatch(deleteActionCreator(this.state.selected));
 
-    this.setState(state => {
+    this.setState(() => {
       return {
         selected: []
       };
