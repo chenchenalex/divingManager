@@ -1,5 +1,5 @@
 import React from "react";
-import Button from "material-ui/Button";
+import Button from "@material-ui/core/Button";
 import DeleteIcon from "@material-ui/icons/Delete";
 
 const DeleteButton = ({ onDelete, state }) => (

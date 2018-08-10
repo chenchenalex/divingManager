@@ -1,5 +1,5 @@
 import TextField from "material-ui/TextField";
-import Button from "material-ui/Button";
+import Button from "@material-ui/core/Button";
 import { Link } from "react-router-dom";
 import React from "react";
 import { REGISTER } from "src/data/routes";

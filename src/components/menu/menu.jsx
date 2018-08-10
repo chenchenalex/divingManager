@@ -1,8 +1,15 @@
 import React from "react";
-import MainMenu, { MenuItem } from "./style";
-import { Link } from "react-router-dom";
+import MainMenu from "./style";
 import PropTypes from "prop-types";
-import { LOGIN } from "src/data/routes";
+import MenuItem from "./componnents/menuItem";
+
+import FaHome from "react-icons/lib/fa/home";
+import FaUser from "react-icons/lib/fa/user";
+import FaDashboard from "react-icons/lib/fa/dashboard";
+import FaTable from "react-icons/lib/fa/table";
+import FaImage from "react-icons/lib/fa/image";
+
+const iconSet = { FaHome, FaUser, FaDashboard, FaTable, FaImage };
 
 class Menu extends React.PureComponent {
   state = {
@@ -22,18 +29,17 @@ class Menu extends React.PureComponent {
           this.props.items.map(
             ({ name, url, id, loginRequired, iconClass }) => {
               const isDisabled = !this.props.isAuthenticated && loginRequired;
-              /* TODO: find a better approach to import icons */
-              const Icon = require("react-icons/lib/fa")[iconClass];
+              const Icon = iconSet[iconClass];
 
               return (
-                <MenuItem key={id} isActive={this.state.pathname === url}>
-                  {Icon ? <Icon color="white" size={20} /> : ""}
-
-                  {isDisabled ? (
-                    <Link to={LOGIN}> {name}</Link>
-                  ) : (
-                    <Link to={url}>{name}</Link>
-                  )}
+                <MenuItem
+                  key={id}
+                  icon={Icon}
+                  url={url}
+                  isActive={this.state.pathname === url}
+                  isDisabled={isDisabled}
+                >
+                  {name}
                 </MenuItem>
               );
             }

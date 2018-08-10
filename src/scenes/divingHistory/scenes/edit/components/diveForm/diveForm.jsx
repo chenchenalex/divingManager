@@ -1,5 +1,5 @@
 import React from "react";
-import Button from "material-ui/Button";
+import Button from "@material-ui/core/Button";
 import { connect } from "react-redux";
 import store from "src/store";
 import Loader from "src/components/loader";
