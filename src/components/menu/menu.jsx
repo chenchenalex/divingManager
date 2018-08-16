@@ -8,8 +8,9 @@ import FaUser from "react-icons/lib/fa/user";
 import FaDashboard from "react-icons/lib/fa/dashboard";
 import FaTable from "react-icons/lib/fa/table";
 import FaImage from "react-icons/lib/fa/image";
+import FaCcDiscover from "react-icons/lib/fa/cc-discover";
 
-const iconSet = { FaHome, FaUser, FaDashboard, FaTable, FaImage };
+const iconSet = { FaHome, FaUser, FaDashboard, FaTable, FaImage, FaCcDiscover };
 
 class Menu extends React.PureComponent {
   state = {
