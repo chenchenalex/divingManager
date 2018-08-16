@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import Table from "material-ui/Table";
+import Table from "@material-ui/core/Table";
 
 const DivingContainer = styled.div`
   margin: 16px;

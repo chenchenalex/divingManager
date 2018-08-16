@@ -1,3 +1,12 @@
-import Register from "./register";
+import React from "react";
+import Loader from "~/components/loader";
+import Loadable from "react-loadable";
 
-export default Register;
+const LoadableComponent = Loadable({
+  loader: () => import("./register"),
+  loading: Loader
+});
+
+export default () => {
+  return <LoadableComponent />;
+};

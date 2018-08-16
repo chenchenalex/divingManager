@@ -6,7 +6,7 @@ const MainMenu = styled.ul`
   display: block;
   position: fixed;
   margin: 0;
-  background: var(--charcoal);
+  background: var(--DM-charcoal);
   width: 20%;
   height: 100%;
   overflow: scroll;

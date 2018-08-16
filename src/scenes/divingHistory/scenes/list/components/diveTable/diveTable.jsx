@@ -1,6 +1,9 @@
 import React from "react";
-import { TableBody, TableCell, TableHead, TableRow } from "material-ui/Table";
-import Checkbox from "material-ui/Checkbox";
+import TableBody from "@material-ui/core/TableBody";
+import TableHead from "@material-ui/core/TableHead";
+import TableCell from "@material-ui/core/TableCell";
+import TableRow from "@material-ui/core/TableRow";
+import Checkbox from "@material-ui/core/Checkbox";
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 import { DiveTable } from "../../style";
@@ -9,7 +12,7 @@ import { tableColumnData } from "src/data/mockData";
 const loaderStyle = {
   fontSize: "24px",
   textAlign: "center",
-  color: "var(--grey-400)"
+  color: "var(--DM-grey-400)"
 };
 
 const DivingTable = ({

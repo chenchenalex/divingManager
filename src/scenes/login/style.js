@@ -11,7 +11,7 @@ export const LoginContainer = styled.div`
     width: 400px;
     margin: 0 auto;
     padding-top: calc(var(--base-unit) * 3);
-    color: var(--teal);
+    color: var(--DM-teal);
     border-radius: 5px;
     z-index: 2;
   }
@@ -32,17 +32,17 @@ export const LoginContainer = styled.div`
     min-height: calc(var(--base-unit) * 14);
   }
 
-  label,
+  /*   label,
   input {
-    color: var(--teal);
-  }
+    color: var(--DM-teal);
+  } */
 
   .form-actions__register {
     margin: calc(var(--base-unit) * 2) 0;
     font-size: var(--font-size-sm);
 
     a {
-      color: var(--teal);
+      color: var(--DM-teal);
       &:hover {
         text-decoration: underline;
       }

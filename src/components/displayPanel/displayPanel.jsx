@@ -6,8 +6,8 @@ import Loader from "../loader";
 import dashboard from "src/scenes/dashboard";
 import { viewDives, editDive } from "src/scenes/divingHistory";
 import Account from "src/scenes/account";
-import Login from "src/scenes/login";
-import Register from "src/scenes/register";
+import Login from "~/scenes/login";
+import Register from "~/scenes/register";
 import pageNotFound from "src/scenes/404";
 import * as ROUTES from "../../data/routes";
 

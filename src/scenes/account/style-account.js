@@ -4,7 +4,7 @@ const StyledAccount = Styled.div`
   padding: var(--base-unit);
 
   header{
-    border-bottom: 1px solid var(--teal);
+    border-bottom: 1px solid var(--DM-teal);
     padding: var(--base-unit);
   }
 `;

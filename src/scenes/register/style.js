@@ -11,7 +11,7 @@ const RegisterContainer = styled.div`
     width: 400px;
     margin: 0 auto;
     padding-top: calc(var(--base-unit) * 3);
-    color: var(--teal);
+    color: var(--DM-teal);
     border-radius: 5px;
     z-index: 2;
   }

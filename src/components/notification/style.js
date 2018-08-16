@@ -4,9 +4,9 @@ const styledNotificaiton = styled.div`
   background-color: ${props => {
     switch (props.variant) {
       case "error":
-        return "var(--red-400)";
+        return "var(--DM-red-400)";
       default:
-        return "var(--blue)";
+        return "var(--DM-blue)";
     }
   }};
 

@@ -1,5 +1,5 @@
 import React from "react";
-import TextField from "material-ui/TextField";
+import TextField from "@material-ui/core/TextField";
 import DMButton from "src/components/buttons";
 import PropTypes from "prop-types";
 import { Notification } from "src/components/notification";
