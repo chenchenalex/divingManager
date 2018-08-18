@@ -40,7 +40,7 @@ exports[`DiveForm snapshot tests Dive form elements should render correctly 1`] 
     </div>
   </div>
   <div
-    className="locationSuggestion-container-1"
+    className="locationSuggestion-container-28"
   >
     <div
       className="MuiFormControl-root-1 MuiFormControl-marginNormal-2 MuiFormControl-fullWidth-4"
@@ -73,7 +73,7 @@ exports[`DiveForm snapshot tests Dive form elements should render correctly 1`] 
       </div>
     </div>
     <div
-      className="MuiPaper-root-5 MuiPaper-elevation2-9"
+      className="MuiPaper-root-32 MuiPaper-elevation2-36"
       id="react-autowhatever-1"
       style={Object {}}
     />
@@ -111,6 +111,107 @@ exports[`DiveForm snapshot tests Dive form elements should render correctly 1`] 
         type="date"
         value="2018-03-15"
       />
+    </div>
+  </div>
+  <div
+    className="MuiFormControl-root-1 MuiFormControl-marginNormal-2 MuiFormControl-fullWidth-4"
+    onBlur={[Function]}
+    onFocus={[Function]}
+  >
+    <label
+      className="MuiFormLabel-root-10 MuiInputLabel-root-5 MuiInputLabel-formControl-6 MuiInputLabel-animated-9"
+      data-shrink={false}
+      htmlFor="diveBuddy"
+    >
+      Dive Buddy
+    </label>
+    <div
+      className="MuiInput-root-15 MuiInput-fullWidth-22 MuiInput-formControl-16 MuiInput-underline-19"
+    >
+      <input
+        aria-invalid={false}
+        aria-required={false}
+        className="MuiInput-input-23"
+        disabled={false}
+        id="diveBuddy"
+        onBlur={[Function]}
+        onChange={[Function]}
+        onFocus={[Function]}
+        type="text"
+      />
+    </div>
+  </div>
+  <div
+    className="MuiFormControl-root-1 MuiFormControl-marginNormal-2 MuiFormControl-fullWidth-4"
+    onBlur={[Function]}
+    onFocus={[Function]}
+  >
+    <label
+      className="MuiFormLabel-root-10 MuiInputLabel-root-5 MuiInputLabel-formControl-6 MuiInputLabel-animated-9"
+      data-shrink={false}
+      htmlFor="rating"
+    >
+      Rating
+      <span
+        className="MuiFormLabel-asterisk-14"
+      >
+         *
+      </span>
+    </label>
+    <div
+      className="MuiInput-root-15 MuiInput-fullWidth-22 MuiInput-formControl-16 MuiInput-underline-19"
+    >
+      <div
+        className="MuiSelect-root-59"
+      >
+        <select
+          aria-invalid={false}
+          aria-required={true}
+          className="MuiSelect-select-60 MuiInput-input-23"
+          disabled={false}
+          id="rating"
+          onBlur={[Function]}
+          onChange={[Function]}
+          onFocus={[Function]}
+          required={true}
+        >
+          <option
+            value={1}
+          >
+            1
+          </option>
+          <option
+            value={2}
+          >
+            2
+          </option>
+          <option
+            value={3}
+          >
+            3
+          </option>
+          <option
+            value={4}
+          >
+            4
+          </option>
+          <option
+            value={5}
+          >
+            5
+          </option>
+        </select>
+        <svg
+          aria-hidden="true"
+          className="MuiSvgIcon-root-64 MuiSelect-icon-63"
+          focusable="false"
+          viewBox="0 0 24 24"
+        >
+          <path
+            d="M7 10l5 5 5-5z"
+          />
+        </svg>
+      </div>
     </div>
   </div>
   <div

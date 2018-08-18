@@ -2,21 +2,21 @@
 
 exports[`Dive list: Snapshots tests Dive table: should render correctly 1`] = `
 <table
-  className="MuiTable-root-26 sc-bwzfXH fGCCLo"
+  className="MuiTable-root-33 sc-bwzfXH fGCCLo"
 >
   <thead
-    className="MuiTableHead-root-27"
+    className="MuiTableHead-root-34"
   >
     <tr
-      className="MuiTableRow-root-28 MuiTableRow-head-31"
+      className="MuiTableRow-root-35 MuiTableRow-head-38"
     >
       <th
         aria-sort={null}
-        className="MuiTableCell-root-33 MuiTableCell-head-34"
+        className="MuiTableCell-root-40 MuiTableCell-head-41"
         scope="col"
       >
         <span
-          className="MuiButtonBase-root-16 MuiIconButton-root-50 MuiSwitchBase-root-46 MuiCheckbox-root-41 MuiCheckbox-colorSecondary-45"
+          className="MuiButtonBase-root-17 MuiIconButton-root-57 MuiSwitchBase-root-53 MuiCheckbox-root-48 MuiCheckbox-colorSecondary-52"
           onBlur={[Function]}
           onFocus={[Function]}
           onKeyDown={[Function]}
@@ -30,11 +30,11 @@ exports[`Dive list: Snapshots tests Dive table: should render correctly 1`] = `
           tabIndex={null}
         >
           <span
-            className="MuiIconButton-label-55"
+            className="MuiIconButton-label-62"
           >
             <svg
               aria-hidden="true"
-              className="MuiSvgIcon-root-56"
+              className="MuiSvgIcon-root-20"
               focusable="false"
               viewBox="0 0 24 24"
             >
@@ -44,33 +44,33 @@ exports[`Dive list: Snapshots tests Dive table: should render correctly 1`] = `
             </svg>
             <input
               checked={false}
-              className="MuiSwitchBase-input-49"
+              className="MuiSwitchBase-input-56"
               onChange={[Function]}
               type="checkbox"
             />
           </span>
           <span
-            className="MuiTouchRipple-root-19"
+            className="MuiTouchRipple-root-26"
           />
         </span>
       </th>
       <th
         aria-sort={null}
-        className="MuiTableCell-root-33 MuiTableCell-head-34"
+        className="MuiTableCell-root-40 MuiTableCell-head-41"
         scope="col"
       >
         Name
       </th>
       <th
         aria-sort={null}
-        className="MuiTableCell-root-33 MuiTableCell-head-34"
+        className="MuiTableCell-root-40 MuiTableCell-head-41"
         scope="col"
       >
         Country
       </th>
       <th
         aria-sort={null}
-        className="MuiTableCell-root-33 MuiTableCell-head-34"
+        className="MuiTableCell-root-40 MuiTableCell-head-41"
         scope="col"
       >
         Date
@@ -78,20 +78,20 @@ exports[`Dive list: Snapshots tests Dive table: should render correctly 1`] = `
     </tr>
   </thead>
   <tbody
-    className="MuiTableBody-root-62"
+    className="MuiTableBody-root-63"
   >
     <tr
       aria-checked={false}
-      className="MuiTableRow-root-28"
+      className="MuiTableRow-root-35"
       role="checkbox"
       tabIndex={-1}
     >
       <td
         aria-sort={null}
-        className="MuiTableCell-root-33 MuiTableCell-body-35"
+        className="MuiTableCell-root-40 MuiTableCell-body-42"
       >
         <span
-          className="MuiButtonBase-root-16 MuiIconButton-root-50 MuiSwitchBase-root-46 MuiCheckbox-root-41 MuiCheckbox-colorSecondary-45"
+          className="MuiButtonBase-root-17 MuiIconButton-root-57 MuiSwitchBase-root-53 MuiCheckbox-root-48 MuiCheckbox-colorSecondary-52"
           onBlur={[Function]}
           onFocus={[Function]}
           onKeyDown={[Function]}
@@ -105,11 +105,11 @@ exports[`Dive list: Snapshots tests Dive table: should render correctly 1`] = `
           tabIndex={null}
         >
           <span
-            className="MuiIconButton-label-55"
+            className="MuiIconButton-label-62"
           >
             <svg
               aria-hidden="true"
-              className="MuiSvgIcon-root-56"
+              className="MuiSvgIcon-root-20"
               focusable="false"
               viewBox="0 0 24 24"
             >
@@ -119,20 +119,20 @@ exports[`Dive list: Snapshots tests Dive table: should render correctly 1`] = `
             </svg>
             <input
               checked={false}
-              className="MuiSwitchBase-input-49"
+              className="MuiSwitchBase-input-56"
               onChange={[Function]}
               type="checkbox"
               value="test1"
             />
           </span>
           <span
-            className="MuiTouchRipple-root-19"
+            className="MuiTouchRipple-root-26"
           />
         </span>
       </td>
       <td
         aria-sort={null}
-        className="MuiTableCell-root-33 MuiTableCell-body-35"
+        className="MuiTableCell-root-40 MuiTableCell-body-42"
       >
         <a
           href="/list/edit/test1"
@@ -143,29 +143,29 @@ exports[`Dive list: Snapshots tests Dive table: should render correctly 1`] = `
       </td>
       <td
         aria-sort={null}
-        className="MuiTableCell-root-33 MuiTableCell-body-35"
+        className="MuiTableCell-root-40 MuiTableCell-body-42"
       >
         Thailand
       </td>
       <td
         aria-sort={null}
-        className="MuiTableCell-root-33 MuiTableCell-body-35"
+        className="MuiTableCell-root-40 MuiTableCell-body-42"
       >
         2017-03-15
       </td>
     </tr>
     <tr
       aria-checked={false}
-      className="MuiTableRow-root-28"
+      className="MuiTableRow-root-35"
       role="checkbox"
       tabIndex={-1}
     >
       <td
         aria-sort={null}
-        className="MuiTableCell-root-33 MuiTableCell-body-35"
+        className="MuiTableCell-root-40 MuiTableCell-body-42"
       >
         <span
-          className="MuiButtonBase-root-16 MuiIconButton-root-50 MuiSwitchBase-root-46 MuiCheckbox-root-41 MuiCheckbox-colorSecondary-45"
+          className="MuiButtonBase-root-17 MuiIconButton-root-57 MuiSwitchBase-root-53 MuiCheckbox-root-48 MuiCheckbox-colorSecondary-52"
           onBlur={[Function]}
           onFocus={[Function]}
           onKeyDown={[Function]}
@@ -179,11 +179,11 @@ exports[`Dive list: Snapshots tests Dive table: should render correctly 1`] = `
           tabIndex={null}
         >
           <span
-            className="MuiIconButton-label-55"
+            className="MuiIconButton-label-62"
           >
             <svg
               aria-hidden="true"
-              className="MuiSvgIcon-root-56"
+              className="MuiSvgIcon-root-20"
               focusable="false"
               viewBox="0 0 24 24"
             >
@@ -193,20 +193,20 @@ exports[`Dive list: Snapshots tests Dive table: should render correctly 1`] = `
             </svg>
             <input
               checked={false}
-              className="MuiSwitchBase-input-49"
+              className="MuiSwitchBase-input-56"
               onChange={[Function]}
               type="checkbox"
               value="test2"
             />
           </span>
           <span
-            className="MuiTouchRipple-root-19"
+            className="MuiTouchRipple-root-26"
           />
         </span>
       </td>
       <td
         aria-sort={null}
-        className="MuiTableCell-root-33 MuiTableCell-body-35"
+        className="MuiTableCell-root-40 MuiTableCell-body-42"
       >
         <a
           href="/list/edit/test2"
@@ -217,29 +217,29 @@ exports[`Dive list: Snapshots tests Dive table: should render correctly 1`] = `
       </td>
       <td
         aria-sort={null}
-        className="MuiTableCell-root-33 MuiTableCell-body-35"
+        className="MuiTableCell-root-40 MuiTableCell-body-42"
       >
         Philipine
       </td>
       <td
         aria-sort={null}
-        className="MuiTableCell-root-33 MuiTableCell-body-35"
+        className="MuiTableCell-root-40 MuiTableCell-body-42"
       >
         2018-03-15
       </td>
     </tr>
     <tr
       aria-checked={false}
-      className="MuiTableRow-root-28"
+      className="MuiTableRow-root-35"
       role="checkbox"
       tabIndex={-1}
     >
       <td
         aria-sort={null}
-        className="MuiTableCell-root-33 MuiTableCell-body-35"
+        className="MuiTableCell-root-40 MuiTableCell-body-42"
       >
         <span
-          className="MuiButtonBase-root-16 MuiIconButton-root-50 MuiSwitchBase-root-46 MuiCheckbox-root-41 MuiCheckbox-colorSecondary-45"
+          className="MuiButtonBase-root-17 MuiIconButton-root-57 MuiSwitchBase-root-53 MuiCheckbox-root-48 MuiCheckbox-colorSecondary-52"
           onBlur={[Function]}
           onFocus={[Function]}
           onKeyDown={[Function]}
@@ -253,11 +253,11 @@ exports[`Dive list: Snapshots tests Dive table: should render correctly 1`] = `
           tabIndex={null}
         >
           <span
-            className="MuiIconButton-label-55"
+            className="MuiIconButton-label-62"
           >
             <svg
               aria-hidden="true"
-              className="MuiSvgIcon-root-56"
+              className="MuiSvgIcon-root-20"
               focusable="false"
               viewBox="0 0 24 24"
             >
@@ -267,20 +267,20 @@ exports[`Dive list: Snapshots tests Dive table: should render correctly 1`] = `
             </svg>
             <input
               checked={false}
-              className="MuiSwitchBase-input-49"
+              className="MuiSwitchBase-input-56"
               onChange={[Function]}
               type="checkbox"
               value="test3"
             />
           </span>
           <span
-            className="MuiTouchRipple-root-19"
+            className="MuiTouchRipple-root-26"
           />
         </span>
       </td>
       <td
         aria-sort={null}
-        className="MuiTableCell-root-33 MuiTableCell-body-35"
+        className="MuiTableCell-root-40 MuiTableCell-body-42"
       >
         <a
           href="/list/edit/test3"
@@ -291,29 +291,29 @@ exports[`Dive list: Snapshots tests Dive table: should render correctly 1`] = `
       </td>
       <td
         aria-sort={null}
-        className="MuiTableCell-root-33 MuiTableCell-body-35"
+        className="MuiTableCell-root-40 MuiTableCell-body-42"
       >
         Cannes
       </td>
       <td
         aria-sort={null}
-        className="MuiTableCell-root-33 MuiTableCell-body-35"
+        className="MuiTableCell-root-40 MuiTableCell-body-42"
       >
         2019-05-25
       </td>
     </tr>
     <tr
       aria-checked={false}
-      className="MuiTableRow-root-28"
+      className="MuiTableRow-root-35"
       role="checkbox"
       tabIndex={-1}
     >
       <td
         aria-sort={null}
-        className="MuiTableCell-root-33 MuiTableCell-body-35"
+        className="MuiTableCell-root-40 MuiTableCell-body-42"
       >
         <span
-          className="MuiButtonBase-root-16 MuiIconButton-root-50 MuiSwitchBase-root-46 MuiCheckbox-root-41 MuiCheckbox-colorSecondary-45"
+          className="MuiButtonBase-root-17 MuiIconButton-root-57 MuiSwitchBase-root-53 MuiCheckbox-root-48 MuiCheckbox-colorSecondary-52"
           onBlur={[Function]}
           onFocus={[Function]}
           onKeyDown={[Function]}
@@ -327,11 +327,11 @@ exports[`Dive list: Snapshots tests Dive table: should render correctly 1`] = `
           tabIndex={null}
         >
           <span
-            className="MuiIconButton-label-55"
+            className="MuiIconButton-label-62"
           >
             <svg
               aria-hidden="true"
-              className="MuiSvgIcon-root-56"
+              className="MuiSvgIcon-root-20"
               focusable="false"
               viewBox="0 0 24 24"
             >
@@ -341,20 +341,20 @@ exports[`Dive list: Snapshots tests Dive table: should render correctly 1`] = `
             </svg>
             <input
               checked={false}
-              className="MuiSwitchBase-input-49"
+              className="MuiSwitchBase-input-56"
               onChange={[Function]}
               type="checkbox"
               value="test4"
             />
           </span>
           <span
-            className="MuiTouchRipple-root-19"
+            className="MuiTouchRipple-root-26"
           />
         </span>
       </td>
       <td
         aria-sort={null}
-        className="MuiTableCell-root-33 MuiTableCell-body-35"
+        className="MuiTableCell-root-40 MuiTableCell-body-42"
       >
         <a
           href="/list/edit/test4"
@@ -365,13 +365,13 @@ exports[`Dive list: Snapshots tests Dive table: should render correctly 1`] = `
       </td>
       <td
         aria-sort={null}
-        className="MuiTableCell-root-33 MuiTableCell-body-35"
+        className="MuiTableCell-root-40 MuiTableCell-body-42"
       >
         Mexico
       </td>
       <td
         aria-sort={null}
-        className="MuiTableCell-root-33 MuiTableCell-body-35"
+        className="MuiTableCell-root-40 MuiTableCell-body-42"
       >
         2020-03-25
       </td>
@@ -387,7 +387,7 @@ exports[`Dive list: Snapshots tests addNew: should render correctly 1`] = `
 >
   <button
     aria-label="add"
-    className="MuiButtonBase-root-16 MuiButton-root-1 MuiButton-raised-6 MuiButton-fab-11 MuiButton-raisedPrimary-7"
+    className="MuiButtonBase-root-17 MuiButton-root-1 MuiButton-raised-7 MuiButton-fab-12 MuiButton-raisedPrimary-8"
     disabled={false}
     onBlur={[Function]}
     onFocus={[Function]}
@@ -407,7 +407,7 @@ exports[`Dive list: Snapshots tests addNew: should render correctly 1`] = `
     >
       <svg
         aria-hidden="true"
-        className="MuiSvgIcon-root-1"
+        className="MuiSvgIcon-root-20"
         focusable="false"
         viewBox="0 0 24 24"
       >
@@ -419,7 +419,7 @@ exports[`Dive list: Snapshots tests addNew: should render correctly 1`] = `
       </svg>
     </span>
     <span
-      className="MuiTouchRipple-root-19"
+      className="MuiTouchRipple-root-26"
     />
   </button>
 </a>
@@ -428,7 +428,7 @@ exports[`Dive list: Snapshots tests addNew: should render correctly 1`] = `
 exports[`Dive list: Snapshots tests delete button: should render correctly 1`] = `
 <button
   aria-label="delete"
-  className="MuiButtonBase-root-16 MuiButtonBase-disabled-17 MuiButton-root-1 MuiButton-raised-6 MuiButton-fab-11 MuiButton-disabled-10"
+  className="MuiButtonBase-root-17 MuiButtonBase-disabled-18 MuiButton-root-1 MuiButton-raised-7 MuiButton-fab-12 MuiButton-disabled-11"
   disabled={true}
   onBlur={[Function]}
   onClick={[MockFunction]}
@@ -449,7 +449,7 @@ exports[`Dive list: Snapshots tests delete button: should render correctly 1`] =
   >
     <svg
       aria-hidden="true"
-      className="MuiSvgIcon-root-1"
+      className="MuiSvgIcon-root-20"
       focusable="false"
       viewBox="0 0 24 24"
     >

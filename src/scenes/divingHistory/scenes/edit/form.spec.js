@@ -25,7 +25,7 @@ describe("DiveForm: add new dive tests", () => {
   };
 
   const component = shallow(
-    <DivingForm match={match} divingHistory={INITIAL_FORM_DATA} />
+    <DivingForm match={match} divingHistory={INITIAL_FORM_DATA} userInfo={{}} />
   );
 
   it("onLoad: add new dive should see blank page with initial data", async () => {
@@ -126,7 +126,12 @@ describe("DiveForm: edit existing dive tests", () => {
   };
 
   const component = shallow(
-    <DivingForm match={match} divingHistory={mockData} history={[]} />
+    <DivingForm
+      match={match}
+      divingHistory={mockData}
+      history={[]}
+      userInfo={{}}
+    />
   );
 
   it("onLoad: edit existing dive should populate data correctly", async () => {

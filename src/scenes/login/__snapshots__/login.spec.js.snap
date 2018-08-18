@@ -2,7 +2,7 @@
 
 exports[`login page unit tests Snapshot: Login page 1`] = `
 <div
-  className="sc-bdVaJa kAbPvT"
+  className="sc-bdVaJa crswBC"
 >
   <div
     className="content"
@@ -104,7 +104,7 @@ exports[`login page unit tests Snapshot: Login page 1`] = `
           className="m-top__md"
         >
           <button
-            className="MuiButtonBase-root-43 MuiButton-root-28 MuiButton-raised-33 MuiButton-raisedSecondary-35"
+            className="MuiButtonBase-root-44 MuiButton-root-28 MuiButton-raised-34 MuiButton-raisedSecondary-36"
             disabled={false}
             onBlur={[Function]}
             onFocus={[Function]}
@@ -125,7 +125,7 @@ exports[`login page unit tests Snapshot: Login page 1`] = `
               Login
             </span>
             <span
-              className="MuiTouchRipple-root-46"
+              className="MuiTouchRipple-root-47"
             />
           </button>
         </div>

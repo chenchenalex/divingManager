@@ -1,4 +1,4 @@
-import { createStore, applyMiddleware } from "redux";
+import { createStore, applyMiddleware, compose } from "redux";
 import createSagaMiddleware from "redux-saga";
 import rootSaga from "./services/sagas";
 import reducers from "./reducer";
@@ -6,6 +6,12 @@ import { menuItems } from "./data/mockData";
 import { writeData } from "./services/firebase";
 
 const sagaMiddleware = createSagaMiddleware();
+const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+
+const enhancer = composeEnhancers(
+  applyMiddleware(sagaMiddleware)
+  // other store enhancers if any
+);
 
 const defaultState = {
   components: {
@@ -29,11 +35,7 @@ const defaultState = {
 
 let prevState = defaultState;
 
-const store = createStore(
-  reducers,
-  defaultState,
-  applyMiddleware(sagaMiddleware)
-);
+const store = createStore(reducers, defaultState, enhancer);
 
 sagaMiddleware.run(rootSaga);
 

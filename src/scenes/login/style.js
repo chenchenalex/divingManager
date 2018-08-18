@@ -32,10 +32,10 @@ export const LoginContainer = styled.div`
     min-height: calc(var(--base-unit) * 14);
   }
 
-  /*   label,
+  label,
   input {
     color: var(--DM-teal);
-  } */
+  }
 
   .form-actions__register {
     margin: calc(var(--base-unit) * 2) 0;

@@ -10,6 +10,7 @@ import { INITIAL_FORM_DATA, FORM_CONFIG } from "src/data/config";
 import { LOCATION_LIST } from "src/data/mockData";
 import { FormActions } from "../../style";
 import { userFetchDataAsync } from "../../../../actions";
+import PropTypes from "prop-types";
 
 // import action
 import { addNewDive, editDive } from "../../actions";
@@ -281,6 +282,11 @@ export class DivingForm extends React.Component {
     );
   }
 }
+
+DivingForm.propTypes = {
+  divingHistory: PropTypes.object.isRequired,
+  userInfo: PropTypes.object.isRequired
+};
 
 function mapStateToProps(state) {
   return {

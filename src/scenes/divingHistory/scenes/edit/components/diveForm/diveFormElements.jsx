@@ -56,6 +56,44 @@ const formElements = ({
 
       <TextField
         fullWidth
+        id="diveBuddy"
+        helperText={
+          formConfig.diveBuddy.invalid && formConfig.diveBuddy.helperText
+        }
+        required={formConfig.diveBuddy.required}
+        type="text"
+        error={formConfig.diveBuddy.invalid}
+        value={formData && formData.diveBuddy}
+        label={formConfig.diveBuddy.label}
+        onBlur={handleBlur("diveBuddy")}
+        onChange={handleChange("diveBuddy")}
+        margin="normal"
+      />
+
+      <TextField
+        select
+        fullWidth
+        id="rating"
+        helperText={formConfig.rating.invalid && formConfig.rating.helperText}
+        required={formConfig.rating.required}
+        type="text"
+        error={formConfig.rating.invalid}
+        value={formData && formData.rating}
+        label={formConfig.rating.label}
+        SelectProps={{ native: true }}
+        onBlur={handleBlur("rating")}
+        onChange={handleChange("rating")}
+        margin="normal"
+      >
+        {formConfig.rating.options.map(i => (
+          <option key={i} value={i}>
+            {i}
+          </option>
+        ))}
+      </TextField>
+
+      <TextField
+        fullWidth
         id="depth"
         helperText={formConfig.depth.invalid && formConfig.depth.helperText}
         required={formConfig.depth.required}

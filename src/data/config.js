@@ -25,6 +25,19 @@ export const FORM_CONFIG = {
     label: "Date",
     helperText: "Date is invalid or missing"
   },
+  diveBuddy: {
+    required: false,
+    invalid: false,
+    label: "Dive Buddy",
+    helperText: "Dive buddy is missing"
+  },
+  rating: {
+    required: true,
+    invalid: false,
+    label: "Rating",
+    helperText: "Rating is missing",
+    options: [1, 2, 3, 4, 5]
+  },
   depth: {
     required: true,
     invalid: false,
