@@ -7,6 +7,6 @@ const LoadableComponent = Loadable({
   loading: Loader
 });
 
-export default () => {
-  return <LoadableComponent />;
+export default ({ history }) => {
+  return <LoadableComponent history={history} />;
 };
