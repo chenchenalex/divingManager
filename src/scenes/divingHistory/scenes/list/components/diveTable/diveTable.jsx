@@ -6,8 +6,8 @@ import TableRow from "@material-ui/core/TableRow";
 import Checkbox from "@material-ui/core/Checkbox";
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
-import { DiveTable } from "../../style";
 import { tableColumnData } from "src/data/mockData";
+import { DiveTable } from "../../style";
 
 const loaderStyle = {
   fontSize: "24px",
@@ -23,9 +23,7 @@ const DivingTable = ({
   onSelectAll,
   emptyRows
 }) => {
-  const checkSelected = ({ id }) => {
-    return state.selected.includes(id);
-  };
+  const checkSelected = ({ id }) => state.selected.includes(id);
 
   const placeHolderText = isLoadComplete ? "Empty" : "Fetching data...";
   return (
@@ -45,9 +43,9 @@ const DivingTable = ({
               }
             />
           </TableCell>
-          {tableColumnData.map(column => {
-            return <TableCell key={column.id}>{column.label}</TableCell>;
-          })}
+          {tableColumnData.map(column => (
+            <TableCell key={column.id}>{column.label}</TableCell>
+          ))}
         </TableRow>
       </TableHead>
       {tableData.length > 0 ? (
@@ -96,10 +94,11 @@ const DivingTable = ({
   );
 };
 
-DivingTable.proptypes = {
+DivingTable.propTypes = {
   state: PropTypes.object.isRequired,
   tableData: PropTypes.array.isRequired,
   onSelect: PropTypes.func.isRequired,
+  isLoadComplete: PropTypes.bool.isRequired,
   onSelectAll: PropTypes.func.isRequired,
   emptyRows: PropTypes.number.isRequired
 };

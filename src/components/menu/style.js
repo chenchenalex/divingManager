@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { media } from "src/styles/style-utils";
+import media from "src/styles/style-utils";
 
 const MainMenu = styled.ul`
   list-style: none;

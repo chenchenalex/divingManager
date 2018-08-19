@@ -7,7 +7,7 @@ const sizes = {
   phone: 640
 };
 
-export const media = Object.keys(sizes).reduce((acc, label) => {
+const media = Object.keys(sizes).reduce((acc, label) => {
   acc[label] = (...args) => css`
     @media (max-width: ${sizes[label]}px) {
       ${css(...args)};
@@ -16,3 +16,5 @@ export const media = Object.keys(sizes).reduce((acc, label) => {
 
   return acc;
 }, {});
+
+export default media;

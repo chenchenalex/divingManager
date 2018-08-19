@@ -16,18 +16,17 @@ if (!firebase.apps.length) {
 
 export const fireDataBase = firebase.database();
 
-export const writeData = ({ userId, data }) => {
-  return fireDataBase.ref(`users/${userId}`).set({
+export const writeData = ({ userId, data }) =>
+  fireDataBase.ref(`users/${userId}`).set({
     ...data
   });
-};
 
 export const getData = (userId, pathToData = "") => {
   const ref = fireDataBase.ref(`users/${userId}/${pathToData}`);
 
   return new Promise((resolve, reject) => {
     try {
-      ref.on("value", function(snapshot) {
+      ref.on("value", snapshot => {
         resolve(snapshot.val());
       });
     } catch (e) {
@@ -37,21 +36,17 @@ export const getData = (userId, pathToData = "") => {
   });
 };
 
-export const logout = () => {
-  return firebase.auth().signOut();
-};
+export const logout = () => firebase.auth().signOut();
 
 export const userLoginObserver = callback => {
   firebase.auth().onAuthStateChanged(callback);
 };
 
-export const userLogin = ({ username, password }) => {
-  return firebase.auth().signInWithEmailAndPassword(username, password);
-};
+export const userLogin = ({ username, password }) =>
+  firebase.auth().signInWithEmailAndPassword(username, password);
 
-export const userRegister = ({ email, password }) => {
-  return firebase.auth().createUserWithEmailAndPassword(email, password);
-};
+export const userRegister = ({ email, password }) =>
+  firebase.auth().createUserWithEmailAndPassword(email, password);
 
 export const updateUserProfie = ({ firstName, lastName }) => {
   /* Temporarily only two user info, will add more in account page */

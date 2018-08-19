@@ -9,10 +9,6 @@ import {
   USER_LOGOUT_FAILURE
 } from "src/actions/actionTypes";
 
-export function* watchUserFetchDataAsync() {
-  yield takeEvery(USER_FETCH_DATA_ASYNC, userFetchDataSaga);
-}
-
 export function* userFetchDataSaga(action) {
   try {
     const payload = yield call(
@@ -27,8 +23,8 @@ export function* userFetchDataSaga(action) {
   }
 }
 
-export function* watchUserLogoutAsync() {
-  yield takeEvery(USER_LOGOUT, userLogoutSaga);
+export function* watchUserFetchDataAsync() {
+  yield takeEvery(USER_FETCH_DATA_ASYNC, userFetchDataSaga);
 }
 
 export function* userLogoutSaga() {
@@ -39,6 +35,10 @@ export function* userLogoutSaga() {
     // logout failure
     yield put({ type: USER_LOGOUT_FAILURE, payload: e });
   }
+}
+
+export function* watchUserLogoutAsync() {
+  yield takeEvery(USER_LOGOUT, userLogoutSaga);
 }
 
 export default function* rootSaga() {

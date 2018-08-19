@@ -6,6 +6,7 @@ import { menuItems } from "./data/mockData";
 import { writeData } from "./services/firebase";
 
 const sagaMiddleware = createSagaMiddleware();
+/* eslint no-underscore-dangle: 0 */
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
 const enhancer = composeEnhancers(
@@ -59,7 +60,7 @@ store.subscribe(() => {
     writeData({
       userId: uid,
       data: {
-        scenes: scenes,
+        scenes,
         lastUpdatedServer: lastUpdatedLocal
       }
     });

@@ -1,16 +1,15 @@
 import React from "react";
 import Button from "@material-ui/core/Button";
 import { connect } from "react-redux";
-import store from "src/store";
+import store, { dispatch } from "src/store";
 import Loader from "src/components/loader";
-
+import { LOCATION_LIST } from "src/data/mockData";
+import { INITIAL_FORM_DATA, FORM_CONFIG } from "src/data/config";
+import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 import DiveFormElements from "./diveFormElements";
-import { INITIAL_FORM_DATA, FORM_CONFIG } from "src/data/config";
-import { LOCATION_LIST } from "src/data/mockData";
 import { FormActions } from "../../style";
 import { userFetchDataAsync } from "../../../../actions";
-import PropTypes from "prop-types";
 
 // import action
 import { addNewDive, editDive } from "../../actions";
@@ -23,11 +22,7 @@ const classes = {
   button: "form-button"
 };
 
-const { dispatch } = store;
-
 export class DivingForm extends React.Component {
-  formConfig = JSON.parse(JSON.stringify(FORM_CONFIG)); // deep copy config
-
   constructor(props) {
     super(props);
 
@@ -232,6 +227,8 @@ export class DivingForm extends React.Component {
       required
     };
   };
+
+  formConfig = JSON.parse(JSON.stringify(FORM_CONFIG)); // deep copy config
 
   render() {
     const { locationSuggestions, editingFormData, isTouched } = this.state;

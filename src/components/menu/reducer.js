@@ -1,4 +1,4 @@
-function menuReducers(state = [], action) {
+function menuReducers(state = []) {
   return state;
 }
 
