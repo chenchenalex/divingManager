@@ -1,17 +1,18 @@
 import React from "react";
+import { connect } from "react-redux";
+import { withRouter } from "react-router-dom";
+import PropTypes from "prop-types";
+
 import Container from "./style";
 import SideMenu from "../components/menu";
 import DisplayPanel from "../components/displayPanel";
-
-import { connect } from "react-redux";
-import { withRouter } from "react-router-dom";
 import { userLoginObserver } from "../services/firebase";
 import { dispatch } from "../store";
 import { loginSuccess, loginFailure } from "../actions";
 
 class Main extends React.Component {
   componentDidMount() {
-    const callback = function(user) {
+    const callback = user => {
       if (user) {
         dispatch(loginSuccess(user));
       } else {
@@ -39,9 +40,15 @@ class Main extends React.Component {
   }
 }
 
+Main.propTypes = {
+  menuItems: PropTypes.array.isRequired,
+  isAuthenticated: PropTypes.bool.isRequired,
+  isOnline: PropTypes.bool.isRequired,
+  location: PropTypes.object.isRequired
+};
+
 function mapStateToProps(state) {
   return {
-    divingHistory: state.scenes.divingHistory,
     menuItems: state.components.menu,
     isAuthenticated: state.userInfo.isAuthenticated,
     isOnline: state.connectionStatus.isOnline

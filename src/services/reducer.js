@@ -32,14 +32,13 @@ export const connectionReducer = (state = {}, action) => {
           isOnline: true,
           lastUpdatedServer: action.payload.lastUpdatedServer
         };
-      } else {
-        return {
-          ...state,
-          isSynchronized: true,
-          isOnline: true,
-          lastUpdatedServer: Date.now()
-        };
       }
+      return {
+        ...state,
+        isSynchronized: true,
+        isOnline: true,
+        lastUpdatedServer: Date.now()
+      };
 
     case USER_FETCH_DATA_FAILURE:
       return {
@@ -70,7 +69,7 @@ export const connectionReducer = (state = {}, action) => {
 
 export function loginReducer(state = {}, action) {
   switch (action.type) {
-    case USER_LOGIN_SUCCESS:
+    case USER_LOGIN_SUCCESS: {
       const {
         email,
         displayName,
@@ -88,6 +87,7 @@ export function loginReducer(state = {}, action) {
         emailVerified,
         uid
       };
+    }
 
     case USER_LOGOUT_SUCCESS:
       return {

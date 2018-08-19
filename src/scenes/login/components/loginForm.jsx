@@ -4,8 +4,9 @@ import { Link } from "react-router-dom";
 import React from "react";
 import { REGISTER } from "src/data/routes";
 import CircularProgress from "@material-ui/core/CircularProgress";
+import PropTypes from "prop-types";
 
-export const LoginForm = ({
+const LoginForm = ({
   data: { username, password },
   onSubmit,
   onChange,
@@ -54,3 +55,17 @@ export const LoginForm = ({
     </div>
   </form>
 );
+
+LoginForm.propTypes = {
+  data: PropTypes.object.isRequired,
+  onSubmit: PropTypes.func.isRequired,
+  onChange: PropTypes.func.isRequired,
+  formConfig: PropTypes.object.isRequired,
+  isloading: PropTypes.bool
+};
+
+LoginForm.defaultProps = {
+  isloading: false
+};
+
+export default LoginForm;

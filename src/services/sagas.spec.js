@@ -1,7 +1,7 @@
-import { userFetchDataSaga } from "./sagas";
 import { call } from "redux-saga/effects";
 import { getData } from "src/services/firebase";
-import { userFetchDataAsync } from "src/scenes/divingHistory/actions";
+import userFetchDataAsync from "src/scenes/divingHistory/actions";
+import { userFetchDataSaga } from "./sagas";
 
 describe("sagas unit tests", () => {
   it("test userFetchDataAsync saga", () => {

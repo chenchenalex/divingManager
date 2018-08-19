@@ -100,7 +100,11 @@ DivingTable.propTypes = {
   onSelect: PropTypes.func.isRequired,
   isLoadComplete: PropTypes.bool.isRequired,
   onSelectAll: PropTypes.func.isRequired,
-  emptyRows: PropTypes.number.isRequired
+  emptyRows: PropTypes.number
+};
+
+DivingTable.defaultProps = {
+  emptyRows: 0
 };
 
 export default DivingTable;

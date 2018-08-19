@@ -1,22 +1,21 @@
 import React, { Fragment } from "react";
-import store from "src/store";
-import { deleteActionCreator } from "../../actions";
-import { userFetchDataAsync } from "../../../../actions";
+import { dispatch } from "src/store";
 import { connect } from "react-redux";
+import getDives from "src/data/utils";
+import bgImg from "src/assets/images/dive_bg1.jpg";
+import ImageBanner from "src/components/imageBanner";
+import TablePagination from "@material-ui/core/TablePagination";
+import PropTypes from "prop-types";
+
+import deleteActionCreator from "../../actions";
+import userFetchDataAsync from "../../../../actions";
 
 // components
 import DiveTable from "./diveTable";
 import { DivingContainer } from "../../style";
 import AddButton from "../buttons/addNew";
 import DeleteButton from "../buttons/delete";
-import bgImg from "src/assets/images/dive_bg1.jpg";
-import ImageBanner from "src/components/imageBanner";
-import TablePagination from "@material-ui/core/TablePagination";
 
-// utils
-import { getDives } from "src/data/utils";
-
-const { dispatch } = store;
 export class DivingListComponent extends React.Component {
   state = {
     selected: [],
@@ -39,11 +38,11 @@ export class DivingListComponent extends React.Component {
     const isChecked = event.target.checked;
 
     if (isChecked) {
-      this.setState(state => ({
+      this.setState(() => ({
         selected: this.props.divingHistory.map(dive => dive.id)
       }));
     } else {
-      this.setState(state => ({
+      this.setState(() => ({
         selected: []
       }));
     }
@@ -54,28 +53,22 @@ export class DivingListComponent extends React.Component {
     const id = event.target.value;
 
     if (isChecked) {
-      this.setState(state => {
-        return {
-          selected: [...state.selected, id]
-        };
-      });
+      this.setState(state => ({
+        selected: [...state.selected, id]
+      }));
     } else {
-      this.setState(state => {
-        return {
-          selected: [...state.selected.filter(selectedId => selectedId !== id)]
-        };
-      });
+      this.setState(state => ({
+        selected: [...state.selected.filter(selectedId => selectedId !== id)]
+      }));
     }
   };
 
   onDelete = () => {
     dispatch(deleteActionCreator(this.state.selected));
 
-    this.setState(() => {
-      return {
-        selected: []
-      };
-    });
+    this.setState(() => ({
+      selected: []
+    }));
   };
 
   handleChangePage = (event, page) => {
@@ -142,6 +135,12 @@ export class DivingListComponent extends React.Component {
     );
   }
 }
+
+DivingListComponent.propTypes = {
+  connectionStatus: PropTypes.object.isRequired,
+  userInfo: PropTypes.object.isRequired,
+  divingHistory: PropTypes.array.isRequired
+};
 
 function mapStateToProps(state) {
   return {

@@ -1,10 +1,10 @@
-import { LoginPage } from "./login";
 import React from "react";
 import renderer from "react-test-renderer";
 import { MemoryRouter } from "react-router-dom";
 import { shallow } from "enzyme";
 import { userLogin } from "src/services/firebase";
 import { loginSuccess } from "src/actions";
+import { LoginPage } from "./login";
 
 // Jest mock all implementation of firease
 jest.mock("src/services/firebase");
@@ -21,7 +21,7 @@ describe("login page unit tests", () => {
     from: "/jest"
   };
   const component = shallow(
-    <LoginPage userInfo={userInfo} location={location} />
+    <LoginPage userInfo={userInfo} location={location} isloading={false} />
   );
 
   it("onSubmit(): should submit username and password", async () => {
@@ -32,9 +32,7 @@ describe("login page unit tests", () => {
       password: "123"
     };
 
-    userLogin.mockImplementation(() => {
-      return Promise.resolve();
-    });
+    userLogin.mockImplementation(() => Promise.resolve());
 
     await instance.onFormSubmit({ preventDefault: jest.fn() });
 

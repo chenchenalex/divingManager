@@ -1,14 +1,15 @@
 import React from "react";
 import { Route, Switch, Redirect } from "react-router-dom";
-import Panel from "./style";
-import Loader from "../loader";
-
 import dashboard from "src/scenes/dashboard";
 import { viewDives, editDive } from "src/scenes/divingHistory";
-import Account from "src/scenes/account";
-import Login from "~/scenes/login";
-import Register from "~/scenes/register";
+import AccountComponent from "src/scenes/account";
+import Login from "src/scenes/login";
+import Register from "src/scenes/register";
 import pageNotFound from "src/scenes/404";
+import PropTypes from "prop-types";
+
+import Panel from "./style";
+import Loader from "../loader";
 import * as ROUTES from "../../data/routes";
 
 const {
@@ -46,7 +47,7 @@ const DisplayPanel = ({ isOnline, isAuthenticated }) => {
           <PrivateRoute
             path={ACCOUNT}
             authenticated={isAuthenticated}
-            component={Account}
+            component={AccountComponent}
           />
           <Route path={DASHBOARD} component={dashboard} />
           <Route path={ADDDIVE} component={editDive} />
@@ -63,13 +64,27 @@ const DisplayPanel = ({ isOnline, isAuthenticated }) => {
         </Switch>
       </Panel>
     );
-  } else {
-    return (
-      <Panel>
-        <Loader text="Checking..." />
-      </Panel>
-    );
   }
+  return (
+    <Panel>
+      <Loader text="Checking..." />
+    </Panel>
+  );
+};
+
+PrivateRoute.propTypes = {
+  component: PropTypes.func.isRequired,
+  authenticated: PropTypes.bool.isRequired,
+  location: PropTypes.object
+};
+
+PrivateRoute.defaultProps = {
+  location: {}
+};
+
+DisplayPanel.propTypes = {
+  isOnline: PropTypes.bool.isRequired,
+  isAuthenticated: PropTypes.bool.isRequired
 };
 
 export default DisplayPanel;

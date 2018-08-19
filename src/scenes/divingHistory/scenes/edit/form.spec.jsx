@@ -1,15 +1,14 @@
 import React from "react";
 import renderer from "react-test-renderer";
 import { shallow } from "enzyme";
-import DiveFormElements from "./components/diveForm/diveFormElements";
 import { INITIAL_FORM_DATA, FORM_CONFIG } from "src/data/config";
 import {
   TEST_INITIAL_DATA,
   divingHistory as mockData
 } from "src/data/mockData";
-import * as formActions from "./actions";
-import store from "src/store";
 
+import DiveFormElements from "./components/diveForm/diveFormElements";
+import * as formActions from "./actions";
 import { DivingForm } from "./components/diveForm/diveForm";
 
 describe("DiveForm: add new dive tests", () => {
@@ -25,7 +24,12 @@ describe("DiveForm: add new dive tests", () => {
   };
 
   const component = shallow(
-    <DivingForm match={match} divingHistory={INITIAL_FORM_DATA} userInfo={{}} />
+    <DivingForm
+      match={match}
+      divingHistory={INITIAL_FORM_DATA}
+      userInfo={{}}
+      history={{}}
+    />
   );
 
   it("onLoad: add new dive should see blank page with initial data", async () => {
@@ -84,9 +88,7 @@ describe("DiveForm: add new dive tests", () => {
       { id: "PL", name: "Poland" }
     ];
 
-    jest.spyOn(instance, "getSuggestions").mockImplementation(() => {
-      return sampleData;
-    });
+    jest.spyOn(instance, "getSuggestions").mockImplementation(() => sampleData);
 
     instance.onSuggestionsFetchRequested({ value: "abc" });
 
@@ -129,8 +131,9 @@ describe("DiveForm: edit existing dive tests", () => {
     <DivingForm
       match={match}
       divingHistory={mockData}
-      history={[]}
+      history={{ push: jest.fn() }}
       userInfo={{}}
+      isloading
     />
   );
 
@@ -174,18 +177,16 @@ describe("DiveForm: edit existing dive tests", () => {
     instance.formConfig.name.invalid = true;
     instance.formConfig.depth.invalid = true;
 
-    instance.setState(prevState => {
-      return {
-        editingFormData: {
-          id: "test1",
-          name: "new name",
-          location: "new place",
-          date: "123123",
-          depth: 28
-        },
-        formValid: false
-      };
-    });
+    instance.setState(() => ({
+      editingFormData: {
+        id: "test1",
+        name: "new name",
+        location: "new place",
+        date: "123123",
+        depth: 28
+      },
+      formValid: false
+    }));
 
     // magical happens here
     instance.resetAllForms();
@@ -199,11 +200,8 @@ describe("DiveForm: edit existing dive tests", () => {
 
   it("onFormSubmit: should dispatch action contains edited form data", () => {
     const instance = component.instance();
-    const mockStore = jest.spyOn(store, "dispatch");
 
-    instance.setState(state => {
-      return { editingFormData: {}, formValid: true };
-    });
+    instance.setState(() => ({ editingFormData: {}, formValid: true }));
 
     // Add new dive form submit
     const mockAddDive = jest.spyOn(formActions, "addNewDive");
@@ -212,9 +210,10 @@ describe("DiveForm: edit existing dive tests", () => {
 
     expect(mockAddDive).toBeCalledWith(instance.state.editingFormData);
 
-    instance.setState(state => {
-      return { editingFormData: { ...test1 }, formValid: true };
-    });
+    instance.setState(() => ({
+      editingFormData: { ...test1 },
+      formValid: true
+    }));
 
     // Edit dive form submit
     const mockEditDive = jest.spyOn(formActions, "editDive");
@@ -222,8 +221,6 @@ describe("DiveForm: edit existing dive tests", () => {
     instance.onFormSubmit();
 
     expect(mockEditDive).toBeCalledWith(instance.state.editingFormData);
-
-    expect(mockStore).toHaveBeenCalledTimes(2);
   });
 
   it("checkFormFieldInValidity: should check required field validity", () => {
@@ -273,13 +270,13 @@ describe("DiveForm: edit existing dive tests", () => {
     instance.setState(() => ({
       formValid: true
     }));
-    //1. Required input field is invalid, form is invalid
+    // 1. Required input field is invalid, form is invalid
     instance.formConfig.name.invalid = true;
     instance.validateForm();
 
     expect(instance.state.formValid).toBe(false);
 
-    //2. Optional input field is invalid, form still valid
+    // 2. Optional input field is invalid, form still valid
     instance.setState(() => ({
       formValid: false
     }));
@@ -289,7 +286,7 @@ describe("DiveForm: edit existing dive tests", () => {
     instance.validateForm();
     expect(instance.state.formValid).toBe(true);
 
-    //3. Required input and optional field are valid, form is valid
+    // 3. Required input and optional field are valid, form is valid
     instance.setState(() => ({
       formValid: false
     }));

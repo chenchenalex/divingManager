@@ -1,7 +1,7 @@
 import React from "react";
 import Button from "@material-ui/core/Button";
 import { connect } from "react-redux";
-import store, { dispatch } from "src/store";
+import { dispatch } from "src/store";
 import Loader from "src/components/loader";
 import { LOCATION_LIST } from "src/data/mockData";
 import { INITIAL_FORM_DATA, FORM_CONFIG } from "src/data/config";
@@ -9,7 +9,7 @@ import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 import DiveFormElements from "./diveFormElements";
 import { FormActions } from "../../style";
-import { userFetchDataAsync } from "../../../../actions";
+import userFetchDataAsync from "../../../../actions";
 
 // import action
 import { addNewDive, editDive } from "../../actions";
@@ -57,12 +57,7 @@ export class DivingForm extends React.Component {
     if (!this.props.match.params.id) return;
 
     if (this.state.formData) {
-      this.setState(state => {
-        return {
-          ...state,
-          editingFormData: this.state.formData
-        };
-      });
+      this.onMount();
 
       this.validateForm();
     } else {
@@ -78,53 +73,27 @@ export class DivingForm extends React.Component {
 
       /* IF user manually refresh the page */
       if (typeof fetchedFormData !== "undefined") {
-        this.setState({
-          locationSuggestions: [],
-          isTouched: false,
-          formData: { ...fetchedFormData },
-          editingFormData: { ...fetchedFormData }
-        });
+        this.onPageRefresh(fetchedFormData);
       } else {
         this.props.history.push("/404");
       }
     }
   }
 
-  handleChange = name => (event, { newValue } = {}) => {
-    const newVal = newValue || event.target.value || "";
-
-    this.setState(function(prevState) {
-      const newState = {
-        ...prevState,
-        editingFormData: {
-          ...prevState.editingFormData,
-          [name]: newVal
-        },
-        isTouched: true
-      };
-
-      return newState;
-    });
+  onMount = () => {
+    this.setState(state => ({
+      ...state,
+      editingFormData: this.state.formData
+    }));
   };
 
-  handleBlur = name => () => {
-    const val = this.state.editingFormData[name];
-    this.formConfig[name].invalid = this.checkFormFieldInValidity(name, val);
-
-    this.validateForm();
-  };
-
-  resetAllForms = () => {
-    Object.keys(this.formConfig).forEach(fieldKey => {
-      this.formConfig[fieldKey].invalid = false;
+  onPageRefresh = fetchedFormData => {
+    this.setState({
+      locationSuggestions: [],
+      isTouched: false,
+      formData: { ...fetchedFormData },
+      editingFormData: { ...fetchedFormData }
     });
-
-    this.setState(function(prevState) {
-      return {
-        editingFormData: { ...prevState.formData },
-        isTouched: false
-      };
-    }, this.validateForm);
   };
 
   onFormSubmit = () => {
@@ -139,9 +108,69 @@ export class DivingForm extends React.Component {
       actionCreator = editDive(this.state.editingFormData);
     }
 
-    store.dispatch(actionCreator);
+    dispatch(actionCreator);
 
     this.props.history.push("/list");
+  };
+
+  onSuggestionsFetchRequested = ({ value }) => {
+    this.setState({
+      locationSuggestions: this.getSuggestions(value)
+    });
+  };
+
+  onSuggestionsClearRequested = () => {
+    this.setState({
+      locationSuggestions: []
+    });
+  };
+
+  getInputPropsFromConfig = ({ label, required, invalid, helperText }) => ({
+    placeholder: helperText,
+    value: this.state.editingFormData && this.state.editingFormData.country,
+    onChange: this.handleChange("country"),
+    onBlur: this.handleBlur("country"),
+    type: "search",
+    invalid,
+    helperText,
+    label,
+    required
+  });
+
+  getSuggestions = input => {
+    const inputValue = input.trim().toLowerCase();
+    const inputLength = inputValue.length;
+    let count = 0;
+
+    return inputLength === 0
+      ? []
+      : LOCATION_LIST.filter(suggestion => {
+          const keep =
+            count <= 5 &&
+            suggestion.name.toLowerCase().slice(0, inputLength) === inputValue;
+
+          if (keep) count += 1;
+          return keep;
+        });
+  };
+
+  getSuggestionValue = suggestion => suggestion.name;
+
+  validateForm = () => {
+    const formInvalid = Object.keys(this.formConfig).some(key => {
+      const isRequired = this.formConfig[key].required;
+
+      const isEmpty = this.state.editingFormData[key] === "";
+
+      const isInvalid = this.formConfig[key].invalid;
+
+      return isRequired && (isEmpty || isInvalid);
+    });
+
+    this.setState(prevState => ({
+      ...prevState,
+      formValid: !formInvalid
+    }));
   };
 
   checkFormFieldInValidity = (fieldKey, val) => {
@@ -162,70 +191,42 @@ export class DivingForm extends React.Component {
     }
   };
 
-  validateForm = () => {
-    let formInvalid = Object.keys(this.formConfig).some(key => {
-      const isRequired = this.formConfig[key].required;
-
-      const isEmpty = this.state.editingFormData[key] === "";
-
-      const isInvalid = this.formConfig[key].invalid;
-
-      return isRequired && (isEmpty || isInvalid);
-    });
+  handleChange = name => (event, { newValue } = {}) => {
+    const newVal = newValue || event.target.value || "";
 
     this.setState(prevState => {
-      return {
+      const newState = {
         ...prevState,
-        formValid: !formInvalid
+        editingFormData: {
+          ...prevState.editingFormData,
+          [name]: newVal
+        },
+        isTouched: true
       };
+
+      return newState;
     });
   };
 
-  getSuggestions = input => {
-    const inputValue = input.trim().toLowerCase();
-    const inputLength = inputValue.length;
-    let count = 0;
-
-    return inputLength === 0
-      ? []
-      : LOCATION_LIST.filter(suggestion => {
-          const keep =
-            count <= 5 &&
-            suggestion.name.toLowerCase().slice(0, inputLength) === inputValue;
-
-          if (keep) count += 1;
-          return keep;
-        });
-  };
-
-  onSuggestionsFetchRequested = ({ value }) => {
-    this.setState({
-      locationSuggestions: this.getSuggestions(value)
+  resetAllForms = () => {
+    Object.keys(this.formConfig).forEach(fieldKey => {
+      this.formConfig[fieldKey].invalid = false;
     });
+
+    this.setState(
+      prevState => ({
+        editingFormData: { ...prevState.formData },
+        isTouched: false
+      }),
+      this.validateForm
+    );
   };
 
-  onSuggestionsClearRequested = () => {
-    this.setState({
-      locationSuggestions: []
-    });
-  };
+  handleBlur = name => () => {
+    const val = this.state.editingFormData[name];
+    this.formConfig[name].invalid = this.checkFormFieldInValidity(name, val);
 
-  getSuggestionValue = suggestion => {
-    return suggestion.name;
-  };
-
-  getInputPropsFromConfig = ({ label, required, invalid, helperText }) => {
-    return {
-      placeholder: helperText,
-      value: this.state.editingFormData && this.state.editingFormData.country,
-      onChange: this.handleChange("country"),
-      onBlur: this.handleBlur("country"),
-      type: "search",
-      invalid,
-      helperText,
-      label,
-      required
-    };
+    this.validateForm();
   };
 
   formConfig = JSON.parse(JSON.stringify(FORM_CONFIG)); // deep copy config
@@ -258,7 +259,7 @@ export class DivingForm extends React.Component {
             variant="raised"
             disabled={!this.state.formValid}
             color="primary"
-            onClick={this.onFormSubmit.bind(this)}
+            onClick={this.onFormSubmit}
           >
             Save
           </Button>
@@ -282,7 +283,9 @@ export class DivingForm extends React.Component {
 
 DivingForm.propTypes = {
   divingHistory: PropTypes.object.isRequired,
-  userInfo: PropTypes.object.isRequired
+  userInfo: PropTypes.object.isRequired,
+  match: PropTypes.object.isRequired,
+  history: PropTypes.object.isRequired
 };
 
 function mapStateToProps(state) {

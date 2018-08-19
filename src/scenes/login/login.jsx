@@ -1,13 +1,15 @@
 import React from "react";
-import { LoginContainer } from "./style";
-import { LoginForm } from "./components/loginForm";
 import "firebase/auth";
 import { LOGIN_FORM_CONFIG } from "src/data/config";
-import { Notification } from "src/components/notification";
+import Notification from "src/components/notification";
 import { connect } from "react-redux";
 import { Redirect } from "react-router-dom";
 import { ACCOUNT } from "src/data/routes";
 import { userLogin } from "src/services/firebase";
+import PropTypes from "prop-types";
+
+import LoginContainer from "./style";
+import LoginForm from "./components/loginForm";
 
 export class LoginPage extends React.Component {
   state = {
@@ -15,8 +17,6 @@ export class LoginPage extends React.Component {
     password: "",
     errorMessage: ""
   };
-
-  formConfig = JSON.parse(JSON.stringify(LOGIN_FORM_CONFIG));
 
   onFormSubmit = e => {
     e.preventDefault();
@@ -43,12 +43,14 @@ export class LoginPage extends React.Component {
   };
 
   onChange = e => {
-    const name = e.target.name;
+    const { name } = e.target;
 
     this.setState({
       [name]: e.target.value
     });
   };
+
+  formConfig = JSON.parse(JSON.stringify(LOGIN_FORM_CONFIG));
 
   render() {
     let redirectUrl;
@@ -87,6 +89,11 @@ export class LoginPage extends React.Component {
     );
   }
 }
+
+LoginPage.propTypes = {
+  location: PropTypes.object.isRequired,
+  userInfo: PropTypes.object.isRequired
+};
 
 function mapStateToProps(state) {
   return {

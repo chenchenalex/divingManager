@@ -37,17 +37,18 @@ function renderSuggestion(suggestion, { query, isHighlighted }) {
   return (
     <MenuItem selected={isHighlighted} component="div">
       <div>
-        {parts.map((part, index) => {
-          return part.highlight ? (
-            <span key={String(index)} style={{ fontWeight: 300 }}>
-              {part.text}
-            </span>
-          ) : (
-            <strong key={String(index)} style={{ fontWeight: 500 }}>
-              {part.text}
-            </strong>
-          );
-        })}
+        {parts.map(
+          (part, index) =>
+            part.highlight ? (
+              <span key={String(index)} style={{ fontWeight: 300 }}>
+                {part.text}
+              </span>
+            ) : (
+              <strong key={String(index)} style={{ fontWeight: 500 }}>
+                {part.text}
+              </strong>
+            )
+        )}
       </div>
     </MenuItem>
   );
@@ -91,37 +92,31 @@ function renderInput(inputProps) {
   );
 }
 
-class locationSuggestion extends React.Component {
-  render() {
-    const {
-      classes,
-      suggestions,
-      onSuggestionsFetchRequested,
-      onSuggestionsClearRequested,
-      getSuggestionValue,
-      inputProps
-    } = this.props;
-
-    return (
-      <Autosuggest
-        theme={{
-          container: classes.container,
-          suggestionsContainerOpen: classes.suggestionsContainerOpen,
-          suggestionsList: classes.suggestionsList,
-          suggestion: classes.suggestion
-        }}
-        renderInputComponent={renderInput}
-        suggestions={suggestions}
-        renderSuggestionsContainer={renderSuggestionsContainer}
-        onSuggestionsFetchRequested={onSuggestionsFetchRequested}
-        onSuggestionsClearRequested={onSuggestionsClearRequested}
-        getSuggestionValue={getSuggestionValue}
-        renderSuggestion={renderSuggestion}
-        inputProps={inputProps}
-      />
-    );
-  }
-}
+const locationSuggestion = ({
+  classes,
+  suggestions,
+  onSuggestionsFetchRequested,
+  onSuggestionsClearRequested,
+  getSuggestionValue,
+  inputProps
+}) => (
+  <Autosuggest
+    theme={{
+      container: classes.container,
+      suggestionsContainerOpen: classes.suggestionsContainerOpen,
+      suggestionsList: classes.suggestionsList,
+      suggestion: classes.suggestion
+    }}
+    renderInputComponent={renderInput}
+    suggestions={suggestions}
+    renderSuggestionsContainer={renderSuggestionsContainer}
+    onSuggestionsFetchRequested={onSuggestionsFetchRequested}
+    onSuggestionsClearRequested={onSuggestionsClearRequested}
+    getSuggestionValue={getSuggestionValue}
+    renderSuggestion={renderSuggestion}
+    inputProps={inputProps}
+  />
+);
 
 locationSuggestion.propTypes = {
   classes: PropTypes.object.isRequired,

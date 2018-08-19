@@ -13,7 +13,8 @@
         "aspects": ["noHref", "invalidHref", "preferButton"]
       }
     ],
-    "no-console": ["error", { "allow": ["warn", "error"] }]
+    "no-console": ["error", { "allow": ["warn", "error"] }],
+    "no-param-reassign": ["error", { "props": false }]
   },
   "settings": {
     "import/resolver": {

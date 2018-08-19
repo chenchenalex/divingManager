@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import bgImage from "src/assets/images/dust_scratches.png";
 
-export const LoginContainer = styled.div`
+const LoginContainer = styled.div`
   background: url(${bgImage});
   min-height: 100%;
   position: relative;
@@ -49,3 +49,5 @@ export const LoginContainer = styled.div`
     }
   }
 `;
+
+export default LoginContainer;

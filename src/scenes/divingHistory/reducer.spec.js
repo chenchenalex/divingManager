@@ -1,6 +1,6 @@
-import { diveById as DivingHistoryReducer } from "./reducer";
-import { ADD_DIVE, EDIT_DIVE, DELETE_DIVE } from "src/actions/actionTypes";
 import { divingHistory } from "src/data/mockData";
+import { ADD_DIVE, EDIT_DIVE, DELETE_DIVE } from "src/actions/actionTypes";
+import { diveById as DivingHistoryReducer } from "./reducer";
 
 const prevState = divingHistory.diveById;
 

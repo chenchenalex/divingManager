@@ -1,28 +1,17 @@
 import React from "react";
-import MainMenu from "./style";
 import PropTypes from "prop-types";
-import MenuItem from "./componnents/menuItem";
-
 import FaHome from "react-icons/lib/fa/home";
 import FaUser from "react-icons/lib/fa/user";
 import FaDashboard from "react-icons/lib/fa/dashboard";
 import FaTable from "react-icons/lib/fa/table";
 import FaImage from "react-icons/lib/fa/image";
 import FaCcDiscover from "react-icons/lib/fa/cc-discover";
+import MainMenu from "./style";
+import MenuItem from "./componnents/menuItem";
 
 const iconSet = { FaHome, FaUser, FaDashboard, FaTable, FaImage, FaCcDiscover };
 
 class Menu extends React.PureComponent {
-  state = {
-    pathname: "/"
-  };
-
-  componentDidUpdate() {
-    this.setState({
-      pathname: this.props.location.pathname
-    });
-  }
-
   render() {
     return (
       <MainMenu>
@@ -37,7 +26,7 @@ class Menu extends React.PureComponent {
                   key={id}
                   icon={Icon}
                   url={url}
-                  isActive={this.state.pathname === url}
+                  isActive={this.props.location.pathname === url}
                   isDisabled={isDisabled}
                 >
                   {name}
@@ -52,7 +41,12 @@ class Menu extends React.PureComponent {
 
 Menu.propTypes = {
   items: PropTypes.array.isRequired,
-  location: PropTypes.object
+  location: PropTypes.object,
+  isAuthenticated: PropTypes.bool.isRequired
+};
+
+Menu.defaultProps = {
+  location: {}
 };
 
 export default Menu;

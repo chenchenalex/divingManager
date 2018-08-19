@@ -18,11 +18,10 @@ export function diveById(state = {}, action) {
           ...state,
           ...diveByIdData
         };
-      } else {
-        return state;
       }
+      return state;
 
-    case ADD_DIVE:
+    case ADD_DIVE: {
       const newID = v4();
       const newDiveData = { ...action.payload, id: newID };
 
@@ -30,6 +29,7 @@ export function diveById(state = {}, action) {
         ...state,
         [newID]: newDiveData
       };
+    }
 
     case EDIT_DIVE:
       if (
@@ -42,22 +42,21 @@ export function diveById(state = {}, action) {
         ...state,
         [action.payload.id]: action.payload
       };
-    case DELETE_DIVE:
+    case DELETE_DIVE: {
       if (
         typeof action.payload === "undefined" ||
         !Array.isArray(action.payload)
       )
         return state;
 
-      return Object.keys(state).reduce(
-        function(result, key) {
-          if (action.payload.includes(key)) {
-            delete result[key];
-          }
-          return result;
-        },
-        { ...state }
-      );
+      return Object.keys(state).reduce((result, key) => {
+        if (!action.payload.includes(key)) {
+          return { ...result, [key]: state[key] };
+        }
+
+        return result;
+      }, {});
+    }
 
     case USER_LOGOUT_SUCCESS:
       return {};

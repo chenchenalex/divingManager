@@ -1,14 +1,14 @@
+import { divingHistory as mockState } from "src/data/mockData";
+import getDives from "src/data/utils";
+import { shallow } from "enzyme";
+import React from "react";
+import { MemoryRouter } from "react-router-dom";
+import renderer from "react-test-renderer";
+
 import { DivingListComponent } from "./components/diveTable/diveTableContainer";
 import AddNew from "./components/buttons/addNew";
 import DeleteBtn from "./components/buttons/delete";
 import DiveTable from "./components/diveTable/diveTable";
-import { divingHistory as mockState } from "src/data/mockData";
-import { getDives } from "src/data/utils";
-import { shallow } from "enzyme";
-
-import React from "react";
-import { MemoryRouter } from "react-router-dom";
-import renderer from "react-test-renderer";
 
 const divingHistory = getDives(mockState);
 
@@ -154,6 +154,7 @@ describe("Dive list: Snapshots tests", () => {
           state={state}
           tableData={divingHistory}
           onSelect={onSelect}
+          isLoadComplete
           onSelectAll={onSelectAll}
         />
       </MemoryRouter>

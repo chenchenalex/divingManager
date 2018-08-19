@@ -2,9 +2,10 @@ import React from "react";
 import { connect } from "react-redux";
 import Button from "@material-ui/core/Button";
 import { dispatch } from "src/store";
-import { userLogOut } from "src/actions";
-import StyledAccount from "./style-account";
 import { sendEmailVerification } from "src/services/firebase";
+import { userLogOut } from "src/actions";
+import PropTypes from "prop-types";
+import StyledAccount from "./style-account";
 
 export class Account extends React.Component {
   onSignOut = () => {
@@ -54,6 +55,10 @@ export class Account extends React.Component {
     );
   }
 }
+
+Account.propTypes = {
+  userInfo: PropTypes.object.isRequired
+};
 
 function mapStateToProps(state) {
   return {
