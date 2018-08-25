@@ -1,14 +1,8 @@
 import firebase from "firebase/app";
 import "firebase/database";
+import API from "./apiCredentials";
 
-const FIREBASE_CONFIG = {
-  apiKey: "AIzaSyAdc-srAZ292S3a_c0Ecc1VDB-ybj3stCA",
-  authDomain: "dive-manager-86bf0.firebaseapp.com",
-  databaseURL: "https://dive-manager-86bf0.firebaseio.com",
-  projectId: "dive-manager-86bf0",
-  storageBucket: "dive-manager-86bf0.appspot.com",
-  messagingSenderId: "42493055389"
-};
+const { FIREBASE_CONFIG } = API;
 
 if (!firebase.apps.length) {
   firebase.initializeApp(FIREBASE_CONFIG);
