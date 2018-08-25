@@ -1,3 +1,15 @@
 .m-top__md {
   margin-top: calc(var(--base-unit) * 2);
 }
+
+.flex {
+  display: flex;
+}
+
+.flex.space-between {
+  justify-content: space-between;
+}
+
+.flex.left {
+  justify-content: flex-start;
+}

@@ -20,9 +20,9 @@ const MainMenu = styled.ul`
 
 export const MenuItem = styled.li`
   background-color: ${props =>
-    props.isActive ? "var(--grey)" : "transparent"};
-  border-top: ${props => (props.isActive ? "1px solid white" : 0)};
-  border-bottom: ${props => (props.isActive ? "1px solid white" : 0)};
+    props.isActive ? "var(--DM-grey)" : "transparent"};
+  border-right: ${props =>
+    props.isActive ? "4px solid var(--DM-teal);" : "none"};
   margin: var(--base-unit) 0;
   padding: calc(var(--base-unit) * 3) 0;
   padding-left: calc(var(--base-unit) * 3);

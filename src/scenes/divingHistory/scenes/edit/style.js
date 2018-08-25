@@ -7,5 +7,5 @@ export const DivingForm = styled.form`
 `;
 
 export const FormActions = styled.div`
-  margin: 0 16px;
+  margin: calc(var(--base-unit) * 3) calc(var(--base-unit) * 2);
 `;

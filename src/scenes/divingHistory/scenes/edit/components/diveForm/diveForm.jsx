@@ -7,15 +7,19 @@ import { LOCATION_LIST } from "src/data/mockData";
 import { INITIAL_FORM_DATA, FORM_CONFIG } from "src/data/config";
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
+import { getCurrentGeoLocation } from "src/data/utils";
 import DiveFormElements from "./diveFormElements";
 import { FormActions } from "../../style";
 import userFetchDataAsync from "../../../../actions";
+import GMapWrapper from "./gmapWrapper";
 
 // import action
 import { addNewDive, editDive } from "../../actions";
 
 const classes = {
-  container: "divingform-container",
+  container: "divingform-container flex left",
+  formElements: "form-elements",
+  gmap: "gmap",
   formControl: "form-control",
   label: "form-label",
   input: "text-input",
@@ -125,6 +129,18 @@ export class DivingForm extends React.Component {
     });
   };
 
+  onGmapDragEnd = (...args) => {
+    const { lat, lng } = args[0].latLng;
+
+    this.setState(prevState => ({
+      ...prevState,
+      editingFormData: {
+        ...prevState.editingFormData,
+        gmapLocation: { lat: lat(), lng: lng() }
+      }
+    }));
+  };
+
   getInputPropsFromConfig = ({ label, required, invalid, helperText }) => ({
     placeholder: helperText,
     value: this.state.editingFormData && this.state.editingFormData.country,
@@ -155,6 +171,20 @@ export class DivingForm extends React.Component {
   };
 
   getSuggestionValue = suggestion => suggestion.name;
+
+  setCurrentLocation = () => {
+    getCurrentGeoLocation().then(positionObj => {
+      this.setState(prevState => ({
+        ...prevState,
+        editingFormData: {
+          ...prevState.editingFormData,
+          gmapLocation: positionObj
+        }
+      }));
+
+      this.validateForm();
+    });
+  };
 
   validateForm = () => {
     const formInvalid = Object.keys(this.formConfig).some(key => {
@@ -240,40 +270,51 @@ export class DivingForm extends React.Component {
 
     return this.state.editingFormData ? (
       <div className={classes.container}>
-        <DiveFormElements
-          classes={classes}
-          locationSuggestions={locationSuggestions}
-          onSuggestionsFetchRequested={this.onSuggestionsFetchRequested}
-          onSuggestionsClearRequested={this.onSuggestionsClearRequested}
-          getSuggestionValue={this.getSuggestionValue}
-          inputProps={locationInputProps}
-          handleChange={this.handleChange}
-          handleBlur={this.handleBlur}
-          formData={editingFormData}
-          formConfig={this.formConfig}
-        />
+        <div className={classes.formElements}>
+          <DiveFormElements
+            classes={classes}
+            locationSuggestions={locationSuggestions}
+            onSuggestionsFetchRequested={this.onSuggestionsFetchRequested}
+            onSuggestionsClearRequested={this.onSuggestionsClearRequested}
+            getSuggestionValue={this.getSuggestionValue}
+            inputProps={locationInputProps}
+            handleChange={this.handleChange}
+            handleBlur={this.handleBlur}
+            formData={editingFormData}
+            formConfig={this.formConfig}
+          />
 
-        <FormActions>
-          <Button
-            className={classes.button}
-            variant="raised"
-            disabled={!this.state.formValid}
-            color="primary"
-            onClick={this.onFormSubmit}
-          >
-            Save
-          </Button>
-          <Link to="/list">
-            <Button variant="raised">Back</Button>
-          </Link>
-          <Button
-            variant="raised"
-            disabled={!isTouched}
-            onClick={this.resetAllForms}
-          >
-            Reset
-          </Button>
-        </FormActions>
+          <FormActions>
+            <Button
+              className={classes.button}
+              variant="raised"
+              disabled={!this.state.formValid}
+              color="primary"
+              onClick={this.onFormSubmit}
+            >
+              Save
+            </Button>
+            <Link to="/list">
+              <Button variant="raised">Back</Button>
+            </Link>
+            <Button
+              variant="raised"
+              disabled={!isTouched}
+              onClick={this.resetAllForms}
+            >
+              Reset
+            </Button>
+          </FormActions>
+        </div>
+        <div className={classes.gmap}>
+          <GMapWrapper
+            markerPos={
+              this.state.editingFormData.gmapLocation ||
+              this.setCurrentLocation()
+            }
+            onDragEnd={this.onGmapDragEnd}
+          />
+        </div>
       </div>
     ) : (
       <Loader />
