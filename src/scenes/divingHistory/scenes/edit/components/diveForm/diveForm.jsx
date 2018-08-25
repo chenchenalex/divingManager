@@ -271,19 +271,6 @@ export class DivingForm extends React.Component {
     return this.state.editingFormData ? (
       <div className={classes.container}>
         <div className={classes.formElements}>
-          <DiveFormElements
-            classes={classes}
-            locationSuggestions={locationSuggestions}
-            onSuggestionsFetchRequested={this.onSuggestionsFetchRequested}
-            onSuggestionsClearRequested={this.onSuggestionsClearRequested}
-            getSuggestionValue={this.getSuggestionValue}
-            inputProps={locationInputProps}
-            handleChange={this.handleChange}
-            handleBlur={this.handleBlur}
-            formData={editingFormData}
-            formConfig={this.formConfig}
-          />
-
           <FormActions>
             <Button
               className={classes.button}
@@ -305,6 +292,19 @@ export class DivingForm extends React.Component {
               Reset
             </Button>
           </FormActions>
+
+          <DiveFormElements
+            classes={classes}
+            locationSuggestions={locationSuggestions}
+            onSuggestionsFetchRequested={this.onSuggestionsFetchRequested}
+            onSuggestionsClearRequested={this.onSuggestionsClearRequested}
+            getSuggestionValue={this.getSuggestionValue}
+            inputProps={locationInputProps}
+            handleChange={this.handleChange}
+            handleBlur={this.handleBlur}
+            formData={editingFormData}
+            formConfig={this.formConfig}
+          />
         </div>
         <div className={classes.gmap}>
           <GMapWrapper
