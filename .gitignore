@@ -62,3 +62,6 @@ typings/
 
 #hosting cache
 *.cache
+
+#credentials
+/src/services/apiCredentials.js

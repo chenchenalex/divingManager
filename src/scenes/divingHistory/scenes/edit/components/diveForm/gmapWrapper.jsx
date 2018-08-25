@@ -17,7 +17,7 @@ const GMapWrapper = compose(
     }&v=3.exp&libraries=geometry,drawing,places`,
     loadingElement: <div style={{ height: "100%" }} />,
     containerElement: (
-      <div style={{ height: "500px", width: "500px", margin: "46px" }} />
+      <div style={{ height: "500px", width: "500px", margin: "106px" }} />
     ),
     mapElement: <div style={{ height: "100%" }} />
   }),

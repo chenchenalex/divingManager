@@ -62,8 +62,6 @@ export class DivingForm extends React.Component {
 
     if (this.state.formData) {
       this.onMount();
-
-      this.validateForm();
     } else {
       // Dive requested not found, request database
       dispatch(userFetchDataAsync(this.props.userInfo.uid));
@@ -139,6 +137,8 @@ export class DivingForm extends React.Component {
         gmapLocation: { lat: lat(), lng: lng() }
       }
     }));
+
+    this.validateForm();
   };
 
   getInputPropsFromConfig = ({ label, required, invalid, helperText }) => ({
