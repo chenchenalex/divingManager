@@ -3,9 +3,9 @@ export const getDataFromStorage = () => {
     const appState = localStorage.getItem("diveManagerApp");
     if (typeof appState !== "undefined") {
       return JSON.parse(appState);
-    } else {
-      return undefined;
     }
+
+    return undefined;
   } catch (e) {
     return {};
   }

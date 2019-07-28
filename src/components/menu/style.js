@@ -15,6 +15,18 @@ const MainMenu = styled.ul`
 
   ${media.tablet`
     flex-basis: 30%;
+    position: absolute;
+    left: -100%;
+    transition: all .2s ease;
+    z-index: 1;
+
+    &.active{
+      left: 0;
+    }
+  `};
+
+  ${media.phone`
+    width: 100%;
   `};
 `;
 

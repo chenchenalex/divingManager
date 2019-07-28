@@ -1,11 +1,13 @@
 import React from "react";
 import PropTypes from "prop-types";
-import FaHome from "react-icons/lib/fa/home";
-import FaUser from "react-icons/lib/fa/user";
-import FaDashboard from "react-icons/lib/fa/dashboard";
-import FaTable from "react-icons/lib/fa/table";
-import FaImage from "react-icons/lib/fa/image";
-import FaCcDiscover from "react-icons/lib/fa/cc-discover";
+import {
+  FaHome,
+  FaUser,
+  FaDashboard,
+  FaTable,
+  FaImage,
+  FaCcDiscover
+} from "react-icons/lib/fa";
 import MainMenu from "./style";
 import MenuItem from "./componnents/menuItem";
 

@@ -12,11 +12,9 @@ import {
 
 export const connectionReducer = (state = {}, action) => {
   /* Update timestamp on any changes locally */
-  if (
-    action.type === ADD_DIVE ||
-    action.type === EDIT_DIVE ||
-    action.type === DELETE_DIVE
-  ) {
+  const actionTypes = [ADD_DIVE, EDIT_DIVE, DELETE_DIVE];
+
+  if (actionTypes.includes(action.type)) {
     return {
       ...state,
       lastUpdatedLocal: Date.now()

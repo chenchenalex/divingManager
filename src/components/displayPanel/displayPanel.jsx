@@ -9,6 +9,7 @@ import pageNotFound from "src/scenes/404";
 import PropTypes from "prop-types";
 
 import Panel from "./style";
+import MobileHeader from "../mobileHeader";
 import Loader from "../loader";
 import * as ROUTES from "../../data/routes";
 
@@ -42,6 +43,7 @@ const DisplayPanel = ({ isOnline, isAuthenticated }) => {
   if (isOnline) {
     return (
       <Panel>
+        <MobileHeader />
         <Switch>
           <Route path={HOMEPAGE} exact render={() => <h1>Welcome</h1>} />
           <PrivateRoute
@@ -67,6 +69,7 @@ const DisplayPanel = ({ isOnline, isAuthenticated }) => {
   }
   return (
     <Panel>
+      <MobileHeader />
       <Loader text="Checking..." />
     </Panel>
   );

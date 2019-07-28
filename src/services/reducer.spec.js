@@ -1,10 +1,10 @@
-import { loginReducer, connectionReducer } from "./reducer";
 import {
   USER_LOGIN_SUCCESS,
   USER_FETCH_DATA_SUCCESS,
   USER_FETCH_DATA_FAILURE,
   USER_LOGOUT_SUCCESS
 } from "src/actions/actionTypes";
+import { loginReducer, connectionReducer } from "./reducer";
 
 describe("loginReducer test", () => {
   it("should set authenticated property to true if user login succeeded", () => {
